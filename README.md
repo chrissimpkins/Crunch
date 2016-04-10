@@ -3,7 +3,9 @@
 
 ## Licenses
 
-Crunch is licensed under the [MIT license](https://github.com/chrissimpkins/Crunch/blob/master/LICENSE).  The Crunch application includes embedded software and images that are licensed as follows:
+Crunch is licensed under the [MIT license](https://github.com/chrissimpkins/Crunch/blob/master/LICENSE).
+
+The Crunch application includes embedded software and images that are licensed as follows:
 
 pngquant is embedded in the Crunch application and licensed under the [Gnu General Public License, version 3](https://github.com/pornel/pngquant/blob/master/COPYRIGHT).  The pngquant source code is available [here](https://github.com/pornel/pngquant).
 

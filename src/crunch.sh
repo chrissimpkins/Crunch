@@ -39,6 +39,7 @@ do
 
     	if [[ $? -ne 0 ]]; then
     		post_pngquant_size=$(stat -f %z "$imagepath")
+    		echo " \n"
     		printf "Current size (kB): \t%.3f\n" $(bc -l <<< "$post_pngquant_size/1000")
     		echo " \n"
        		echo "==> Running stage 2 optimizations (this could take awhile)...\n"
@@ -46,6 +47,7 @@ do
     		./zopflipng -y --lossy_8bit --lossy_transparent "$imagepath" "${imagepath%%.*}-crunch.png" >/dev/null
     	else
     		post_pngquant_size=$(stat -f %z "$working_imagepath")
+    		echo " \n"
     		printf "Current size (kB): \t%.3f\n" $(bc -l <<< "$post_pngquant_size/1000")
     		echo " \n"
     		echo "==> Running stage 2 optimizations (this could take awhile)...\n"
@@ -55,11 +57,14 @@ do
 
     	# get the post compression size of the image file
     	post_zopfli_size=$(stat -f %z "$working_imagepath")
+    	echo " \n"
     	printf "Final size (kB): \t%.3f\n" $(bc -l <<< "$post_zopfli_size/1000")
     	echo " \n"
+    	echo "---\n"
     	echo "Optimized filepath: $working_imagepath"
     	printf "Percent original: \t%.2f%%\n" $(bc -l <<< "($post_zopfli_size/$pre_size) * 100")
     	printf "Space saved (kB): \t%.3f\n" $(bc -l <<< "($pre_size - $post_zopfli_size) / 1000")
+    	echo "---\n"
     else
     	echo "ALERT:$imagepath does not appear to be a png file"
     fi

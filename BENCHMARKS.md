@@ -1,6 +1,6 @@
 ## Crunch Benchmarks
 
-| File                | Size In      | Crunch Size Out  |  % Original Size   |  DSSIM         |
+| File                | Size In      | Size Out         |  % Original Size   |  DSSIM         |
 | :-----------------: | ------------:| ----------------:| :----------------: | :------------: |
 | 01-c3-c0.png        |  18623       |  9325            |  50.07%            |  0.00027151    |
 | 02-c4-c0.png        |  2794        |  1100            |  39.37%            |  0.00000754    |

@@ -7,6 +7,8 @@ You can kick the tires with the current development version.  Download the dmg i
 ## Contents
 
 - [Examples](https://github.com/chrissimpkins/Crunch#examples)
+	- [Photography Examples](https://github.com/chrissimpkins/Crunch#photography-examples)
+	- [Illustration Examples](https://github.com/chrissimpkins/Crunch#illustration-examples)
 - [Usage](https://github.com/chrissimpkins/Crunch#usage)
 - [Licenses](https://github.com/chrissimpkins/Crunch#licenses)
 

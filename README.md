@@ -8,13 +8,31 @@ You can kick the tires with the current development version.  Download the dmg i
 
 ### Photography
 
-- Original Size: 580,777
-- Optimized Size: 193,995
+- Cat Image
+- Original Size: 583,398 bytes
+- Optimized Size: 193,995 bytes
 - DSSIM similarity score: 0.00093374
 
+##### Original
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/cat-1285634_640.png" alt="cat example pre optimization">
 
+##### Optimized
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/cat-1285634_640-crunch.png" alt="cat example post optimization">
+
+
+- Prarie Image
+- Original Size: 196,794 bytes
+- Optimized Size: 73,296 bytes
+- DSSIM similarity score: 0.00175576
+
+##### Original
+
+<img src="https://github.com/chrissimpkins/Crunch/raw/master/img/prairie-679014_640.png" alt="prarie example pre optimization">
+
+##### Optimized
+
+<img src="https://github.com/chrissimpkins/Crunch/raw/master/img/prairie-679014_640-crunch.png" alt="prarie example pre optimization">
+
 
 
 ### Illustrations

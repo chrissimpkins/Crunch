@@ -36,7 +36,7 @@ The `DSSIM` value is a measure of dissimilarity between two PNG images. It uses 
 
 ## Crunch Optimization vs. Other Commonly Used Applications
 
-The values in the following table are the percent of the original file size of the resulting image file following optimization with the respective tool.  Lower values are better.
+The values in the following table are the percent of the original file size in the resulting image file following optimization with the respective tool.  Lower values are better.
 
 Tests were performed using commands that permit direct comparison to the reference tables in the [PNG Optimization Tools Overview](http://css-ig.net/png-tools-overview) that is maintained by Cédric Louvrier.
 

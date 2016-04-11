@@ -6,7 +6,7 @@ You can kick the tires with the current development version.  Download the dmg i
 
 ## Examples
 
-### Photography
+## Photography Examples
 
 ### Cat Image
 
@@ -37,7 +37,7 @@ You can kick the tires with the current development version.  Download the dmg i
 
 
 
-### Illustrations
+## Illustration Examples
 
 ### Color Circle Image
 

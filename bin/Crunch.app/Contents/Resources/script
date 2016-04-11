@@ -3,7 +3,7 @@
 chug_title=" ______                         __
 |      |.----.--.--.-----.----.|  |--.
 |   ---||   _|  |  |     |  __||     |
-|______||__| |_____|__|__|____||__|__|  v0.9.0 dev-1
+|______||__| |_____|__|__|____||__|__|  v0.9.0 dev-2
                                       "
 
 # Message on application open (no arguments passed to script on initial open)
@@ -24,15 +24,15 @@ fi
 
 for imagepath in "$@"
 do
-    file_extension=${imagepath##*.}
-    if [[ $file_extension = "png" ]]; then
+    file_extension="${imagepath##*.}"
+    if [[ "$file_extension" = "png" ]]; then
     	echo "• • • Crunching $imagepath...\n"
     	echo " \n"
     	# get the pre compression size of the image file
     	pre_size=$(stat -f %z "$imagepath")
     	printf "Original size (kB): \t%.3f\n" $(bc -l <<< "$pre_size/1000")
 
-    	working_imagepath="${imagepath%%.*}-crunch.png"
+    	working_imagepath="${imagepath%.png}-crunch.png"
 
     	# pngquant run on the file
     	echo " \n"
@@ -63,7 +63,7 @@ do
     		if [[ -f "$working_imagepath" ]]; then
     			echo " " >/dev/null
     		else
-    			sleep 2  # pause for two seconds for file write
+    			sleep 2  # pause for two seconds
     			if [[ -f "$working_imagepath" ]]; then
     				echo " " >/dev/null
     			else

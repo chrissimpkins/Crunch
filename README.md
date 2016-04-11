@@ -11,7 +11,7 @@ Mean percent original file size for the 21 files included in Cédric Louvrier's 
 
 Full benchmarks with the current version of Crunch are available [here](https://github.com/chrissimpkins/Crunch/blob/master/BENCHMARKS.md).
 
-You can kick the tires on the current development version.  Download the dmg installer [here](https://github.com/chrissimpkins/Crunch/releases/download/v0.9.0-dev-2/Crunch-Installer.dmg), click it, and drag the Crunch icon to your Applications directory.
+You can kick the tires on the current development version.  [Download the dmg installer](https://github.com/chrissimpkins/Crunch/releases/download/v0.9.0-dev-2/Crunch-Installer.dmg), click it, and drag the Crunch icon to your Applications directory.
 
 ## Contents
 

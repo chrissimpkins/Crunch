@@ -2,7 +2,7 @@
 
 Crunch is a tool for PNG image file optimization on OS X.  It uses a selectively lossy optimization approach with embedded versions of the pngquant and zopflipng PNG optimization tools.  Benchmarks with the current development version of Crunch are available [here](https://github.com/chrissimpkins/Crunch/blob/master/BENCHMARKS.md).
 
-You can kick the tires with the current development version.  Download the dmg installer [here](https://github.com/chrissimpkins/Crunch/releases/download/v0.9.0-dev-1/Crunch-Installer.dmg).
+You can kick the tires with the current development version.  Download the dmg installer [here](https://github.com/chrissimpkins/Crunch/releases/download/v0.9.0-dev-2/Crunch-Installer.dmg).
 
 ## Contents
 

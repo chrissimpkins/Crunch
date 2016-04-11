@@ -6,6 +6,8 @@ You can kick the tires with the current development version.  Download the dmg i
 
 ## Examples
 
+The following examples demonstrate the benefits and drawbacks (see the horizon line + clouds in the prarie photo) of the current iteration of this aggressive space saving strategy.  In many cases, PNG optimization with this approach will lead to excellent space savings and an imperceptible decrease in image quality.  In some cases, it does not.  Experiment with the image types that you use and please submit an issue report with examples of any images where the image quality falls short of your expectations for production ready files.  This will be helpful to improve our approach.
+
 ## Photography Examples
 
 ### Cat Image

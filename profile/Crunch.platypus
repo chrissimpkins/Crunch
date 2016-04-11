@@ -32,7 +32,7 @@
 	<key>ExecutablePath</key>
 	<string>/usr/local/share/platypus/ScriptExec</string>
 	<key>IconPath</key>
-	<string>/Applications/Platypus.app/Contents/Resources/PlatypusDefault.icns</string>
+	<string>/Users/ces/Library/Application Support/Platypus/PlatypusIcon-17084.icns</string>
 	<key>Identifier</key>
 	<string>com.csimpkins.Crunch</string>
 	<key>Interpreter</key>
@@ -243,13 +243,13 @@
 		<string>png</string>
 	</array>
 	<key>TextBackground</key>
-	<string>#ffffff</string>
+	<string>#20242d</string>
 	<key>TextEncoding</key>
 	<integer>4</integer>
 	<key>TextFont</key>
 	<string>Monaco</string>
 	<key>TextForeground</key>
-	<string>#000000</string>
+	<string>#e6e6e6</string>
 	<key>TextSize</key>
 	<real>13</real>
 	<key>UniformTypes</key>

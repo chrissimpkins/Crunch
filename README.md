@@ -1,8 +1,17 @@
 # Crunch
 
-Crunch is a tool for PNG image file optimization on OS X.  It uses a selectively lossy optimization approach with embedded versions of the pngquant and zopflipng PNG optimization tools.  Benchmarks with the current development version of Crunch are available [here](https://github.com/chrissimpkins/Crunch/blob/master/BENCHMARKS.md).
+Crunch is a tool for PNG image file optimization on OS X.  It uses a selectively lossy optimization approach with embedded versions of the pngquant and zopflipng PNG optimization tools.  This leads to a significant file size gain at the expense of longer file optimization processing times and relatively modest decrease in image quality (see example images below).
 
-You can kick the tires with the current development version.  Download the dmg installer [here](https://github.com/chrissimpkins/Crunch/releases/download/v0.9.0-dev-2/Crunch-Installer.dmg).
+Mean percent of the original file size for Cédric Louvrier's [PNG Test Corpus files](http://css-ig.net/images/png-test-corpus.zip) vs. other commonly used PNG optimization applications are:
+
+| File                | Crunch        | ImageOptim       |  OptiPNG            |  PNGOUT       | PNGCrush    |
+| :-----------------: | :------------:| :---------------:| :----------------: | :------------: | :---------: |
+| **Mean**            |  **50.64%**   |   **60.91%**     |  **69.28%**        |  **75.81%**    | **74.25%**  |
+
+
+Full benchmarks with the current version of Crunch are available [here](https://github.com/chrissimpkins/Crunch/blob/master/BENCHMARKS.md).
+
+You can kick the tires on the current development version.  Download the dmg installer [here](https://github.com/chrissimpkins/Crunch/releases/download/v0.9.0-dev-2/Crunch-Installer.dmg), click it, and drag the Crunch icon to your Applications directory.
 
 ## Contents
 

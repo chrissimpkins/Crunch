@@ -8,7 +8,7 @@ You can kick the tires with the current development version.  Download the dmg i
 
 Drag and drop your PNG images onto the Crunch window:
 
-<img src="https://github.com/chrissimpkins/Crunch/raw/master/img/crunch-ss.gif" alt="Crunch PNG image optimization usage">
+<img src="https://github.com/chrissimpkins/Crunch/raw/master/img/crunch-ss.gif" alt="Crunch PNG image optimization usage" width="400">
 
 Your optimized file is saved in the same directory as the original file with the modified path `[original filename]-crunch.png`.
 

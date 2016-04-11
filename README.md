@@ -33,11 +33,26 @@ You can kick the tires with the current development version.  Download the dmg i
 
 ##### Optimized
 
-<img src="https://github.com/chrissimpkins/Crunch/raw/master/img/prairie-679014_640-crunch.png" alt="prarie example pre optimization">
+<img src="https://github.com/chrissimpkins/Crunch/raw/master/img/prairie-679014_640-crunch.png" alt="prarie example post optimization">
 
 
 
 ### Illustrations
+
+### Color Circle Image
+
+- Original Size: 249,251 bytes
+- Optiimized Size: 219,429 bytes
+- DSSIM similarity score: 0.00000000
+
+##### Original
+<img src="https://github.com/chrissimpkins/Crunch/raw/master/img/colors-157474_640.png" alt="colors example pre optimization">
+
+##### Optimized
+<img src="https://github.com/chrissimpkins/Crunch/raw/master/img/colors-157474_640-crunch.png" alt="colors example post optimization">
+
+
+### Purple Image
 
 - Original Size: 561,872 bytes
 - Optimized Size: 15,736 bytes

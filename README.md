@@ -60,6 +60,18 @@ The following examples demonstrate the benefits and drawbacks (see the horizon l
 
 ## Illustration Examples
 
+### Robot Image
+
+- Original Size: 197,193 bytes
+- Optimized Size: 67,989 bytes
+- DSSIM similarity score: 0.00005817
+
+##### Original
+<img src="https://github.com/chrissimpkins/Crunch/raw/master/img/robot-1214536_640.png" alt="robot example pre optimization">
+
+##### Optimized
+<img src="https://github.com/chrissimpkins/Crunch/raw/master/img/robot-1214536_640-crunch.png" alt="robot example post optimization">
+
 ### Color Circle Image
 
 - Original Size: 249,251 bytes

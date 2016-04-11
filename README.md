@@ -4,9 +4,9 @@ Crunch is a tool for PNG image file optimization on OS X.  It uses a selectively
 
 Mean percent of the original file size for Cédric Louvrier's [PNG Test Corpus files](http://css-ig.net/images/png-test-corpus.zip) vs. other commonly used PNG optimization applications are:
 
-| File                | Crunch        | ImageOptim       |  OptiPNG            |  PNGOUT       | PNGCrush    |
+|                     | Crunch        | ImageOptim       |  OptiPNG           |  PNGOUT        | PNGCrush    |
 | :-----------------: | :------------:| :---------------:| :----------------: | :------------: | :---------: |
-| **Mean**            |  **50.64%**   |   **60.91%**     |  **69.28%**        |  **75.81%**    | **74.25%**  |
+| **Mean**            |    50.64%     |     60.91%       |    69.28%          |    75.81%      |   74.25%    |
 
 
 Full benchmarks with the current version of Crunch are available [here](https://github.com/chrissimpkins/Crunch/blob/master/BENCHMARKS.md).

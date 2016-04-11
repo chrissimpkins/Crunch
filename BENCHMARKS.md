@@ -36,6 +36,40 @@ The `DSSIM` value is a measure of dissimilarity between two PNG images. It uses 
 
 ## Crunch Optimization vs. Other Commonly Used Applications
 
+The values in the following table are the percent of the original file size of the resulting image file following optimization with the respective tool.  Lower values are better.
+
+Tests were performed using commands that permit direct comparison to the reference tables in the [PNG Optimization Tools Overview](http://css-ig.net/png-tools-overview) that is maintained by Cédric Louvrier.
+
+#### ImageOptim Tests
+
+ImageOptim v1.6.1 was executed via drag and drop into the GUI application.
+
+#### OptiPNG Tests
+
+`optipng` v0.7.5 was executed with the command:
+
+```
+$ optipng -o3 [filepath]
+```
+
+#### PNGOUT Tests
+
+`pngout` vSep 20 2015 was executed with the command:
+
+```
+$ pngout [filepath]
+```
+
+#### PNGCrush Tests
+
+`pngcrush` v1.8.0 was executed with the command:
+
+```
+$ pngcrush -brute -blacken -reduce [filepath]
+```
+
+
+
 | File                | Crunch        | ImageOptim       |  OptiPNG            |  PNGOUT       | PNGCrush    |
 | :-----------------: | :------------:| :---------------:| :----------------: | :------------: | :---------: |
 | 01-c3-c0.png        |  50.07%       |  58.70%          |  64.17%            |   83.83%       |  88.35%     |

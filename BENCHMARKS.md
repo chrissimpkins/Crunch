@@ -8,6 +8,7 @@ The `DSSIM` value is a measure of dissimilarity between two PNG images. It uses 
 
 > The value returned is 1/SSIM-1, where 0 means identical image, and >0 (unbounded) is amount of difference. 
 
+
 | File                | Size In      | Size Out         |  % Original Size   |  DSSIM         |
 | :-----------------: | ------------:| ----------------:| :----------------: | :------------: |
 | 01-c3-c0.png        |  18623       |  9325            |  50.07%            |  0.00027151    |

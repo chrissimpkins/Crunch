@@ -32,7 +32,7 @@ do
     	pre_size=$(stat -f %z "$imagepath")
     	printf "Original size (kB): \t%.3f\n" $(bc -l <<< "$pre_size/1000")
 
-    	working_imagepath="${imagepath%%.*}-crunch.png"
+    	working_imagepath="${imagepath%.png}-crunch.png"
 
     	# pngquant run on the file
     	echo " \n"
@@ -63,7 +63,7 @@ do
     		if [[ -f "$working_imagepath" ]]; then
     			echo " " >/dev/null
     		else
-    			sleep 2  # pause for two seconds for file write
+    			sleep 2  # pause for two seconds
     			if [[ -f "$working_imagepath" ]]; then
     				echo " " >/dev/null
     			else

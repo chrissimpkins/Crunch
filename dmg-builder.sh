@@ -7,8 +7,8 @@
 --window-pos 200 120 \
 --window-size 800 400 \
 --icon-size 100 \
---icon Pull.app 200 190 \
---hide-extension Pull.app \
+--icon Crunch.app 200 190 \
+--hide-extension Crunch.app \
 --app-drop-link 600 185 \
 Crunch-Installer.dmg \
-/Users/ces/Desktop/code/Crunch/build
+/Users/ces/Desktop/code/Crunch/bin

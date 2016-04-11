@@ -1,5 +1,7 @@
 # Crunch
 
+Crunch is a tool for PNG image file optimization.  It uses embedded versions of the pngquant and zopflipng PNG optimization tools.  Benchmarks with the current development version of Crunch are available [here](https://github.com/chrissimpkins/Crunch/blob/master/BENCHMARKS.md).
+
 
 ## Licenses
 

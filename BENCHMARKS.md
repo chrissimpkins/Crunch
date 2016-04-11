@@ -1,5 +1,13 @@
 ## Crunch Benchmarks
 
+PNG optimization benchmarks were executed with Crunch v0.9.0.  They use [the PNG Test Corpus files](http://css-ig.net/images/png-test-corpus.zip) that are maintained by css-ig.net.  A broad analysis of available PNG optimization tools is available [here](http://css-ig.net/png-tools-overview) for additional reference.
+
+In the following table, `Size In` and `Size Out` represent the original and optimized file size in bytes, respectively.  `%Original Size` is the percent of the original file size in bytes represented by the final optimized file size.  A lower value is better.
+
+The `DSSIM` value is a measure of dissimilarity between two PNG images. It uses [the SSIM algorithm](https://ece.uwaterloo.ca/%7Ez70wang/research/ssim/) and is calculated with [the open source dssim tool](https://github.com/pornel/dssim) by [@pornel](https://github.com/pornel).  This is calculated from the optimized file using the original file as a reference.  Interpretation is as follows (from the dssim README):
+
+> The value returned is 1/SSIM-1, where 0 means identical image, and >0 (unbounded) is amount of difference. 
+
 | File                | Size In      | Size Out         |  % Original Size   |  DSSIM         |
 | :-----------------: | ------------:| ----------------:| :----------------: | :------------: |
 | 01-c3-c0.png        |  18623       |  9325            |  50.07%            |  0.00027151    |

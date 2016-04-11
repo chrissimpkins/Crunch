@@ -10,6 +10,8 @@ Drag and drop your PNG images onto the Crunch window:
 
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/crunch-ss.gif" alt="Crunch PNG image optimization usage">
 
+Your optimized file is saved in the same directory as the original file with the modified path `[original filename]-crunch.png`.
+
 ## Licenses
 
 Crunch is licensed under the [MIT license](https://github.com/chrissimpkins/Crunch/blob/master/LICENSE).

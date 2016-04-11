@@ -6,7 +6,7 @@ In the following table, `Size In` and `Size Out` represent the original and opti
 
 The `DSSIM` value is a measure of dissimilarity between two PNG images. It uses [the SSIM algorithm](https://ece.uwaterloo.ca/%7Ez70wang/research/ssim/) and is calculated with [the open source dssim tool](https://github.com/pornel/dssim) by [@pornel](https://github.com/pornel).  This is calculated from the optimized file using the original file as a reference.  Interpretation is as follows (from the dssim README):
 
-> The value returned is 1/SSIM-1, where 0 means identical image, and >0 (unbounded) is amount of difference. 
+> The value returned is 1/SSIM-1, where 0 means identical image, and >0 (unbounded) is amount of difference.
 
 
 | File                | Size In      | Size Out         |  % Original Size   |  DSSIM         |
@@ -69,7 +69,7 @@ $ pngout [filepath]
 $ pngcrush -brute -blacken -reduce [filepath]
 ```
 
-Please note that Crunch uses a *lossy* PNG optimization approach whereas the comparison tools are all executed with *lossless* PNG optimization.  The lossy approach in Crunch is intentional, explains the file size difference, and should be taken into consideration as you interpret the findings and make decisions about use cases for the tool.
+Please note that Crunch uses a *lossy* PNG optimization approach that is based upon minimum acceptable image quality whereas the comparison tools are all executed with purely *lossless* PNG optimization.  The selectively lossy approach in Crunch is intentional, explains the file size difference, and should be taken into consideration as you interpret the findings and make decisions about use cases for the tool.
 
 
 | File                | Crunch        | ImageOptim       |  OptiPNG            |  PNGOUT       | PNGCrush    |

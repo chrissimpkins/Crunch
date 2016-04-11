@@ -3,13 +3,14 @@
 chug_title=" ______                         __
 |      |.----.--.--.-----.----.|  |--.
 |   ---||   _|  |  |     |  __||     |
-|______||__| |_____|__|__|____||__|__|  v0.9.0
+|______||__| |_____|__|__|____||__|__|  v0.9.0 dev-1
                                       "
 
 # Message on application open (no arguments passed to script on initial open)
 if [[ $# -eq 0 ]]; then
 	printf '%s\n' "$chug_title"
 	echo "Insane(ly slow but wicked good) PNG image optimization\n"
+	echo "Built with pngquant and zopflipng optimizers"
 	echo "======================================================\n"
 	echo "Copyright 2016 Christopher Simpkins"
 	echo "MIT License"

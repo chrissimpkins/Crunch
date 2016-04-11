@@ -68,6 +68,7 @@ $ pngout [filepath]
 $ pngcrush -brute -blacken -reduce [filepath]
 ```
 
+Please note that Crunch uses a *lossy* PNG optimization approach whereas the comparison tools are all executed with *lossless* PNG optimization.  The lossy approach in Crunch is intentional, explains the file size difference, and should be taken into consideration as you interpret the findings and make decisions about use cases for the tool.
 
 
 | File                | Crunch        | ImageOptim       |  OptiPNG            |  PNGOUT       | PNGCrush    |

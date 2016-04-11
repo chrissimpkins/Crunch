@@ -3,7 +3,7 @@
 chug_title=" ______                         __
 |      |.----.--.--.-----.----.|  |--.
 |   ---||   _|  |  |     |  __||     |
-|______||__| |_____|__|__|____||__|__|  v0.9.0 dev-1
+|______||__| |_____|__|__|____||__|__|  v0.9.0 dev-2
                                       "
 
 # Message on application open (no arguments passed to script on initial open)
@@ -24,8 +24,8 @@ fi
 
 for imagepath in "$@"
 do
-    file_extension=${imagepath##*.}
-    if [[ $file_extension = "png" ]]; then
+    file_extension="${imagepath##*.}"
+    if [[ "$file_extension" = "png" ]]; then
     	echo "• • • Crunching $imagepath...\n"
     	echo " \n"
     	# get the pre compression size of the image file

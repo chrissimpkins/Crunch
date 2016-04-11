@@ -65,6 +65,8 @@ You can kick the tires with the current development version.  Download the dmg i
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/readme-eg-pre-crunch.png" alt="748">
 
 
+<small>The above cat, prarie, and color circle images were obtained from [Pixabay](https://pixabay.com) and are dedicated to the public domain under the [CC0 Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/).  The purple illustration image was produced by Chris Simpkins and is released to the public domain under the [CC0 Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/)</small>
+
 
 ## Usage
 

@@ -4,6 +4,12 @@ Crunch is a tool for PNG image file optimization on OS X.  It uses a selectively
 
 You can kick the tires with the current development version.  Download the dmg installer [here](https://github.com/chrissimpkins/Crunch/releases/download/v0.9.0-dev-1/Crunch-Installer.dmg).
 
+## Contents
+
+- [Examples](https://github.com/chrissimpkins/Crunch#examples)
+- [Usage](https://github.com/chrissimpkins/Crunch#usage)
+- [Licenses](https://github.com/chrissimpkins/Crunch#licenses)
+
 ## Examples
 
 The following examples demonstrate the benefits and drawbacks (see the horizon line + clouds in the prarie photo) of the current iteration of this aggressive space saving strategy.  In many cases, PNG optimization with this approach will lead to excellent space savings and an imperceptible decrease in image quality.  In some cases, it does not.  Experiment with the image types that you use and please submit an issue report with examples of any images where the image quality falls short of your expectations for production ready files.  This will be helpful to improve our approach.

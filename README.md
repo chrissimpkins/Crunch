@@ -4,6 +4,18 @@ Crunch is a tool for PNG image file optimization on OS X.  It uses embedded vers
 
 You can kick the tires with the current development version.  Download the dmg installer [here](https://github.com/chrissimpkins/Crunch/releases/download/v0.9.0-dev-1/Crunch-Installer.dmg).
 
+## Example
+
+- Original Size: 561,872 bytes
+- Optimized Size: 15,736 bytes
+- DSSIM similarity score: 0.00006207
+
+##### Original
+<img src="https://github.com/chrissimpkins/Crunch/raw/master/img/readme-eg-pre.png" alt="748">
+
+##### Optimized
+<img src="https://github.com/chrissimpkins/Crunch/raw/master/img/readme-eg-pre-crunch.png" alt="748">
+
 ## Usage
 
 Drag and drop your PNG images onto the Crunch window:

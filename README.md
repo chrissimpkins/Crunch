@@ -41,6 +41,18 @@ The following examples demonstrate the benefits and drawbacks (see the horizon l
 ##### Optimized
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/cat-1285634_640-crunch.png" alt="cat example post optimization">
 
+### Sun's Rays (B&W)
+
+- Original Size: 138,272
+- Optimized Size: 74,426
+- DSSIM similarity score: 0.00046923
+
+##### Original
+<img src="https://github.com/chrissimpkins/Crunch/raw/master/img/suns-rays-478249_640.png" alt="sun rays example pre optimization">
+
+##### Optimized
+<img src="https://github.com/chrissimpkins/Crunch/raw/master/img/suns-rays-478249_640-crunch.png" alt="sun rays example pre optimization">
+
 
 ### Prarie Image
 

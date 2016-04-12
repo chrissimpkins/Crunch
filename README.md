@@ -123,7 +123,7 @@ Your optimized file is saved in the same directory as the original file with the
 
 ## Issues
 
-Please [create a new issue report](https://github.com/chrissimpkins/Crunch/issues/new) on our issue tracker if you come across any problems or have constructive criticism about the software.
+Please [create a new issue report](https://github.com/chrissimpkins/Crunch/issues/new) on the issue tracker if you come across any problems or have constructive criticism about the software.
 
 ## Licenses
 

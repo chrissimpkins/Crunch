@@ -1,4 +1,6 @@
-# Crunch
+<img src="https://github.com/chrissimpkins/Crunch/raw/master/img/header-img-crunch.png" alt="Crunch PNG file optimization">
+
+## About
 
 Crunch is a tool for PNG image file optimization on OS X.  It uses a selectively lossy optimization approach with embedded versions of the pngquant and zopflipng PNG optimization tools.  This leads to a significant file size gain at the expense of longer file optimization processing times and relatively modest decrease in image quality (see example images below).
 

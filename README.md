@@ -14,6 +14,12 @@ Mean percent original file size for the 21 files included in Cédric Louvrier's 
 
 Full benchmarks with the current version of Crunch are available [here](https://github.com/chrissimpkins/Crunch/blob/master/BENCHMARKS.md).
 
+Initial impressions?
+
+> Crunch is doing a remarkably better job than ImageOptim for PNGs. The same file was reduced to 189k with ImageOptim and 95k with Crunch. Just wow. :)
+
+@herrbischoff in [#1](https://github.com/chrissimpkins/Crunch/issues/1#issuecomment-208481630)
+
 ## Install
 
 Feel free to kick the tires on the current development version.  [Download the dmg installer](https://github.com/chrissimpkins/Crunch/releases/download/v0.9.0-dev-2/Crunch-Installer.dmg), click it, and drag the Crunch icon to your Applications directory.

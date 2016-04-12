@@ -121,6 +121,10 @@ Drag and drop your PNG images onto the Crunch window:
 
 Your optimized file is saved in the same directory as the original file with the modified path `[original filename]-crunch.png`.
 
+## Issues
+
+Please [create a new issue report](https://github.com/chrissimpkins/Crunch/issues/new) on our issue tracker if you come across any problems or have constructive criticism about the software.
+
 ## Licenses
 
 Crunch is licensed under the [MIT license](https://github.com/chrissimpkins/Crunch/blob/master/LICENSE).

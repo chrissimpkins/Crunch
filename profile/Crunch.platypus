@@ -14,6 +14,7 @@
 	<array>
 		<string>/Users/ces/Desktop/code/Crunch/src/include/pngquant</string>
 		<string>/Users/ces/Desktop/code/Crunch/src/include/zopflipng</string>
+		<string>/Users/ces/Desktop/code/Crunch/docs/Credits.html</string>
 	</array>
 	<key>Creator</key>
 	<string>Platypus-5.1</string>
@@ -260,6 +261,6 @@
 	<key>UseXMLPlistFormat</key>
 	<false/>
 	<key>Version</key>
-	<string>0.9.0 dev-2</string>
+	<string>0.9.0</string>
 </dict>
 </plist>

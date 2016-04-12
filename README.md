@@ -97,20 +97,20 @@ The following examples demonstrate the benefits and drawbacks (see the horizon l
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/colors-157474_640-crunch.png" alt="colors example post optimization">
 
 
-### Purple Image
+### Flowers Image
 
-- Original Size: 561,872 bytes
-- Optimized Size: 15,736 bytes
-- DSSIM similarity score: 0.00006207
+- Original Size: 440,126 bytes
+- Optimized Size: 195,972 bytes
+- DSSIM similarity score: 0.00024169
 
 ##### Original
-<img src="https://github.com/chrissimpkins/Crunch/raw/master/img/readme-eg-pre.png" alt="748">
+<img src="https://github.com/chrissimpkins/Crunch/raw/master/img/flowers-67839_640.png" alt="748">
 
 ##### Optimized
-<img src="https://github.com/chrissimpkins/Crunch/raw/master/img/readme-eg-pre-crunch.png" alt="748">
+<img src="https://github.com/chrissimpkins/Crunch/raw/master/img/flowers-67839_640-crunch.png" alt="748">
 
 
-<small>The above cat, prarie, and color circle images were obtained from [Pixabay](https://pixabay.com) and are dedicated to the public domain under the [CC0 Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/).  The purple illustration image was produced by Chris Simpkins and is released to the public domain under the [CC0 Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/)</small>
+<small>All images above were obtained from [Pixabay](https://pixabay.com) and are dedicated to the public domain under the [CC0 Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/).
 
 
 ## Usage

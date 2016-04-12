@@ -28,7 +28,7 @@ Feel free to kick the tires on the current development version.  [Download the d
 
 ## Examples
 
-The following examples demonstrate the benefits and drawbacks of the current iteration of this aggressive space saving strategy.  In many cases, optimization with Crunch will lead to excellent space savings and an imperceptible decrease in image quality.  In some cases, it does not (see the horizon line + clouds in the prarie photo below) .  Experiment with the image types that you use and please submit an issue report with examples of any images where the image quality falls short of your expectations for production ready files.
+The following examples demonstrate the benefits and disadvantages of the current iteration of this aggressive space saving strategy.  In many cases, optimization with Crunch will lead to excellent space savings and an imperceptible decrease in image quality.  In some cases, it does not (see the horizon line + clouds in the prarie photo below) .  Experiment with the image types that you use and please submit an issue report with examples of any images where the image quality falls short of your expectations for production ready files.
 
 ## Photography Examples
 

@@ -137,7 +137,7 @@ Please [create a new issue report](https://github.com/chrissimpkins/Crunch/issue
 
 ## Licenses
 
-Crunch is licensed under the [MIT license](https://github.com/chrissimpkins/Crunch/blob/master/LICENSE).
+Crunch is licensed under the [MIT license](https://github.com/chrissimpkins/Crunch/blob/master/LICENSE.md).
 
 #### Embedded Software
 

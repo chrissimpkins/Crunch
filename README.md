@@ -22,7 +22,7 @@ Initial impressions?
 
 ## Install
 
-Feel free to kick the tires on the current development version.  [Download the dmg installer](https://github.com/chrissimpkins/Crunch/releases/download/v0.9.0-dev-2/Crunch-Installer.dmg), click it, and drag the Crunch icon to your Applications directory.
+Want to kick the tires?  [Download the dmg installer](https://github.com/chrissimpkins/Crunch/releases/download/v0.9.0/Crunch-Installer.dmg), click it, and drag the Crunch icon to your Applications directory.
 
 ## Contents
 

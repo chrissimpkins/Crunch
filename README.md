@@ -21,6 +21,7 @@ Feel free to kick the tires on the current development version.  [Download the d
 	- [Photography Examples](https://github.com/chrissimpkins/Crunch#photography-examples)
 	- [Illustration Examples](https://github.com/chrissimpkins/Crunch#illustration-examples)
 - [Usage](https://github.com/chrissimpkins/Crunch#usage)
+- [Issues](https://github.com/chrissimpkins/Crunch#issues)
 - [Licenses](https://github.com/chrissimpkins/Crunch#licenses)
 
 ## Examples

@@ -3,7 +3,7 @@
 chug_title=" ______                         __
 |      |.----.--.--.-----.----.|  |--.
 |   ---||   _|  |  |     |  __||     |
-|______||__| |_____|__|__|____||__|__|  v0.9.0 dev-2
+|______||__| |_____|__|__|____||__|__|  v0.9.0
                                       "
 
 # Message on application open (no arguments passed to script on initial open)

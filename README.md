@@ -52,7 +52,7 @@ The following examples demonstrate the benefits and disadvantages of the current
 ##### Optimized
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/cat-1285634_640-crunch.png" alt="cat example post optimization">
 
-### Sun's Rays (B&W)
+### Sun's Rays (Grayscale)
 
 - Original Size: 138,272
 - Optimized Size: 74,426

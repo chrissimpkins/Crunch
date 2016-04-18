@@ -3,7 +3,7 @@
 
 ## About
 
-Crunch is an OS X tool for PNG image file optimization.  It uses a selectively lossy optimization approach with embedded versions of the pngquant and zopflipng PNG optimization tools.  This leads to a significant file size gain at the expense of longer file optimization processing times and relatively modest decrease in image quality (see example images below).
+Crunch is an OS X tool for PNG image file optimization.  It combines selective bit depth and color palette reduction with zopfli DEFLATE compression algorithm encoding using embedded versions of the pngquant and zopflipng PNG optimization tools.  This leads to a significant file size gain at the expense of longer file optimization processing times and relatively modest decrease in image quality (see example images below).
 
 Mean percent original file size for the 21 files included in Cédric Louvrier's [PNG Test Corpus files](http://css-ig.net/images/png-test-corpus.zip) vs. other commonly used PNG optimization applications are:
 
@@ -19,6 +19,7 @@ Initial impressions?
 > Crunch is doing a remarkably better job than ImageOptim for PNGs. The same file was reduced to 189k with ImageOptim and 95k with Crunch. Just wow. :)
 
 @herrbischoff in [#1](https://github.com/chrissimpkins/Crunch/issues/1#issuecomment-208481630)
+
 
 ## Install
 

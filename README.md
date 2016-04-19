@@ -3,7 +3,7 @@
 
 ## About
 
-Crunch is an OS X tool for PNG image file optimization.  It combines selective bit depth and color palette reduction with zopfli DEFLATE compression algorithm encoding using embedded versions of the pngquant and zopflipng PNG optimization tools.  This leads to a significant file size gain at the expense of longer file optimization processing times and relatively modest decrease in image quality (see example images below).
+Crunch is an OS X tool for PNG image file optimization.  It combines selective bit depth, color type, and color palette reduction with zopfli DEFLATE compression algorithm encoding using embedded versions of the pngquant and zopflipng PNG optimization tools.  This leads to a significant file size gain at the expense of longer file optimization processing times and relatively modest decrease in image quality (see example images below).
 
 Mean percent original file size for the 21 files included in Cédric Louvrier's [PNG Test Corpus files](http://css-ig.net/images/png-test-corpus.zip) vs. other commonly used PNG optimization applications are:
 
@@ -36,7 +36,7 @@ Want to kick the tires?  [Download the dmg installer](https://github.com/chrissi
 
 ## Examples
 
-The following examples demonstrate the benefits and disadvantages of the current iteration of this aggressive space saving strategy.  In many cases, optimization with Crunch will lead to excellent space savings and an imperceptible decrease in image quality.  In some cases, it does not (see the horizon line + clouds in the prarie photo below) .  Experiment with the image types that you use and please submit an issue report with examples of any images where the image quality falls short of your expectations for production ready files.
+The following examples demonstrate the benefits and disadvantages of the current iteration of this aggressive space saving lossy transformation strategy.  In many cases, optimization with Crunch will lead to excellent space savings and an imperceptible decrease in image quality.  In some cases, it does not (see the horizon line + clouds in the prarie photo below) .  Experiment with the image types that you use and please submit an issue report with examples of any images where the image quality falls short of your expectations for production ready files.
 
 ## Photography Examples
 

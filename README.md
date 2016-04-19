@@ -31,7 +31,11 @@ Want to kick the tires?  Choose one of the methods below:
 $ brew cask install crunch
 ```
 
-Upgrades to the latest version are automated in the `brew update && brew upgrade` workflow.
+Following your install you can upgrade to the latest version with:
+
+```
+$ brew cask uninstall crunch && brew cask install crunch
+```
 
 
 ### 2. Install with dmg Installer

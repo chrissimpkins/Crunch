@@ -23,9 +23,9 @@ Initial impressions?
 
 ## Install
 
-Want to kick the tires?
+Want to kick the tires?  Choose one of the methods below:
 
-### Install with Hombrew Cask Package Manager
+### 1. Install with Hombrew Cask Package Manager
 
 ```
 $ brew cask install crunch
@@ -34,7 +34,7 @@ $ brew cask install crunch
 Upgrades to the latest version are automated in the `brew update && brew upgrade` workflow.
 
 
-### Install with dmg Installer
+### 2. Install with dmg Installer
 [Download the dmg installer](https://github.com/chrissimpkins/Crunch/releases/download/v0.9.0/Crunch-Installer.dmg), click it, and drag the Crunch icon to your Applications directory.
 
 Upgrade by following the same instructions and allowing the new version to replace the old version on your system.

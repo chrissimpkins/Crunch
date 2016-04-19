@@ -36,7 +36,7 @@ Want to kick the tires?  [Download the dmg installer](https://github.com/chrissi
 
 ## Examples
 
-The following examples demonstrate the benefits and disadvantages of the current iteration of this aggressive space saving lossy transformation strategy.  In many cases, optimization with Crunch will lead to excellent space savings and an imperceptible decrease in image quality.  In some cases, it does not (see the horizon line + clouds in the prarie photo below) .  Experiment with the image types that you use and please submit an issue report with examples of any images where the image quality falls short of your expectations for production ready files.
+The following examples demonstrate the benefits and disadvantages of the current iteration of this aggressive space saving lossy transformation strategy.  In many cases, optimization with Crunch will lead to excellent space savings and an imperceptible decrease in image quality.  In some cases, it does not (see the horizon line + clouds in the prairie photo below) .  Experiment with the image types that you use and please submit an issue report with examples of any images where the image quality falls short of your expectations for production ready files.
 
 ## Photography Examples
 
@@ -52,7 +52,7 @@ The following examples demonstrate the benefits and disadvantages of the current
 ##### Optimized
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/cat-1285634_640-crunch.png" alt="cat example post optimization">
 
-### Sun's Rays (Grayscale)
+### Sun's Rays
 
 - Original Size: 138,272
 - Optimized Size: 74,426
@@ -65,7 +65,7 @@ The following examples demonstrate the benefits and disadvantages of the current
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/suns-rays-478249_640-crunch.png" alt="sun rays example pre optimization">
 
 
-### Prarie Image
+### Prairie Image
 
 - Original Size: 196,794 bytes
 - Optimized Size: 73,296 bytes

@@ -5,14 +5,14 @@
 
 Crunch is an OS X tool for PNG image file optimization.  It combines selective bit depth, color type, and color palette reduction with zopfli DEFLATE compression algorithm encoding using embedded versions of the pngquant and zopflipng PNG optimization tools.  This leads to a significant file size gain at the expense of longer file optimization processing times and relatively modest decrease in image quality (see example images below).
 
-Mean percent original file size for the 21 files included in Cédric Louvrier's [PNG Test Corpus files](http://css-ig.net/images/png-test-corpus.zip) vs. other commonly used PNG optimization applications are:
+Mean percent original file size for the 21 files included in Cédric Louvrier's [PNG Test Corpus files](http://css-ig.net/images/png-test-corpus.zip) with Crunch v0.9.0 vs. other commonly used PNG optimization applications are:
 
 |                     | Crunch        | ImageOptim       |  OptiPNG           |  PNGOUT        | PNGCrush    |
 | :-----------------: | :------------:| :---------------:| :----------------: | :------------: | :---------: |
 | **Mean**            |    50.64%     |     60.91%       |    69.28%          |    75.81%      |   74.25%    |
 
 
-Full benchmarks with the current version of Crunch are available [here](https://github.com/chrissimpkins/Crunch/blob/master/BENCHMARKS.md).
+Full benchmarks with Crunch v0.9.0 are available [here](https://github.com/chrissimpkins/Crunch/blob/master/BENCHMARKS.md).
 
 Initial impressions?
 
@@ -152,7 +152,7 @@ Your optimized file is saved in the same directory as the original file with the
 
 ## Issues
 
-Please [create a new issue report](https://github.com/chrissimpkins/Crunch/issues/new) on the issue tracker if you come across any problems or have constructive criticism about the software.
+Please [create a new issue report](https://github.com/chrissimpkins/Crunch/issues/new) on the Github issue tracker.
 
 ## Licenses
 

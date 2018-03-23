@@ -61,8 +61,8 @@ The following examples demonstrate the benefits and disadvantages of the current
 ### Cat Image
 
 - Original Size: 583,398 bytes
-- Optimized Size: 193,995 bytes
-- DSSIM similarity score: 0.00093374
+- Optimized Size: 196,421 bytes
+- DSSIM similarity score: 0.001504
 
 ##### Original
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/cat-1285634_640.png" alt="cat example pre optimization">
@@ -73,8 +73,8 @@ The following examples demonstrate the benefits and disadvantages of the current
 ### Sun's Rays
 
 - Original Size: 138,272
-- Optimized Size: 74,426
-- DSSIM similarity score: 0.00046923
+- Optimized Size: 64,947
+- DSSIM similarity score: 0.000913
 
 ##### Original
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/suns-rays-478249_640.png" alt="sun rays example pre optimization">
@@ -86,8 +86,8 @@ The following examples demonstrate the benefits and disadvantages of the current
 ### Prairie Image
 
 - Original Size: 196,794 bytes
-- Optimized Size: 73,296 bytes
-- DSSIM similarity score: 0.00175576
+- Optimized Size: 77,595 bytes
+- DSSIM similarity score: 0.002988
 
 ##### Original
 
@@ -104,8 +104,8 @@ The following examples demonstrate the benefits and disadvantages of the current
 ### Robot Image
 
 - Original Size: 197,193 bytes
-- Optimized Size: 67,989 bytes
-- DSSIM similarity score: 0.00005817
+- Optimized Size: 67,632 bytes
+- DSSIM similarity score: 0.000163
 
 ##### Original
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/robot-1214536_640.png" alt="robot example pre optimization">
@@ -116,8 +116,8 @@ The following examples demonstrate the benefits and disadvantages of the current
 ### Color Circle Image
 
 - Original Size: 249,251 bytes
-- Optiimized Size: 219,429 bytes
-- DSSIM similarity score: 0.00000000
+- Optiimized Size: 67,225 bytes
+- DSSIM similarity score: 0.002503
 
 ##### Original
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/colors-157474_640.png" alt="colors example pre optimization">
@@ -129,8 +129,8 @@ The following examples demonstrate the benefits and disadvantages of the current
 ### Flowers Image
 
 - Original Size: 440,126 bytes
-- Optimized Size: 195,972 bytes
-- DSSIM similarity score: 0.00024169
+- Optimized Size: 197,045 bytes
+- DSSIM similarity score: 0.000481
 
 ##### Original
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/flowers-67839_640.png" alt="748">

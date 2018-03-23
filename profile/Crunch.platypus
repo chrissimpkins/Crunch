@@ -17,16 +17,14 @@
 		<string>/Users/ces/Desktop/code/Crunch/docs/Credits.html</string>
 	</array>
 	<key>Creator</key>
-	<string>Platypus-5.1</string>
+	<string>Platypus-5.2</string>
 	<key>DeclareService</key>
 	<false/>
 	<key>Destination</key>
 	<string>/Users/ces/Desktop/Application.app</string>
-	<key>DestinationOverride</key>
-	<false/>
 	<key>DevelopmentVersion</key>
 	<false/>
-	<key>DocIcon</key>
+	<key>DocIconPath</key>
 	<string></string>
 	<key>Droppable</key>
 	<true/>
@@ -36,30 +34,30 @@
 	<string>/Users/ces/Library/Application Support/Platypus/PlatypusIcon-17084.icns</string>
 	<key>Identifier</key>
 	<string>com.csimpkins.Crunch</string>
-	<key>Interpreter</key>
-	<string>/bin/sh</string>
+	<key>InterfaceType</key>
+	<string>Text Window</string>
 	<key>InterpreterArgs</key>
 	<array/>
+	<key>InterpreterPath</key>
+	<string>/bin/sh</string>
 	<key>Name</key>
 	<string>Crunch</string>
 	<key>NibPath</key>
 	<string>/usr/local/share/platypus/MainMenu.nib</string>
 	<key>OptimizeApplication</key>
 	<true/>
-	<key>Output</key>
-	<string>Text Window</string>
+	<key>Overwrite</key>
+	<false/>
 	<key>PromptForFileOnLaunch</key>
 	<false/>
 	<key>RemainRunning</key>
 	<true/>
+	<key>RunInBackground</key>
+	<false/>
 	<key>ScriptArgs</key>
 	<array/>
 	<key>ScriptPath</key>
 	<string>/Users/ces/Desktop/code/Crunch/src/crunch.sh</string>
-	<key>Secure</key>
-	<false/>
-	<key>ShowInDock</key>
-	<false/>
 	<key>StatusItemDisplayType</key>
 	<string>Text</string>
 	<key>StatusItemIcon</key>
@@ -234,7 +232,7 @@
 	uv5L/tz/bf//
 	</data>
 	<key>StatusItemIconIsTemplate</key>
-	<false/>
+	<true/>
 	<key>StatusItemTitle</key>
 	<string>Title</string>
 	<key>StatusItemUseSystemFont</key>
@@ -245,14 +243,14 @@
 	</array>
 	<key>TextBackground</key>
 	<string>#20242d</string>
-	<key>TextEncoding</key>
-	<integer>4</integer>
 	<key>TextFont</key>
 	<string>Monaco</string>
 	<key>TextForeground</key>
 	<string>#e6e6e6</string>
 	<key>TextSize</key>
 	<real>13</real>
+	<key>URISchemes</key>
+	<array/>
 	<key>UniformTypes</key>
 	<array>
 		<string>public.item</string>
@@ -261,6 +259,6 @@
 	<key>UseXMLPlistFormat</key>
 	<false/>
 	<key>Version</key>
-	<string>0.9.0</string>
+	<string>0.10.0</string>
 </dict>
 </plist>

@@ -9,37 +9,35 @@
 	<key>Authentication</key>
 	<false/>
 	<key>Creator</key>
-	<string>Platypus-5.1</string>
+	<string>Platypus-5.2</string>
 	<key>Droppable</key>
 	<true/>
-	<key>Interpreter</key>
-	<string>/bin/sh</string>
+	<key>InterfaceType</key>
+	<string>Text Window</string>
 	<key>InterpreterArgs</key>
 	<array/>
-	<key>Output</key>
-	<string>Text Window</string>
+	<key>InterpreterPath</key>
+	<string>/bin/sh</string>
 	<key>PromptForFileOnLaunch</key>
 	<false/>
 	<key>RemainRunning</key>
 	<true/>
 	<key>ScriptArgs</key>
 	<array/>
-	<key>Secure</key>
-	<false/>
 	<key>Suffixes</key>
 	<array>
 		<string>png</string>
 	</array>
 	<key>TextBackground</key>
 	<string>#20242d</string>
-	<key>TextEncoding</key>
-	<integer>4</integer>
 	<key>TextFont</key>
 	<string>Monaco</string>
 	<key>TextForeground</key>
 	<string>#e6e6e6</string>
 	<key>TextSize</key>
 	<real>13</real>
+	<key>URISchemes</key>
+	<array/>
 	<key>UniformTypes</key>
 	<array>
 		<string>public.item</string>

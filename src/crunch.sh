@@ -1,9 +1,12 @@
 #!/bin/sh
 
-chug_title=" ______                         __
-|      |.----.--.--.-----.----.|  |--.
-|   ---||   _|  |  |     |  __||     |
-|______||__| |_____|__|__|____||__|__|  v0.9.0
+chug_title="                                      
+   _____                       _       
+  /  __ \                     | |      
+  | /  \/_ __ _   _ _ __   ___| |__    
+  | |   | '__| | | | '_ \ / __| '_ \   
+  | \__/\ |  | |_| | | | | (__| | | |  
+   \____/_|   \__,_|_| |_|\___|_| |_|  v0.10.0          
                                       "
 
 # Message on application open (no arguments passed to script on initial open)
@@ -12,10 +15,9 @@ if [[ $# -eq 0 ]]; then
 	echo "Insane(ly slow but wicked good) PNG image optimization\n"
 	echo "Built with pngquant and zopflipng optimizers"
 	echo "======================================================\n"
-	echo "Copyright 2016 Christopher Simpkins"
+	echo "Copyright 2018 Christopher Simpkins"
 	echo "MIT License"
 	echo "Source: //github.com/chrissimpkins/Crunch\n"
-	echo "Issues: //github.com/chrissimpkins/Crunch/issues\n"
 	echo "======================================================\n"
 	echo " \n"
 	echo "Drag and drop your PNG images on this window to begin."

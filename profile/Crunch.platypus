@@ -12,9 +12,16 @@
 	<string>Christopher Simpkins</string>
 	<key>BundledFiles</key>
 	<array>
+		<string>/Users/ces/Desktop/code/Crunch/docs/Credits.html</string>
+		<string>/Users/ces/Desktop/code/Crunch/html/complete.html</string>
+		<string>/Users/ces/Desktop/code/Crunch/html/execution.html</string>
+		<string>/Users/ces/Desktop/code/Crunch/html/start.html</string>
 		<string>/Users/ces/Desktop/code/Crunch/src/include/pngquant</string>
 		<string>/Users/ces/Desktop/code/Crunch/src/include/zopflipng</string>
-		<string>/Users/ces/Desktop/code/Crunch/docs/Credits.html</string>
+		<string>/Users/ces/Desktop/code/Crunch/img/fastdots.gif</string>
+		<string>/Users/ces/Desktop/code/Crunch/img/slowdots.gif</string>
+		<string>/Users/ces/Desktop/code/Crunch/html/clear.html</string>
+		<string>/Users/ces/Desktop/code/Crunch/ui/MainMenu.nib</string>
 	</array>
 	<key>Creator</key>
 	<string>Platypus-5.2</string>
@@ -31,11 +38,11 @@
 	<key>ExecutablePath</key>
 	<string>/usr/local/share/platypus/ScriptExec</string>
 	<key>IconPath</key>
-	<string>/Users/ces/Library/Application Support/Platypus/PlatypusIcon-17084.icns</string>
+	<string>/Users/ces/Library/Application Support/Platypus/PlatypusIcon-32193.icns</string>
 	<key>Identifier</key>
 	<string>com.csimpkins.Crunch</string>
 	<key>InterfaceType</key>
-	<string>Text Window</string>
+	<string>Web View</string>
 	<key>InterpreterArgs</key>
 	<array/>
 	<key>InterpreterPath</key>
@@ -57,7 +64,7 @@
 	<key>ScriptArgs</key>
 	<array/>
 	<key>ScriptPath</key>
-	<string>/Users/ces/Desktop/code/Crunch/src/crunch.sh</string>
+	<string>/Users/ces/Desktop/code/Crunch/src/crunch-html.sh</string>
 	<key>StatusItemDisplayType</key>
 	<string>Text</string>
 	<key>StatusItemIcon</key>
@@ -238,15 +245,13 @@
 	<key>StatusItemUseSystemFont</key>
 	<true/>
 	<key>Suffixes</key>
-	<array>
-		<string>png</string>
-	</array>
+	<array/>
 	<key>TextBackground</key>
-	<string>#20242d</string>
+	<string>#ffffff</string>
 	<key>TextFont</key>
 	<string>Monaco</string>
 	<key>TextForeground</key>
-	<string>#e6e6e6</string>
+	<string>#000000</string>
 	<key>TextSize</key>
 	<real>13</real>
 	<key>URISchemes</key>
@@ -259,6 +264,6 @@
 	<key>UseXMLPlistFormat</key>
 	<false/>
 	<key>Version</key>
-	<string>0.10.0</string>
+	<string>1.0.0</string>
 </dict>
 </plist>

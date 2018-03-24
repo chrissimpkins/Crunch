@@ -13,7 +13,7 @@
 	<key>Droppable</key>
 	<true/>
 	<key>InterfaceType</key>
-	<string>Text Window</string>
+	<string>Web View</string>
 	<key>InterpreterArgs</key>
 	<array/>
 	<key>InterpreterPath</key>
@@ -25,15 +25,13 @@
 	<key>ScriptArgs</key>
 	<array/>
 	<key>Suffixes</key>
-	<array>
-		<string>png</string>
-	</array>
+	<array/>
 	<key>TextBackground</key>
-	<string>#20242d</string>
+	<string>#ffffff</string>
 	<key>TextFont</key>
 	<string>Monaco</string>
 	<key>TextForeground</key>
-	<string>#e6e6e6</string>
+	<string>#000000</string>
 	<key>TextSize</key>
 	<real>13</real>
 	<key>URISchemes</key>

@@ -1,5 +1,10 @@
 ## Changelog
 
+### v1.0.0
+
+- swanky new UI design with conversion to WebView and animations
+- new application icon colors
+- modified nib file to fix window size
 
 ### v0.10.0
 

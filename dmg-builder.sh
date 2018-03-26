@@ -12,3 +12,9 @@
 --app-drop-link 600 185 \
 Crunch-Installer.dmg \
 /Users/ces/Desktop/code/Crunch/bin
+
+# create checksum file for the installer
+mv Crunch-Installer.dmg installer/Crunch-Installer.dmg
+cd installer || exit 1
+shasum Crunch-Installer.dmg > Crunch-Installer-checksum.txt
+shasum -c Crunch-Installer-checksum.txt

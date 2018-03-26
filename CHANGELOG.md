@@ -1,5 +1,9 @@
 ## Changelog
 
+### v1.0.1
+
+- fix for pngquant library dependencies bug ([Issue report #7](https://github.com/chrissimpkins/Crunch/issues/7))
+
 ### v1.0.0
 
 - swanky new UI design with conversion to WebView and animations

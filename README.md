@@ -46,7 +46,7 @@ Upgrade by following the same instructions and allowing the new version to repla
 
 ## Examples
 
-The following examples demonstrate the benefits and disadvantages of the current iteration of this aggressive space saving lossy optimization strategy.  In many cases, optimization with Crunch will lead to excellent space savings and an imperceptible decrease in image quality.  In some cases, it does not (see the horizon line + clouds in the prairie photo below) .  Experiment with the image types that you use and please submit an issue report with examples of any images where the image quality falls short of your expectations for production ready files.
+The following examples demonstrate the benefits and disadvantages of the current iteration of Crunch's aggressive space saving lossy optimization.  In many cases, Crunch's optimization minimizes file size with an imperceptible decrease in image quality.  In some cases, Crunch's optimization can significantly decrease the quality. For example, the horizon line + clouds in the prairie photo below.  Experiment with the image types used and please submit a report with examples of any images where the image quality falls short of expectations for production-ready files.
 
 ## Photography Examples
 

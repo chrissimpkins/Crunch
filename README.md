@@ -160,7 +160,7 @@ See the [LICENSE.md](LICENSE.md) document for details and additional licensing i
 
 ## Acknowledgments
 
-Crunch is a simple tool that makes excellent, free, open source software built by others accessible through a GUI. The hard work on the optimization engines that run Crunch have been performed by:
+Crunch is a simple tool that makes excellent, free, open source software built by others accessible through a GUI. The hard work on the optimization engines that run Crunch has been performed by:
 
 - Lode Vandevenne, Jyrki Alakuijala, and the [zopfli project contributors](https://github.com/google/zopfli/graphs/contributors)
 - Kornel Lesiński and the [pngquant project contributors](https://github.com/kornelski/pngquant/graphs/contributors)

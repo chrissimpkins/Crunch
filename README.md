@@ -29,9 +29,7 @@ $ brew cask uninstall crunch && brew cask install crunch
 
 ### 2. Install with dmg Installer
 
-**NOTE**: Active bug with pngquant library dependencies using this install approach - See [Issue Report #7](https://github.com/chrissimpkins/Crunch/issues/7) before use.  Fix is in the works.
-
-[Download the dmg installer](https://github.com/chrissimpkins/Crunch/releases/download/v1.0.0/Crunch-Installer.dmg), click it, and drag the Crunch icon to your Applications directory.
+[Download the dmg installer](https://github.com/chrissimpkins/Crunch/releases/download/v1.0.1/Crunch-Installer.dmg), click it, and drag the Crunch icon to your Applications directory.
 
 Upgrade by following the same instructions and allowing the new version to replace the old version on your system.
 

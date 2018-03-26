@@ -53,8 +53,8 @@ The following examples demonstrate the benefits and disadvantages of the current
 ### Cat Image
 
 - Original Size: 583,398 bytes
-- Optimized Size: 196,421 bytes
-- DSSIM similarity score: 0.001504
+- Optimized Size: 195,491 bytes
+- DSSIM similarity score: 0.001481
 
 ##### Original
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/cat-1285634_640.png" alt="cat example pre optimization">
@@ -108,8 +108,8 @@ The following examples demonstrate the benefits and disadvantages of the current
 ### Color Circle Image
 
 - Original Size: 249,251 bytes
-- Optiimized Size: 67,225 bytes
-- DSSIM similarity score: 0.002503
+- Optiimized Size: 68,309 bytes
+- DSSIM similarity score: 0.002575
 
 ##### Original
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/colors-157474_640.png" alt="colors example pre optimization">

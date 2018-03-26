@@ -3,7 +3,7 @@
 
 ## About
 
-Crunch is a macOS tool for PNG image file optimization.  It combines selective bit depth, color type, and color palette reduction with zopfli DEFLATE compression algorithm encoding using embedded versions of the pngquant and zopflipng PNG optimization tools.  This leads to a significant file size gain at the expense of longer file optimization processing times and relatively modest decrease in image quality (see example images below).
+Crunch is a macOS tool for lossy PNG image file optimization.  It combines selective bit depth, color type, and color palette reduction with zopfli DEFLATE compression algorithm encoding using embedded versions of the pngquant and zopflipng PNG optimization tools.  This leads to a significant file size gain at the expense of a relatively modest decrease in image quality (see [example images](#examples) below).
 
 Mean percent original file size for the 21 files included in Cédric Louvrier's [PNG Test Corpus files](http://css-ig.net/images/png-test-corpus.zip) with Crunch v0.9.0 vs. other commonly used PNG optimization applications are:
 
@@ -13,12 +13,6 @@ Mean percent original file size for the 21 files included in Cédric Louvrier's 
 
 
 Full benchmarks with Crunch v0.9.0 are available [here](https://github.com/chrissimpkins/Crunch/blob/master/BENCHMARKS.md).
-
-Initial impressions?
-
-> Crunch is doing a remarkably better job than ImageOptim for PNGs. The same file was reduced to 189k with ImageOptim and 95k with Crunch. Just wow. :)
-
-@herrbischoff in [#1](https://github.com/chrissimpkins/Crunch/issues/1#issuecomment-208481630)
 
 
 ## Install
@@ -30,6 +24,9 @@ Want to kick the tires?  Choose one of the methods below:
 ```
 $ brew cask install crunch
 ```
+
+Note that you must use `brew cask install` and not `brew install`!
+
 
 Following your install you can upgrade to the latest version with:
 
@@ -57,7 +54,7 @@ Upgrade by following the same instructions and allowing the new version to repla
 
 ## Examples
 
-The following examples demonstrate the benefits and disadvantages of the current iteration of this aggressive space saving lossy transformation strategy.  In many cases, optimization with Crunch will lead to excellent space savings and an imperceptible decrease in image quality.  In some cases, it does not (see the horizon line + clouds in the prairie photo below) .  Experiment with the image types that you use and please submit an issue report with examples of any images where the image quality falls short of your expectations for production ready files.
+The following examples demonstrate the benefits and disadvantages of the current iteration of this aggressive space saving lossy optimization strategy.  In many cases, optimization with Crunch will lead to excellent space savings and an imperceptible decrease in image quality.  In some cases, it does not (see the horizon line + clouds in the prairie photo below) .  Experiment with the image types that you use and please submit an issue report with examples of any images where the image quality falls short of your expectations for production ready files.
 
 ## Photography Examples
 

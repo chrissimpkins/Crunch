@@ -736,3 +736,11 @@ limitations under the License.
 // backend, chooses optimal PNG color model, and tries out several PNG filter
 // strategies.
 
+## Application Icon Image License
+
+The application icon image is a slightly modified (color) version of the ["Audacity Icon" by Evin @xrilla](http://xillra.deviantart.com/art/Audacity-Icon-523082017) and is licensed under Creative Commons Attribution 3.0 license
+
+
+## Animated GIF Spinner Images License
+
+The animated *.gif images used during the processing of files with this application were provided by [loading.io](https://loading.io) under a CC0 / CC-By license.

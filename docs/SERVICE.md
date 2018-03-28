@@ -17,7 +17,7 @@ Then, use either of the following approaches to install the macOS service on you
 - Open the Crunch source repository in the Finder. Open the `service` directory that is located in the root of the repository directory. The `Crunch Image(s).workflow` directory will be contained in the `services` directory.  This is the workflow that you will install.
 - Open a new tab in the Finder with `CMD-T` and select Go > Go to Folder in the Finder menu (or type `SHIFT-CMD-G`)
 - In the open "Go to the folder:" free text prompt, enter the following:  `~/Library/Services`
-- Switch back to the first tab that is located inside the Crunch source repository and drag the `Crunch Image(s).workflow` directory to the second tab so that it is installed on the path `~/Library/Services/Crunch Image(s).worflow`.
+- Switch back to the first tab that is located inside the Crunch source repository and drag the `Crunch Image(s).workflow` directory to the second tab so that it is installed on the path `~/Library/Services/Crunch Image(s).workflow`.
 - Close the Finder
 - You may now delete the Crunch source repository.  These files are no longer necessary.
 

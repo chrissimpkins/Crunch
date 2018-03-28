@@ -8,9 +8,7 @@ See the install instructions on the README page.  You may use either the Homebre
 
 ### Install the Crunch Image(s) service
 
-First, [download the latest release version of the Crunch repository source](https://github.com/chrissimpkins/Crunch/releases/latest).  You can use either the .zip or .tar.gz download link.
-
-Next, unpack the Crunch repository source archive in a directory on your system.
+First, [download the latest release version of the Crunch repository source](https://github.com/chrissimpkins/Crunch/releases/latest).  You can use either the .zip or .tar.gz download link. Unpack the Crunch repository source archive in any directory on your system.
 
 Then, use either of the following approaches to install the macOS service on your system.
 

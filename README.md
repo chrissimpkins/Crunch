@@ -7,10 +7,10 @@ Crunch is a macOS tool for lossy PNG image file optimization.  It combines selec
 
 Historical benchmarks with the files included in Cédric Louvrier's [PNG Test Corpus](https://css-ig.net/png-tools-overview) versus other commonly used PNG optimization software are available in [BENCHMARKS.md](BENCHMARKS.md).
 
-Crunch png image optimization is available through:
+Crunch PNG image optimization is available through:
 
 - Crunch - a macOS drag and drop GUI tool
-- Crunch Image(s) - a macOS right click menu service for PNG images selected in the Finder
+- [Crunch Image(s)](docs/SERVICE.md) - a macOS right click menu service for PNG images selected in the Finder
 
 ## Install Crunch
 
@@ -42,7 +42,7 @@ Upgrade by following the same instructions and allowing the new version to repla
 
 Crunch is available as the macOS right click menu service "Crunch Image(s)".
 
-Please see [SERVICE.md](docs/SERVICE.md) for macOS service installation and usage documentation.
+Please see [SERVICE.md](docs/SERVICE.md) for documentation.
 
 ## Contents
 

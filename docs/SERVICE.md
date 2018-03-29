@@ -49,7 +49,7 @@ $ make install-macos-service
 
 You may delete the Crunch source repository after the completion of the above step.
 
-### Uninstall the Crunch Image(s) macOS Service
+## Detailed macOS Service Uninstall
 
 Use one of the following approaches to remove the installed macOS service from your system:
 #### 1) Uninstall with Finder

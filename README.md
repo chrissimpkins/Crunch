@@ -40,7 +40,7 @@ Upgrade by following the same instructions and allowing the new version to repla
 
 ## Install Crunch Image(s) macOS Service
 
-Crunch is available as the macOS right click menu service "Crunch Image(s)".
+Crunch PNG image optimization is available through the macOS right click menu service "Crunch Image(s)".
 
 Please see [SERVICE.md](docs/SERVICE.md) for documentation.
 

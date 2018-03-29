@@ -1,5 +1,19 @@
 ## Crunch Image(s) macOS Right Click Menu Service
 
+### Quick macOS Service Install
+
+Install the Crunch GUI tool (see README page for installation instructions).  Download the Crunch repository source and move the workflow directory located on the repository path `service/Crunch Image(s).workflow` to your system on the path `~/Library/Services/Crunch Image(s).workflow`.  The installation is complete and the service is ready for use.
+
+![crunch-service-install](https://user-images.githubusercontent.com/4249591/38065494-9e80fb6a-32d1-11e8-88da-0f9c014cc510.gif)
+
+### Quick macOS Service Usage
+
+Select one or more PNG images in the Finder, right click, and select "Crunch Image(s)" under the Services menu item.  An animated gear will appear in your status bar during the file processing and will disappear when your optimized images are ready.
+
+## Detailed macOS Service Installation
+
+Detailed instructions follow if you need further information about how to install the macOS service.
+
 ### Install Crunch
 
 In order to use the macOS service, you must install the Crunch GUI tool.  The macOS service depends upon the embedded versions of the PNG image optimization applications that are used by Crunch to modify your image files.
@@ -10,9 +24,7 @@ See the install instructions on the README page.  You may use either the Homebre
 
 First, [download the latest release version of the Crunch repository source](https://github.com/chrissimpkins/Crunch/releases/latest).  You can use either the .zip or .tar.gz download link. Unpack the Crunch repository source archive in any directory on your system.
 
-Then, use one of the following approaches to install the macOS service:
-
-#### 1) Install with Finder
+#### 1) Install by Drag and Drop in the Finder
 
 - Open the Crunch source repository in the Finder. Open the `service` directory that is located in the root of the repository directory. The `Crunch Image(s).workflow` directory will be contained in the `service` directory.  This is the workflow that you will install.
 - Open a new tab in the Finder with `CMD-T` and select Go > Go to Folder in the Finder menu (or type `SHIFT-CMD-G`)
@@ -21,7 +33,7 @@ Then, use one of the following approaches to install the macOS service:
 - Close the Finder
 - You may now delete the Crunch source repository.  These files are no longer necessary.
 
-#### 2) Install with make
+#### 2) Install with `make`
 
 If `make` is installed on your macOS system, you can use the Crunch Makefile to install the macOS service.
 
@@ -33,5 +45,3 @@ $ make install-macos-service
 ```
 
 `sudo` is necessary in order to complete the copy of the macOS service to this directory on your system.  You will be prompted for your password after you enter the above command.  Enter it and you will receive confirmation that the install completed.
-
-### Usage

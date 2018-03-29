@@ -1,5 +1,14 @@
 ## Changelog
 
+### v1.1.0
+
+- added a new macOS right click menu service for Crunch PNG image optimization named "Crunch Image(s)"
+- added Makefile with target support for macOS service installs and uninstalls
+- reformatted About menu text
+- added Upgrade documentation to the About menu
+- new source repository macOS service documentation, `docs/SERVICE.md`
+- repository documentation updates
+
 ### v1.0.1
 
 - fix for pngquant library dependencies bug ([Issue report #7](https://github.com/chrissimpkins/Crunch/issues/7))

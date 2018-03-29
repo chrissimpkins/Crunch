@@ -14,7 +14,7 @@ Select one or more PNG images in the Finder, right click, and select "Crunch Ima
 
 ## Detailed macOS Service Installation
 
-Detailed instructions follow if you need further information about how to install the macOS service.
+Detailed instructions follow if you need additional information to complete the macOS service installation process.
 
 ### Install Crunch
 

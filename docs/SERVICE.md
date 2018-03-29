@@ -45,7 +45,7 @@ If `make` is installed on your macOS system, you can use the Crunch Makefile to 
 $ make install-macos-service
 ```
 
-`sudo` is necessary in order to complete the copy of the macOS service to this directory on your system.  You will be prompted for your password after you enter the above command.  Enter it and you will receive confirmation that the install completed.  
+`sudo` permission is necessary in order to complete the copy of the macOS service to this directory on your system.  You will be prompted for your password after you enter the above command.  Enter it and you will receive confirmation that the install completed.  
 
 You may delete the Crunch source repository after the completion of the above step.
 
@@ -66,4 +66,4 @@ Download the source repository.  Enter the following command in a terminal at th
 $ make uninstall-macos-service
 ```
 
-This requires sudo permissions to remove this directory.  Enter your password when prompted.
+`sudo` permission is necessary to remove this directory.  Enter your password when prompted.

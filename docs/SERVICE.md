@@ -10,7 +10,7 @@ The installation is complete and the service is ready for use.  You may now dele
 
 ### Quick macOS Service Usage
 
-Select one or more PNG images in the Finder, right click, and select "Crunch Image(s)" under the Services menu item.  An animated gear will appear in your status bar during the file processing and will disappear when your optimized images are ready.
+Select one or more PNG images in the Finder, right click, and select "Crunch Image(s)" under the Services menu item.  An animated gear will appear in your status bar during the file processing and will disappear when your optimized images are ready.  The image write takes place in the same directory as your original image on the path `[original filename]-crunch.png`.
 
 ## Detailed macOS Service Installation
 

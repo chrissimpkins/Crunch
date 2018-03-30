@@ -1,4 +1,3 @@
-all: install-service
 
 install-macos-service:
 	sudo cp -R service/Crunch\ Image\(s\).workflow ~/Library/Services/Crunch\ Image\(s\).workflow
@@ -12,4 +11,4 @@ uninstall-macos-service:
 	@echo " "
 	@echo "[*] The Crunch Image(s) macOS service was removed from your system"
 
-.PHONY: all install-service uninstall-service
+.PHONY: install-macos-service uninstall-macos-service

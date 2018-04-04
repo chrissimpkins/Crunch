@@ -9,6 +9,24 @@ chug_title="
    \____/_|   \__,_|_| |_|\___|_| |_|  v0.10.0          
                                       "
 
+PATH=$(dirname "$0"):$PATH
+KERNEL=$(uname -s)
+
+function filesize {
+    SIZE="";
+	if [ "Linux" = "$KERNEL" ]; then
+		SIZE=$(stat --printf="%s" "$1")
+	else
+		SIZE=$(stat -f %z "$1")
+	fi
+
+	echo $SIZE
+}
+
+if [ "Linux" = "$KERNEL" ]; then
+	alias echo='echo -e '
+fi
+
 # Message on application open (no arguments passed to script on initial open)
 if [[ $# -eq 0 ]]; then
 	printf '%s\n' "$chug_title"
@@ -23,6 +41,15 @@ if [[ $# -eq 0 ]]; then
 	echo "Drag and drop your PNG images on this window to begin."
 fi
 
+if ! command -v pngquant > /dev/null; then
+	echo "pngquant does not exist in \$PATH"
+	exit 1;
+fi
+
+if ! command -v zopflipng > /dev/null; then
+	echo "zopflipng does not exist in \$PATH"
+	exit 1;
+fi
 
 for imagepath in "$@"
 do
@@ -31,7 +58,7 @@ do
     	echo "• • • Crunching $imagepath...\n"
     	echo " \n"
     	# get the pre compression size of the image file
-    	pre_size=$(stat -f %z "$imagepath")
+    	pre_size=$(filesize "$imagepath")
     	printf "Original size (kB): \t%.3f\n" $(bc -l <<< "$pre_size/1000")
 
     	working_imagepath="${imagepath%.png}-crunch.png"
@@ -39,10 +66,10 @@ do
     	# pngquant run on the file
     	echo " \n"
     	echo "==> Running stage 1 optimizations...\n"
-    	./pngquant --quality=80-98 --skip-if-larger --force --ext -crunch.png "$imagepath" >/dev/null
+    	pngquant --quality=80-98 --skip-if-larger --force --ext -crunch.png "$imagepath" >/dev/null
 
     	if [[ $? -ne 0 ]]; then
-    		post_pngquant_size=$(stat -f %z "$imagepath")
+    		post_pngquant_size$(filesize "$imagepath")
     		echo " \n"
     		printf "Current size (kB): \t%.3f\n" $(bc -l <<< "$post_pngquant_size/1000")
     		echo " \n"
@@ -50,10 +77,10 @@ do
        		if [[ $(bc -l <<< "$pre_size") -gt 35000 ]]; then
     			echo "==> Hold tight.  This could take awhile.\n==> Click Cancel at any time to stop processing."
     		fi
-    		#./zopflipng --splitting=3 --filters=0meb -y --lossy_8bit --lossy_transparent "$imagepath" "${imagepath%%.*}-crunch.png" >/dev/null
-    		./zopflipng -y --lossy_8bit --lossy_transparent "$imagepath" "${imagepath%%.*}-crunch.png" >/dev/null
+    		#zopflipng --splitting=3 --filters=0meb -y --lossy_8bit --lossy_transparent "$imagepath" "${imagepath%%.*}-crunch.png" >/dev/null
+    		zopflipng -y --lossy_8bit --lossy_transparent "$imagepath" "${imagepath%%.*}-crunch.png" >/dev/null
     	else
-    		post_pngquant_size=$(stat -f %z "$working_imagepath")
+    		post_pngquant_size=$(filesize "$working_imagepath")
     		echo " \n"
     		printf "Current size (kB): \t%.3f\n" $(bc -l <<< "$post_pngquant_size/1000")
     		echo " \n"
@@ -74,11 +101,11 @@ do
     		fi
 
     		#./zopflipng --splitting=3 --filters=0meb -y --lossy_8bit --lossy_transparent "$working_imagepath" "$working_imagepath" >/dev/null
-    		./zopflipng -y "$working_imagepath" "$working_imagepath" >/dev/null
+    		zopflipng -y "$working_imagepath" "$working_imagepath" >/dev/null
     	fi
 
     	# get the post compression size of the image file
-    	post_zopfli_size=$(stat -f %z "$working_imagepath")
+    	post_zopfli_size=$(filesize "$working_imagepath")
     	echo " \n"
     	echo "---\n"
     	echo "Optimized filepath: $working_imagepath"

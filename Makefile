@@ -14,4 +14,4 @@ uninstall-macos-service:
 	@echo " "
 	@echo "[*] The Crunch Image(s) macOS service was removed from your system"
 
-.PHONY: install-macos-service uninstall-macos-service
+.PHONY: build-dependencies install-macos-service uninstall-macos-service

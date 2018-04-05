@@ -5,13 +5,13 @@
 #  macOS: little-cms2 (brew install little-cms2)
 
 PNGQUANT_BUILD_DIR="$HOME/pngquant"
-ZOPFLIPNG_BUILD_DIR="$HOME/zopflipng"
+ZOPFLIPNG_BUILD_DIR="$HOME/zopfli"
 
 PNGQUANT_VERSION_TAG="2.11.7"
 ZOPFLIPNG_VERSION_TAG="zopfli-1.0.1"
 LIBPNG_VERSION="1.6.34"
 LIBPNG_VERSION_DOWNLOAD="libpng16/$LIBPNG_VERSION/libpng-$LIBPNG_VERSION.tar.xz"
-
+LITTLECMS_VERSION="2.9"
 
 # ////////////////////
 #
@@ -34,16 +34,38 @@ git checkout $PNGQUANT_VERSION_TAG
 curl -L -O "https://sourceforge.net/projects/libpng/files/$LIBPNG_VERSION_DOWNLOAD"
 tar -xJf "libpng-$LIBPNG_VERSION.tar.xz"
 rm "libpng-$LIBPNG_VERSION.tar.xz"
-mv "libpng-$LIBPNG_VERSION" libpng
-cd libpng || exit 1
+cd "libpng-$LIBPNG_VERSION" || exit 1
 # build local libpng
 ./configure && make
-# build local pngquant executable using local libpng
+
+# Clone local little-cms2 library source and compile
 cd "$PNGQUANT_BUILD_DIR" || exit 1
-./configure --with-libpng=libpng --with-lcms2 && make
+curl -L -O "https://sourceforge.net/projects/lcms/files/lcms/$LITTLECMS_VERSION/lcms2-$LITTLECMS_VERSION.tar.gz"
+tar -xzvf "lcms2-$LITTLECMS_VERSION.tar.gz"
+rm "lcms2-$LITTLECMS_VERSION.tar.gz"
+
+cd "lcms2-$LITTLECMS_VERSION" || exit 1
+./configure && make
+
+# Build local pngquant executable using local libpng
+cd "$PNGQUANT_BUILD_DIR" || exit 1
+LCMS2_STATIC=1 ./configure --with-libpng="libpng-$LIBPNG_VERSION" --with-lcms2 && make
 
 
+# /////////////////
+#
+# BUILD zopflipng
+#
+# /////////////////
 
+if [ -d "$ZOPFLIPNG_BUILD_DIR" ]; then
+    rm -rf "$ZOPFLIPNG_BUILD_DIR"
+fi
 
+cd "$HOME" || exit 1
 
+git clone https://github.com/google/zopfli.git
+cd zopfli || exit 1
+git checkout "$ZOPFLIPNG_VERSION_TAG"
 
+make zopflipng 

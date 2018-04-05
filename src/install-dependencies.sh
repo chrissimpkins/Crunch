@@ -5,7 +5,9 @@
 #  macOS: little-cms2 (brew install little-cms2)
 
 PNGQUANT_BUILD_DIR="$HOME/pngquant"
+PNGQUANT_EXE="$PNGQUANT_BUILD_DIR/pngquant"
 ZOPFLIPNG_BUILD_DIR="$HOME/zopfli"
+ZOPFLIPNG_EXE="$ZOPFLIPNG_BUILD_DIR/zopflipng"
 
 PNGQUANT_VERSION_TAG="2.11.7"
 ZOPFLIPNG_VERSION_TAG="zopfli-1.0.1"
@@ -69,3 +71,39 @@ cd zopfli || exit 1
 git checkout "$ZOPFLIPNG_VERSION_TAG"
 
 make zopflipng 
+
+# ///////////////////////
+#
+# Tests and user reports
+#
+# ///////////////////////
+
+# Test for expected install file paths and report outcome to user
+
+printf "\\n\\n------------------------------\\nTesting Builds...\\n------------------------------\\n"
+
+printf "[?] %s test...\\n\\n" "$PNGQUANT_EXE"
+if [ -f "$PNGQUANT_EXE" ]; then
+    "$PNGQUANT_EXE" --help
+else
+    printf "[ERROR]: pngquant executable was not found on the expected path: %s\\n" "$PNGQUANT_EXE"
+    printf "The install attempt did not complete successfully.  Please report this error.\\n"
+    exit 1
+fi
+
+printf "\\n[?] %s test...\\n\\n" "$ZOPFLIPNG_EXE"
+if [ -f "$ZOPFLIPNG_EXE" ]; then
+    "$ZOPFLIPNG_EXE" --help
+else
+    printf "[ERROR]: zopflipng executable was not found on the expected path: %s\\n" "$PNGQUANT_EXE"
+    printf "The install attempt did not complete successfully.  Please report this error."
+    exit 1
+fi
+
+printf "\\n\\n------------------------------\\nEnd Tests\\n------------------------------\\n"
+
+printf "\\n---------- BUILD PATHS ----------\\n"
+printf "[*] pngquant path: %s\\n" "$PNGQUANT_EXE"
+printf "[*] zopflipng path: %s\\n" "$ZOPFLIPNG_EXE"
+printf "\\n\\n[OK] Dependency installs complete.\\n"
+exit 0

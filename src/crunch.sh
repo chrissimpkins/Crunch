@@ -1,14 +1,5 @@
 #!/bin/sh
 
-chug_title="                                      
-   _____                       _       
-  /  __ \                     | |      
-  | /  \/_ __ _   _ _ __   ___| |__    
-  | |   | '__| | | | '_ \ / __| '_ \   
-  | \__/\ |  | |_| | | | | (__| | | |  
-   \____/_|   \__,_|_| |_|\___|_| |_|  v0.10.0          
-                                      "
-
 PATH=$(dirname "$0"):$PATH
 KERNEL=$(uname -s)
 
@@ -25,20 +16,6 @@ function filesize {
 
 if [ "Linux" = "$KERNEL" ]; then
 	alias echo='echo -e '
-fi
-
-# Message on application open (no arguments passed to script on initial open)
-if [[ $# -eq 0 ]]; then
-	printf '%s\n' "$chug_title"
-	echo "Insane(ly slow but wicked good) PNG image optimization\n"
-	echo "Built with pngquant and zopflipng optimizers"
-	echo "======================================================\n"
-	echo "Copyright 2018 Christopher Simpkins"
-	echo "MIT License"
-	echo "Source: //github.com/chrissimpkins/Crunch\n"
-	echo "======================================================\n"
-	echo " \n"
-	echo "Drag and drop your PNG images on this window to begin."
 fi
 
 if ! command -v pngquant > /dev/null; then

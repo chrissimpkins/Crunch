@@ -1,5 +1,16 @@
 #!/bin/sh
 
+# //////////////////////////////////////////////////////////
+#
+# crunch.sh
+#  A shell script that executes Crunch PNG optimization
+#  Copyright 2018 Christopher Simpkins and contributors
+#  MIT License
+#
+#  Usage: ./crunch.sh [PNG file path 1]...[PNG file path n]
+#
+# ///////////////////////////////////////////////////////////
+
 PATH=$(dirname "$0"):$PATH
 KERNEL=$(uname -s)
 

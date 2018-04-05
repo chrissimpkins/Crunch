@@ -3,7 +3,7 @@
 PATH=$(dirname "$0"):$PATH
 KERNEL=$(uname -s)
 
-function filesize {
+filesize() {
     SIZE="";
 	if [ "Linux" = "$KERNEL" ]; then
 		SIZE=$(stat --printf="%s" "$1")
@@ -11,7 +11,7 @@ function filesize {
 		SIZE=$(stat -f %z "$1")
 	fi
 
-	echo $SIZE
+	echo "$SIZE"
 }
 
 if [ "Linux" = "$KERNEL" ]; then

@@ -1,4 +1,7 @@
 
+build-dependencies:
+	src/install-dependencies.sh
+
 install-macos-service:
 	sudo cp -R service/Crunch\ Image\(s\).workflow ~/Library/Services/Crunch\ Image\(s\).workflow
 	@echo " "

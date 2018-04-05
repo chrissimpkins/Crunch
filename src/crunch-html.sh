@@ -8,6 +8,8 @@
 #  Copyright 2018 Christopher Simpkins and contributors
 #  MIT License
 #
+#  Source: https://github.com/chrissimpkins/Crunch
+#
 #  Note: this file is not intended for direct execution
 #        on the command line
 #

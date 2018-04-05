@@ -7,6 +7,8 @@
 #  Copyright 2018 Christopher Simpkins and contributors
 #  MIT License
 #
+#  Source: https://github.com/chrissimpkins/Crunch
+#
 #  Usage: ./crunch.sh [PNG file path 1]...[PNG file path n]
 #
 # ///////////////////////////////////////////////////////////

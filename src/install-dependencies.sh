@@ -1,5 +1,15 @@
 #!/bin/sh
 
+# ==================================================================
+#  install-dependencies.sh
+#    Install Crunch optimization binary dependencies
+#
+#   Copyright 2018 Christopher Simpkins
+#   MIT License
+#
+#   Source Repository: https://github.com/chrissimpkins/Crunch
+# ==================================================================
+
 # DEPENDENCIES:
 #  Linux: libcms2-devel (package manager)
 #  macOS: little-cms2 (brew install little-cms2)

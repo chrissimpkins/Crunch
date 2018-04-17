@@ -10,10 +10,6 @@
 #   Source Repository: https://github.com/chrissimpkins/Crunch
 # ==================================================================
 
-# DEPENDENCIES:
-#  Linux: libcms2-devel (package manager)
-#  macOS: little-cms2 (brew install little-cms2)
-
 PNGQUANT_BUILD_DIR="$HOME/pngquant"
 PNGQUANT_EXE="$PNGQUANT_BUILD_DIR/pngquant"
 ZOPFLIPNG_BUILD_DIR="$HOME/zopfli"

@@ -14,4 +14,13 @@ uninstall-macos-service:
 	@echo " "
 	@echo "[*] The Crunch Image(s) macOS service was removed from your system"
 
-.PHONY: build-dependencies install-macos-service uninstall-macos-service
+
+test-python:
+	flake8 --ignore=E501,W503 src/*.py
+
+test-shell:
+	shellcheck --exclude=2046 src/*.sh
+
+test: test-python test-shell
+
+.PHONY: build-dependencies install-macos-service uninstall-macos-service test test-python test-shell

@@ -38,7 +38,15 @@ def main(argv):
         sys.exit(1)
 
     for png_path in png_path_list:
-        if len(png_path) < 5:  # not a proper *.png file path
+        if not os.path.isfile(png_path):  # is not an existing file
+            sys.stderr.write(
+                "[ERROR] '"
+                + png_path
+                + "' does not appear to be a valid path to a PNG file"
+                + os.linesep
+            )
+            sys.exit(1)
+        elif len(png_path) < 5:  # not a proper *.png file path
             sys.stderr.write(
                 "[ERROR] '"
                 + png_path
@@ -51,14 +59,6 @@ def main(argv):
                 "[ERROR] '"
                 + png_path
                 + "' does not appear to be a PNG image file"
-                + os.linesep
-            )
-            sys.exit(1)
-        elif not os.path.isfile(png_path):  # is not an existing file
-            sys.stderr.write(
-                "[ERROR] '"
-                + png_path
-                + "' does not appear to be a valid path to a PNG file"
                 + os.linesep
             )
             sys.exit(1)

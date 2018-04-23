@@ -63,6 +63,24 @@ def main(argv):
             )
             sys.exit(1)
 
+    # Optimization processing
+    if len(png_path_list) == 1:
+        # there is only one PNG file, skip spawning of processes and just optimize it
+        optimize_png(png_path_list[0])
+        sys.exit(0)
+    else:
+        # if not defined by user, start by defining spawned processes as number of available cores
+        if processes == 0:
+            processes = cpu_count()
+
+        # if total cores available is greater than number of files requested, limit to the latter number
+        if processes > len(png_path_list):
+            processes = len(png_path_list)
+
+        p = Pool(processes)
+        p.map(optimize_png, png_path_list)
+        sys.exit(0)
+
 
 def optimize_png(png_path):
     pass

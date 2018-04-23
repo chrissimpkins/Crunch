@@ -34,12 +34,12 @@ fi
 # TODO: refactor this to test against the expected local build paths for these executables
 if ! command -v pngquant > /dev/null; then
 	printf "pngquant was not found on your system! Optimization canceled.\\n"
-	exit 1;
+	exit 1
 fi
 
 if ! command -v zopflipng > /dev/null; then
 	printf "zopflipng was not found on your system! Optimization canceled.\\n"
-	exit 1;
+	exit 1
 fi
 
 for imagepath in "$@"

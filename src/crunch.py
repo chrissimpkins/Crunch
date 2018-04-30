@@ -22,6 +22,8 @@ lock = Lock()
 
 # Constants
 PROCESSES = 0
+PNGQUANT_EXE_PATH = "$HOME/pngquant/pngquant"
+ZOPFLIPNG_EXE_PATH = "$HOME/zopflipng/zopflipng"
 
 
 def main(argv):
@@ -29,7 +31,11 @@ def main(argv):
 
     png_path_list = argv
 
-    # Command line error handling
+    # //////////////////////////////////
+    # COMMAND LINE ERROR HANDLING
+    # //////////////////////////////////
+
+    # PNG file path error handling
     if len(png_path_list) == 0:
         sys.stderr.write(
             "[ERROR] Please include one or more paths to PNG image files as "
@@ -63,7 +69,28 @@ def main(argv):
             )
             sys.exit(1)
 
-    # Optimization processing
+    # Dependency error handling
+    if not os.path.exists(PNGQUANT_EXE_PATH):
+        sys.stderr.write(
+            "[ERROR] pngquant executable was not identified on path '"
+            + PNGQUANT_EXE_PATH
+            + "'"
+            + os.linesep
+        )
+        sys.exit(1)
+    elif not os.path.exists(ZOPFLIPNG_EXE_PATH):
+        sys.stderr.write(
+            "[ERROR] zopflipng executable was not identified on path '"
+            + ZOPFLIPNG_EXE_PATH
+            + "'"
+            + os.linesep
+        )
+        sys.exit(1)
+
+    # ////////////////////////////////////
+    # OPTIMIZATION PROCESSING
+    # ////////////////////////////////////
+
     if len(png_path_list) == 1:
         # there is only one PNG file, skip spawning of processes and just optimize it
         optimize_png(png_path_list[0])

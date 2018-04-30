@@ -3,7 +3,7 @@
 
 # ==================================================================
 #  crunch.py
-#    Crunch PNG image optimization
+#    Lossy PNG image optimization with pngquant and zopflipng
 #
 #   Copyright 2018 Christopher Simpkins
 #   MIT License

@@ -20,16 +20,55 @@ from multiprocessing import Lock, Pool, cpu_count
 # Locks
 lock = Lock()
 
-# Constants
-PROCESSES = 0
+# Processor Constants
+PROCESSES = 0  # detected automatically in source if this is defined as zero
+
+# Dependency Path Constants
 PNGQUANT_EXE_PATH = "$HOME/pngquant/pngquant"
 ZOPFLIPNG_EXE_PATH = "$HOME/zopflipng/zopflipng"
+
+# Application Constants
+VERSION = "2.0.0"
+
+VERSION_STRING = "crunch v" + VERSION
+
+HELP_STRING = """
+///////////////////////////////////////////////////
+ crunch
+  Copyright 2018 Christopher Simpkins
+  MIT License
+
+  Source: https://github.com/chrissimpkins/Crunch
+///////////////////////////////////////////////////
+
+crunch is a command line executable that performs lossy optimization of one or more png image files with pngquant and zopflipng.
+
+Usage:
+    $ crunch [image path 1]...[image path n]
+"""
+
+USAGE = "$ crunch [image path 1]...[image path n]"
+
 
 
 def main(argv):
     processes = PROCESSES
 
     png_path_list = argv
+
+    # //////////////////////////////////////
+    # HELP, USAGE, VERSION option handling
+    # //////////////////////////////////////
+
+    if argv[0] == "-v" or argv[0] == "--version":
+        print(VERSION_STRING)
+        sys.exit(0)
+    elif argv[0] == "-h" or argv[0] == "--help":
+        print(HELP_STRING)
+        sys.exit(0)
+    elif argv[0] == "--usage":
+        print(USAGE)
+        sys.exit(0)
 
     # //////////////////////////////////
     # COMMAND LINE ERROR HANDLING

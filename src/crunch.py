@@ -3,7 +3,7 @@
 
 # ==================================================================
 #  crunch.py
-#    Lossy PNG image optimization with pngquant and zopflipng
+#    A PNG file optimization tool built on pngquant and zopflipng
 #
 #   Copyright 2018 Christopher Simpkins
 #   MIT License
@@ -13,7 +13,7 @@
 
 import sys
 import os
-import traceback
+import subprocess
 
 from multiprocessing import Lock, Pool, cpu_count
 
@@ -51,8 +51,6 @@ USAGE = "$ crunch [image path 1]...[image path n]"
 
 
 def main(argv):
-    processes = PROCESSES
-
     png_path_list = argv
 
     # //////////////////////////////////////
@@ -134,6 +132,7 @@ def main(argv):
         optimize_png(png_path_list[0])
         sys.exit(0)
     else:
+        processes = PROCESSES
         # if not defined by user, start by defining spawned processes as number of available cores
         if processes == 0:
             processes = cpu_count()
@@ -147,8 +146,41 @@ def main(argv):
         sys.exit(0)
 
 
+# ///////////////////////
+# FUNCTION DEFINITIONS
+# ///////////////////////
+
+
 def optimize_png(png_path):
-    pass
+    img = ImageFile(png_path)
+
+
+# ///////////////////////
+# OBJECT DEFINITIONS
+# ///////////////////////
+
+
+class ImageFile(object):
+    def __init__(self, filepath):
+        self.pre_filepath = filepath
+        self.post_filepath = self._get_post_filepath()
+        self.pre_size = self._get_filesize(self.pre_filepath)
+        self.post_size = 0
+
+    def _get_filesize(self, file_path):
+        return os.path.getsize(file_path)
+
+    def _get_post_filepath(self):
+        path, extension = os.path.splitext(self.pre_filepath)
+        return path + "-crunch" + extension
+
+    def get_post_filesize(self):
+        self.post_size = self._get_filesize(self.post_filepath)
+
+    def get_compression_percent(self):
+        ratio = self.post_size / self.pre_size
+        percent = ratio * 100
+        return percent
 
 
 if __name__ == "__main__":

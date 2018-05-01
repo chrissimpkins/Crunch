@@ -162,7 +162,7 @@ def optimize_png(png_path):
     try:
         pngquant_options = " --quality=80-98 --skip-if-larger --force --ext -crunch.png "
         pngquant_command = PNGQUANT_EXE_PATH + pngquant_options + img.pre_filepath
-        res = subprocess.check_output(pngquant_command, stderr=subprocess.STDOUT, shell=True)
+        subprocess.check_output(pngquant_command, stderr=subprocess.STDOUT, shell=True)
     except CalledProcessError as cpe:
         sys.stderr.write("[ERROR] " + img.pre_filepath + " processing failed at the pngquant stage with the message:" + os.linesep)
         sys.stderr.write(cpe.stderr + os.linesep)
@@ -176,7 +176,7 @@ def optimize_png(png_path):
     try:
         zopflipng_options = " -y "
         zopflipng_command = ZOPFLIPNG_EXE_PATH + zopflipng_options + img.post_filepath + " " + img.post_filepath
-        res = subprocess.check_output(zopflipng_command, stderr=subprocess.STDOUT, shell=True)
+        subprocess.check_output(zopflipng_command, stderr=subprocess.STDOUT, shell=True)
     except CalledProcessError as cpe:
         sys.stderr.write("[ERROR] " + img.pre_filepath + " processing failed at the zopflipng stage with the message:" + os.linesep)
         sys.stderr.write(cpe.stderr + os.linesep)

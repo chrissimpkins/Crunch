@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # ==================================================================
-#  crunch.py
+#  crunch
 #    A PNG file optimization tool built on pngquant and zopflipng
 #
 #   Copyright 2018 Christopher Simpkins

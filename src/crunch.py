@@ -14,6 +14,8 @@
 import sys
 import os
 import subprocess
+from subprocess import CalledProcessError
+import traceback
 
 from multiprocessing import Lock, Pool, cpu_count
 
@@ -24,8 +26,8 @@ lock = Lock()
 PROCESSES = 0  # detected automatically in source if this is defined as zero
 
 # Dependency Path Constants
-PNGQUANT_EXE_PATH = "$HOME/pngquant/pngquant"
-ZOPFLIPNG_EXE_PATH = "$HOME/zopflipng/zopflipng"
+PNGQUANT_EXE_PATH = os.path.join(os.path.expanduser("~"), "pngquant", "pngquant")
+ZOPFLIPNG_EXE_PATH = os.path.join(os.path.expanduser("~"), "zopfli", "zopflipng")
 
 # Application Constants
 VERSION = "2.0.0"
@@ -126,6 +128,7 @@ def main(argv):
     # ////////////////////////////////////
     # OPTIMIZATION PROCESSING
     # ////////////////////////////////////
+    print("Crunching ...")
 
     if len(png_path_list) == 1:
         # there is only one PNG file, skip spawning of processes and just optimize it
@@ -141,6 +144,7 @@ def main(argv):
         if processes > len(png_path_list):
             processes = len(png_path_list)
 
+        print("Spawning " + str(processes) + " processes to optimize " + str(len(png_path_list)) + " image files...")
         p = Pool(processes)
         p.map(optimize_png, png_path_list)
         sys.exit(0)
@@ -153,6 +157,42 @@ def main(argv):
 
 def optimize_png(png_path):
     img = ImageFile(png_path)
+
+    # pngquant stage
+    try:
+        pngquant_options = " --quality=80-98 --skip-if-larger --force --ext -crunch.png "
+        pngquant_command = PNGQUANT_EXE_PATH + pngquant_options + img.pre_filepath
+        res = subprocess.check_output(pngquant_command, stderr=subprocess.STDOUT, shell=True)
+    except CalledProcessError as cpe:
+        sys.stderr.write("[ERROR] " + img.pre_filepath + " processing failed at the pngquant stage with the message:" + os.linesep)
+        sys.stderr.write(cpe.stderr + os.linesep)
+        sys.exit(1)
+    except Exception as e:
+        sys.stderr.write(str(e) + os.linesep)
+        traceback.print_exc()
+        sys.exit(1)
+
+    # zopflipng stage
+    try:
+        zopflipng_options = " -y "
+        zopflipng_command = ZOPFLIPNG_EXE_PATH + zopflipng_options + img.post_filepath + " " + img.post_filepath
+        res = subprocess.check_output(zopflipng_command, stderr=subprocess.STDOUT, shell=True)
+    except CalledProcessError as cpe:
+        sys.stderr.write("[ERROR] " + img.pre_filepath + " processing failed at the zopflipng stage with the message:" + os.linesep)
+        sys.stderr.write(cpe.stderr + os.linesep)
+        sys.exit(1)
+    except Exception as e:
+        sys.stderr.write(str(e) + os.linesep)
+        traceback.print_exc()
+        sys.exit(1)
+
+    img.get_post_filesize()
+    percent = img.get_compression_percent()
+    percent_string = '{0:.2f}'.format(percent)
+
+    lock.acquire()
+    print("[ " + percent_string + "% ] " + img.post_filepath + " (" + str(img.post_size) + " bytes)")
+    lock.release()
 
 
 # ///////////////////////
@@ -178,7 +218,7 @@ class ImageFile(object):
         self.post_size = self._get_filesize(self.post_filepath)
 
     def get_compression_percent(self):
-        ratio = self.post_size / self.pre_size
+        ratio = float(self.post_size) / float(self.pre_size)
         percent = ratio * 100
         return percent
 

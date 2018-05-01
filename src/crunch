@@ -13,6 +13,7 @@
 
 import sys
 import os
+import shutil
 import subprocess
 from subprocess import CalledProcessError
 import traceback
@@ -158,28 +159,48 @@ def main(argv):
 def optimize_png(png_path):
     img = ImageFile(png_path)
 
+    # --------------
     # pngquant stage
+    # --------------
     try:
         pngquant_options = " --quality=80-98 --skip-if-larger --force --ext -crunch.png "
         pngquant_command = PNGQUANT_EXE_PATH + pngquant_options + img.pre_filepath
         subprocess.check_output(pngquant_command, stderr=subprocess.STDOUT, shell=True)
     except CalledProcessError as cpe:
-        sys.stderr.write("[ERROR] " + img.pre_filepath + " processing failed at the pngquant stage with the message:" + os.linesep)
-        sys.stderr.write(cpe.stderr + os.linesep)
-        sys.exit(1)
+        if cpe.returncode == 98:
+            # this is the status code when file size increases with execution of pngquant.
+            # ignore at this stage, original file copied at beginning of zopflipng processing
+            # below if it is not present due to these errors
+            pass
+        else:
+            sys.stderr.write("[ERROR] " + img.pre_filepath + " processing failed at the pngquant stage with the message:" + os.linesep)
+            errormessage = str(cpe.stderr)
+            if errormessage is None:
+                errormessage = str(cpe.output)
+            sys.stderr.write(errormessage + os.linesep)
+            sys.exit(1)
     except Exception as e:
         sys.stderr.write(str(e) + os.linesep)
         traceback.print_exc()
         sys.exit(1)
 
+    # ---------------
     # zopflipng stage
+    # ---------------
+
+    # confirm that a file with proper path was generated above (occurs with larger files following pngquant)
+    if not os.path.exists(img.post_filepath):
+        shutil.copy(img.pre_filepath, img.post_filepath)
     try:
         zopflipng_options = " -y "
         zopflipng_command = ZOPFLIPNG_EXE_PATH + zopflipng_options + img.post_filepath + " " + img.post_filepath
         subprocess.check_output(zopflipng_command, stderr=subprocess.STDOUT, shell=True)
     except CalledProcessError as cpe:
         sys.stderr.write("[ERROR] " + img.pre_filepath + " processing failed at the zopflipng stage with the message:" + os.linesep)
-        sys.stderr.write(cpe.stderr + os.linesep)
+        errormessage = str(cpe.stderr)
+        if errormessage is None:
+            errormessage = str(cpe.output)
+        sys.stderr.write(errormessage + os.linesep)
         sys.exit(1)
     except Exception as e:
         sys.stderr.write(str(e) + os.linesep)

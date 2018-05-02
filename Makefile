@@ -15,6 +15,12 @@ install-macos-service:
 	@echo " "
 	@echo "[*] You can use the Crunch service by right clicking on one or more PNG files, then select Services > Crunch Image(s)"
 
+uninstall-dependencies:
+	sudo rm -rf ~/pngquant
+	sudo rm -rf ~/zopfli
+	@echo " "
+	@echo "[*] Dependencies removed."
+
 uninstall-executable:
 	sudo rm /usr/local/bin/crunch
 	@echo " "

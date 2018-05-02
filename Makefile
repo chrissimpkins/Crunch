@@ -3,7 +3,7 @@ build-dependencies:
 	src/install-dependencies.sh
 
 install-executable:
-	sudo cp src/crunch /usr/local/bin/crunch
+	sudo cp src/crunch.py /usr/local/bin/crunch
 	@echo " "
 	@echo "[*] crunch executable installed on path /usr/local/bin/crunch"
 	@echo "[*] Usage: $ crunch [image path 1]...[image path n]"

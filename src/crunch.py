@@ -56,6 +56,17 @@ USAGE = "$ crunch [image path 1]...[image path n]"
 def main(argv):
     png_path_list = argv
 
+    # //////////////////////////////////
+    # CONFIRM ARGUMENT PRESENT
+    # //////////////////////////////////
+
+    if len(png_path_list) == 0:
+        sys.stderr.write(
+            "[ERROR] Please include one or more paths to PNG image files as "
+            "arguments to the script." + os.linesep
+        )
+        sys.exit(1)
+
     # //////////////////////////////////////
     # HELP, USAGE, VERSION option handling
     # //////////////////////////////////////
@@ -75,12 +86,6 @@ def main(argv):
     # //////////////////////////////////
 
     # PNG file path error handling
-    if len(png_path_list) == 0:
-        sys.stderr.write(
-            "[ERROR] Please include one or more paths to PNG image files as "
-            "arguments to the script." + os.linesep
-        )
-        sys.exit(1)
 
     for png_path in png_path_list:
         if not os.path.isfile(png_path):  # is not an existing file

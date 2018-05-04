@@ -96,14 +96,6 @@ def main(argv):
                 + os.linesep
             )
             sys.exit(1)
-        elif len(png_path) < 5:  # not a proper *.png file path
-            sys.stderr.write(
-                "[ERROR] '"
-                + png_path
-                + "' is not properly formatted as a path to a PNG file"
-                + os.linesep
-            )
-            sys.exit(1)
         elif not png_path[-4:] == ".png":  # does not end with .png extension
             sys.stderr.write(
                 "[ERROR] '"

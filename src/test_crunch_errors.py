@@ -36,7 +36,6 @@ def test_crunch_missing_argument_error(capsys):
         src.crunch.main([])
     
     out, err = capsys.readouterr()
-    assert len(out) == 0
     assert len(err) > 0
     assert err.startswith("[ERROR]") is True
 
@@ -46,7 +45,6 @@ def test_crunch_missing_file_error(capsys):
         src.crunch.main(["bogusfile.png"])
     
     out, err = capsys.readouterr()
-    assert len(out) == 0
     assert len(err) > 0
     assert err.startswith("[ERROR]") is True
 
@@ -56,6 +54,5 @@ def test_crunch_bad_filepath_error(capsys):
         src.crunch.main(["src/test_crunch_errors.py"])
     
     out, err = capsys.readouterr()
-    assert len(out) == 0
     assert len(err) > 0
     assert err.startswith("[ERROR]") is True

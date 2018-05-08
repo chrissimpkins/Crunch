@@ -23,7 +23,7 @@ fi
 
 cat execution.html
 
-./crunch.py --gui "$@" &>/dev/null
+./crunch.py --gui "$@" >/dev/null
 
 cat clear.html
 cat complete.html

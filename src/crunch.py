@@ -171,7 +171,9 @@ def optimize_png(png_path):
             pass
         else:
             sys.stderr.write("[ERROR] " + img.pre_filepath + " processing failed at the pngquant stage with the message:" + os.linesep)
-            errormessage = str(cpe.stderr)
+            errormessage = None
+            if hasattr(cpe, "stderr"):
+                errormessage = str(cpe.stderr)
             if errormessage is None:
                 errormessage = str(cpe.output)
             sys.stderr.write(errormessage + os.linesep)
@@ -194,7 +196,9 @@ def optimize_png(png_path):
         subprocess.check_output(zopflipng_command, stderr=subprocess.STDOUT, shell=True)
     except CalledProcessError as cpe:
         sys.stderr.write("[ERROR] " + img.pre_filepath + " processing failed at the zopflipng stage with the message:" + os.linesep)
-        errormessage = str(cpe.stderr)
+        errormessage = None
+        if hasattr(cpe, "stderr"):
+            errormessage = str(cpe.stderr)
         if errormessage is None:
             errormessage = str(cpe.output)
         sys.stderr.write(errormessage + os.linesep)

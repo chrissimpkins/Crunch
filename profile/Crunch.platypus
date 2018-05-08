@@ -22,6 +22,7 @@
 		<string>/Users/ces/Desktop/code/Crunch/img/slowdots.gif</string>
 		<string>/Users/ces/Desktop/code/Crunch/html/clear.html</string>
 		<string>/Users/ces/Desktop/code/Crunch/ui/MainMenu.nib</string>
+		<string>/Users/ces/Desktop/code/Crunch/src/crunch.py</string>
 	</array>
 	<key>Creator</key>
 	<string>Platypus-5.2</string>
@@ -38,7 +39,7 @@
 	<key>ExecutablePath</key>
 	<string>/usr/local/share/platypus/ScriptExec</string>
 	<key>IconPath</key>
-	<string>/Users/ces/Library/Application Support/Platypus/PlatypusIcon-32193.icns</string>
+	<string>/Users/ces/Library/Application Support/Platypus/PlatypusIcon-91951.icns</string>
 	<key>Identifier</key>
 	<string>com.csimpkins.Crunch</string>
 	<key>InterfaceType</key>
@@ -64,7 +65,7 @@
 	<key>ScriptArgs</key>
 	<array/>
 	<key>ScriptPath</key>
-	<string>/Users/ces/Desktop/code/Crunch/src/crunch-html.sh</string>
+	<string>/Users/ces/Desktop/code/Crunch/src/crunch-gui.sh</string>
 	<key>StatusItemDisplayType</key>
 	<string>Text</string>
 	<key>StatusItemIcon</key>
@@ -264,6 +265,6 @@
 	<key>UseXMLPlistFormat</key>
 	<false/>
 	<key>Version</key>
-	<string>1.1.0</string>
+	<string>2.0.0</string>
 </dict>
 </plist>

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os
 import sys
 import pytest
 
@@ -69,3 +70,35 @@ def test_crunch_version_longoption(capsys):
     out, err = capsys.readouterr()
     assert out[0:8] == "crunch v"
 
+
+def test_crunch_function_optimize_png_unoptimized_file():
+    with pytest.raises(SystemExit):
+        startpath = os.path.join("testfiles", "robot.png")
+        testpath = os.path.join("testfiles", "robot-crunch.png")
+        # cleanup any existing files from previous tests
+        if os.path.exists(testpath):
+            os.remove(testpath)
+        src.crunch.main([startpath])
+
+    # check for optimized file following execution    
+    assert os.path.exists(testpath) is True
+    
+    # cleanup optimized file produced by this test
+    if os.path.exists(testpath):
+        os.remove(testpath)
+
+def test_crunch_function_optimize_png_preoptimized_file():
+    with pytest.raises(SystemExit):
+        startpath = os.path.join("testfiles", "cat-cr.png") # test a file that has previously been optimized
+        testpath = os.path.join("testfiles", "cat-cr-crunch.png")
+        # cleanup any existing files from previous tests
+        if os.path.exists(testpath):
+            os.remove(testpath)
+        src.crunch.main([startpath])
+
+    # check for optimized file following execution    
+    assert os.path.exists(testpath) is True
+    
+    # cleanup optimized file produced by this test
+    if os.path.exists(testpath):
+        os.remove(testpath)

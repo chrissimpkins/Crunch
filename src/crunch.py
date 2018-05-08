@@ -26,13 +26,8 @@ lock = Lock()
 # Processor Constants
 PROCESSES = 0  # detected automatically in source if this is defined as zero
 
-# Dependency Path Constants
-PNGQUANT_EXE_PATH = os.path.join(os.path.expanduser("~"), "pngquant", "pngquant")
-ZOPFLIPNG_EXE_PATH = os.path.join(os.path.expanduser("~"), "zopfli", "zopflipng")
-
 # Application Constants
 VERSION = "2.0.0"
-
 VERSION_STRING = "crunch v" + VERSION
 
 HELP_STRING = """
@@ -53,14 +48,14 @@ Usage:
 USAGE = "$ crunch [image path 1]...[image path n]"
 
 
+
 def main(argv):
-    png_path_list = argv
 
     # //////////////////////////////////
     # CONFIRM ARGUMENT PRESENT
     # //////////////////////////////////
 
-    if len(png_path_list) == 0:
+    if len(argv) == 0:
         sys.stderr.write(
             "[ERROR] Please include one or more paths to PNG image files as "
             "arguments to the script." + os.linesep
@@ -80,6 +75,21 @@ def main(argv):
     elif argv[0] == "--usage":
         print(USAGE)
         sys.exit(0)
+
+    # ////////////////////////
+    # DEFINE DEPENDENCY PATHS
+    # ////////////////////////
+    PNGQUANT_EXE_PATH = get_pngquant_path()
+    ZOPFLIPNG_EXE_PATH = get_zopflipng_path()
+
+    # ////////////////////
+    # PARSE PNG_PATH_LIST
+    # ////////////////////
+
+    if argv[0] == "--gui":
+        png_path_list = argv[1:]
+    else:
+        png_path_list = argv
 
     # //////////////////////////////////
     # COMMAND LINE ERROR HANDLING
@@ -155,6 +165,9 @@ def main(argv):
 
 def optimize_png(png_path):
     img = ImageFile(png_path)
+    # define pngquant and zopflipng paths
+    PNGQUANT_EXE_PATH = get_pngquant_path()
+    ZOPFLIPNG_EXE_PATH = get_zopflipng_path()
 
     # --------------
     # pngquant stage
@@ -215,6 +228,21 @@ def optimize_png(png_path):
     lock.acquire()
     print("[ " + percent_string + "% ] " + img.post_filepath + " (" + str(img.post_size) + " bytes)")
     lock.release()
+
+
+def get_pngquant_path():
+    print(sys.argv)
+    if sys.argv[1] == "--gui":
+        return "./pngquant"
+    else:
+        return os.path.join(os.path.expanduser("~"), "pngquant", "pngquant")
+
+
+def get_zopflipng_path():
+    if sys.argv[1] == "--gui":
+        return "./zopflipng"
+    else:
+        return os.path.join(os.path.expanduser("~"), "zopfli", "zopflipng")
 
 
 # ///////////////////////

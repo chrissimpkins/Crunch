@@ -72,13 +72,12 @@ def test_crunch_version_longoption(capsys):
 
 
 def test_crunch_function_optimize_png_unoptimized_file():
-    with pytest.raises(SystemExit):
-        startpath = os.path.join("testfiles", "robot.png")
-        testpath = os.path.join("testfiles", "robot-crunch.png")
-        # cleanup any existing files from previous tests
-        if os.path.exists(testpath):
-            os.remove(testpath)
-        src.crunch.main([startpath])
+    startpath = os.path.join("testfiles", "robot.png")
+    testpath = os.path.join("testfiles", "robot-crunch.png")
+    # cleanup any existing files from previous tests
+    if os.path.exists(testpath):
+        os.remove(testpath)
+    src.crunch.optimize_png(startpath)
 
     # check for optimized file following execution    
     assert os.path.exists(testpath) is True
@@ -88,13 +87,12 @@ def test_crunch_function_optimize_png_unoptimized_file():
         os.remove(testpath)
 
 def test_crunch_function_optimize_png_preoptimized_file():
-    with pytest.raises(SystemExit):
-        startpath = os.path.join("testfiles", "cat-cr.png") # test a file that has previously been optimized
-        testpath = os.path.join("testfiles", "cat-cr-crunch.png")
-        # cleanup any existing files from previous tests
-        if os.path.exists(testpath):
-            os.remove(testpath)
-        src.crunch.main([startpath])
+    startpath = os.path.join("testfiles", "cat-cr.png") # test a file that has previously been optimized
+    testpath = os.path.join("testfiles", "cat-cr-crunch.png")
+    # cleanup any existing files from previous tests
+    if os.path.exists(testpath):
+        os.remove(testpath)
+    src.crunch.optimize_png(startpath)
 
     # check for optimized file following execution    
     assert os.path.exists(testpath) is True
@@ -102,3 +100,11 @@ def test_crunch_function_optimize_png_preoptimized_file():
     # cleanup optimized file produced by this test
     if os.path.exists(testpath):
         os.remove(testpath)
+
+def test_crunch_function_optimize_png_bad_filetype(capsys):
+    with pytest.raises(SystemExit):
+        startpath = os.path.join("src", "crunch.py")
+        src.crunch.optimize_png(startpath)
+    
+    out, err = capsys.readouterr()
+    assert err[0:7] == "[ERROR]"

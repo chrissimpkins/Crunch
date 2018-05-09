@@ -5,6 +5,7 @@ import os
 import sys
 import platform
 import pytest
+from subprocess import CalledProcessError
 
 import src.crunch
 
@@ -74,6 +75,7 @@ def test_crunch_version_longoption(capsys):
 # //////////////////////////////
 # Optimization processing tests
 # //////////////////////////////
+
 
 def test_crunch_function_get_pngquant_path_commandline():
     preargs = sys.argv
@@ -155,8 +157,9 @@ def test_crunch_function_optimize_png_preoptimized_file():
     if os.path.exists(testpath):
         os.remove(testpath)
 
+
 def test_crunch_function_optimize_png_bad_filetype(capsys):
-    with pytest.raises(SystemExit):
+    with pytest.raises(CalledProcessError):
         startpath = os.path.join("src", "crunch.py")
         src.crunch.optimize_png(startpath)
     
@@ -179,6 +182,7 @@ def test_crunch_function_main_single_file():
     # cleanup optimized file produced by this test
     if os.path.exists(testpath):
         os.remove(testpath)
+
 
 def test_crunch_function_main_multi_file():
     with pytest.raises(SystemExit):

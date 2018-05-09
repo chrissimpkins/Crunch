@@ -71,6 +71,40 @@ def test_crunch_version_longoption(capsys):
     assert out[0:8] == "crunch v"
 
 
+def test_crunch_function_get_pngquant_path_commandline():
+    preargs = sys.argv
+    sys.argv = ["crunch.py", "test.png", "test2.png"]
+    response = src.crunch.get_pngquant_path()
+    assert response == os.path.join(
+        os.path.expanduser("~"), "pngquant", "pngquant")
+    sys.argv = preargs
+
+
+def test_crunch_function_get_pngquant_path_gui():
+    preargs = sys.argv
+    sys.argv = ["crunch.py", "--gui", "test.png", "test2.png"]
+    response = src.crunch.get_pngquant_path()
+    assert response == "./pngquant"
+    sys.argv = preargs
+
+
+def test_crunch_function_get_zopflipng_path_commandline():
+    preargs = sys.argv
+    sys.argv = ["crunch.py", "test.png", "test2.png"]
+    response = src.crunch.get_zopflipng_path()
+    assert response == os.path.join(
+        os.path.expanduser("~"), "zopfli", "zopflipng")
+    sys.argv = preargs
+
+
+def test_crunch_function_get_zopflipng_path_gui():
+    preargs = sys.argv
+    sys.argv = ["crunch.py", "--gui", "test.png", "test2.png"]
+    response = src.crunch.get_zopflipng_path()
+    assert response == "./zopflipng"
+    sys.argv = preargs
+
+
 def test_crunch_function_optimize_png_unoptimized_file():
     startpath = os.path.join("testfiles", "robot.png")
     testpath = os.path.join("testfiles", "robot-crunch.png")

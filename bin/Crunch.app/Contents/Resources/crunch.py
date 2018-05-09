@@ -230,7 +230,6 @@ def optimize_png(png_path):
 
 
 def get_pngquant_path():
-    print(sys.argv)
     if sys.argv[1] == "--gui":
         return "./pngquant"
     else:

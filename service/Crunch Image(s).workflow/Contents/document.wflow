@@ -59,18 +59,9 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string>for imagepath in "$@"
-do
-	file_extension="${imagepath##*.}"
-    
-    if [[ "$file_extension" = "png" ]]; then
-        working_imagepath="${imagepath%.png}-crunch.png"
-		/Applications/Crunch.app/Contents/Resources/pngquant --quality=80-98 --skip-if-larger --force --ext -crunch.png "$imagepath" &gt;/dev/null
-	
-	/Applications/Crunch.app/Contents/Resources/zopflipng -y "$working_imagepath" "$working_imagepath" &gt;/dev/null
-        
-	fi
-done</string>
+					<string>
+
+/Applications/Crunch.app/Contents/Resources/crunch.py --service $@</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
 					<key>inputMethod</key>
@@ -180,12 +171,10 @@ done</string>
 						<string>4</string>
 					</dict>
 				</dict>
-				<key>conversionLabel</key>
-				<integer>0</integer>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>295.000000:433.000000</string>
+				<string>504.500000:433.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/English.lproj/main.nib</string>
 			</dict>

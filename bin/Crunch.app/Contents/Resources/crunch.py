@@ -16,7 +16,6 @@ import os
 import shutil
 import subprocess
 from subprocess import CalledProcessError
-import traceback
 
 from multiprocessing import Lock, Pool, cpu_count
 
@@ -153,7 +152,15 @@ def main(argv):
 
         print("Spawning " + str(processes) + " processes to optimize " + str(len(png_path_list)) + " image files...")
         p = Pool(processes)
-        p.map(optimize_png, png_path_list)
+        try:
+            p.map(optimize_png, png_path_list)
+        except Exception as e:
+            lock.acquire()
+            sys.stderr.write("-----" + os.linesep)
+            sys.stderr.write("[ERROR] Error detected during execution of request:" + os.linesep)
+            sys.stderr.write(str(e) + os.linesep)
+            lock.release()
+            sys.exit(1)
         sys.exit(0)
 
 
@@ -182,18 +189,15 @@ def optimize_png(png_path):
             # below if it is not present due to these errors
             pass
         else:
-            sys.stderr.write("[ERROR] " + img.pre_filepath + " processing failed at the pngquant stage with the message:" + os.linesep)
-            errormessage = None
-            if hasattr(cpe, "stderr"):
-                errormessage = str(cpe.stderr)
-            if errormessage is None:
-                errormessage = str(cpe.output)
-            sys.stderr.write(errormessage + os.linesep)
-            sys.exit(1)
+            lock.acquire()
+            sys.stderr.write("[ERROR] " + img.pre_filepath + " processing failed at the pngquant stage." + os.linesep)
+            lock.release()
+            if sys.argv[1] == "--gui" or sys.argv[1] == "--service":
+                return None
+            else:
+                raise cpe
     except Exception as e:
-        sys.stderr.write(str(e) + os.linesep)
-        traceback.print_exc()
-        sys.exit(1)
+        raise e
 
     # ---------------
     # zopflipng stage
@@ -207,18 +211,15 @@ def optimize_png(png_path):
         zopflipng_command = ZOPFLIPNG_EXE_PATH + zopflipng_options + img.post_filepath + " " + img.post_filepath
         subprocess.check_output(zopflipng_command, stderr=subprocess.STDOUT, shell=True)
     except CalledProcessError as cpe:
-        sys.stderr.write("[ERROR] " + img.pre_filepath + " processing failed at the zopflipng stage with the message:" + os.linesep)
-        errormessage = None
-        if hasattr(cpe, "stderr"):
-            errormessage = str(cpe.stderr)
-        if errormessage is None:
-            errormessage = str(cpe.output)
-        sys.stderr.write(errormessage + os.linesep)
-        sys.exit(1)
+        lock.acquire()
+        sys.stderr.write("[ERROR] " + img.pre_filepath + " processing failed at the zopflipng stage." + os.linesep)
+        lock.release()
+        if sys.argv[1] == "--gui" or sys.argv[1] == "--service":
+            return None
+        else:
+            raise cpe
     except Exception as e:
-        sys.stderr.write(str(e) + os.linesep)
-        traceback.print_exc()
-        sys.exit(1)
+        raise e
 
     img.get_post_filesize()
     percent = img.get_compression_percent()

@@ -85,7 +85,7 @@ def main(argv):
     # PARSE PNG_PATH_LIST
     # ////////////////////
 
-    if argv[0] == "--gui":
+    if argv[0] == "--gui" or argv[0] == "--service":
         png_path_list = argv[1:]
     else:
         png_path_list = argv
@@ -232,6 +232,8 @@ def optimize_png(png_path):
 def get_pngquant_path():
     if sys.argv[1] == "--gui":
         return "./pngquant"
+    elif sys.argv[1] == "--service":
+        return "/Applications/Crunch.app/Contents/Resources/pngquant"
     else:
         return os.path.join(os.path.expanduser("~"), "pngquant", "pngquant")
 
@@ -239,6 +241,8 @@ def get_pngquant_path():
 def get_zopflipng_path():
     if sys.argv[1] == "--gui":
         return "./zopflipng"
+    elif sys.argv[1] == "--service":
+        return "/Applications/Crunch.app/Contents/Resources/zopflipng"
     else:
         return os.path.join(os.path.expanduser("~"), "zopfli", "zopflipng")
 

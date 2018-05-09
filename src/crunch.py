@@ -188,11 +188,15 @@ def optimize_png(png_path):
                 errormessage = str(cpe.stderr)
             if errormessage is None:
                 errormessage = str(cpe.output)
+            lock.acquire()
             sys.stderr.write(errormessage + os.linesep)
+            lock.release()
             sys.exit(1)
     except Exception as e:
+        lock.acquire()
         sys.stderr.write(str(e) + os.linesep)
         traceback.print_exc()
+        lock.release()
         sys.exit(1)
 
     # ---------------
@@ -213,11 +217,15 @@ def optimize_png(png_path):
             errormessage = str(cpe.stderr)
         if errormessage is None:
             errormessage = str(cpe.output)
+        lock.acquire()
         sys.stderr.write(errormessage + os.linesep)
+        lock.release()
         sys.exit(1)
     except Exception as e:
+        lock.acquire()
         sys.stderr.write(str(e) + os.linesep)
         traceback.print_exc()
+        lock.release()
         sys.exit(1)
 
     img.get_post_filesize()

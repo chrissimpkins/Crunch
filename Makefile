@@ -9,6 +9,7 @@ install-executable:
 	@echo "[*] Usage: $ crunch [image path 1]...[image path n]"
 
 install-macos-service:
+	- sudo rm -rf ~/Library/Services/Crunch\ Image\(s\).workflow
 	sudo cp -R service/Crunch\ Image\(s\).workflow ~/Library/Services/Crunch\ Image\(s\).workflow
 	@echo " "
 	@echo "[*] Crunch Image(s) macOS service installed on the path ~/Library/Services/Crunch\ Image\(s\).workflow"
@@ -19,12 +20,12 @@ uninstall-dependencies:
 	sudo rm -rf ~/pngquant
 	sudo rm -rf ~/zopfli
 	@echo " "
-	@echo "[*] Dependencies removed."
+	@echo "[*] Dependency removal complete."
 
 uninstall-executable:
 	sudo rm /usr/local/bin/crunch
 	@echo " "
-	@echo "[*] crunch executable uninstall complete"
+	@echo "[*] crunch executable uninstall complete."
 
 uninstall-macos-service:
 	sudo rm -rf ~/Library/Services/Crunch\ Image\(s\).workflow
@@ -32,7 +33,8 @@ uninstall-macos-service:
 	@echo "[*] The Crunch Image(s) macOS service was removed from your system"
 
 test-python:
-	flake8 --ignore=E501,W503 src/*.py
+	tox
+	flake8 --ignore=E501,W503,E121,E123,E126,E226,E24,E704,W503,W504 src/crunch.py
 
 test-shell:
 	shellcheck --exclude=2046 src/*.sh

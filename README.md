@@ -16,7 +16,9 @@ Crunch PNG image optimization is available through the following applications th
 - [Crunch GUI](docs/MACOSGUI.md) - a native macOS drag and drop GUI tool
 - [Crunch Image(s)](docs/SERVICE.md) service - a macOS right click menu service for PNG images selected in the Finder
 
-Install and usage documentation links for each of these applications are available below.
+## Install and Usage
+
+Install and usage documentation links for each of the Crunch applications are available below.
 
 ## `crunch` Command Line Executable
 

@@ -1,5 +1,7 @@
 ## Crunch Image(s) macOS Right Click Menu Service
 
+The Crunch Image(s) macOS service supports parallel PNG image optimization through a right click Services menu item after you select one or more images in the macOS Finder window.  You must install the Crunch macOS GUI prior to use of this macOS service because the GUI application package contains the pngquant and zopflipng dependencies that are required for execution of the image optimization.
+
 ### Quick macOS Service Install
 
 Install the Crunch GUI tool (see README page for installation instructions).  [Download the Crunch repository source](https://github.com/chrissimpkins/Crunch/releases/latest), unpack the source archive, and move the workflow directory located on the repository path `service/Crunch Image(s).workflow` to your system on the path `~/Library/Services/Crunch Image(s).workflow`.
@@ -10,7 +12,7 @@ The installation is complete and the service is ready for use.  You may now dele
 
 ### Quick macOS Service Usage
 
-Select one or more PNG images in the Finder, right click, and select "Crunch Image(s)" under the Services menu item.  An animated gear will appear in your status bar during the file processing and will disappear when your optimized images are ready.  The image write takes place in the same directory as your original image on the path `[original filename]-crunch.png`.
+Select one or more PNG images in the Finder, right click, and select "Crunch Image(s)" under the Services menu item.  An animated gear will appear in your status bar during the file processing and will disappear when your optimized images are ready.  Optimized files are saved in the same directory as the original with the modified path `[original filename]-crunch.png`.
 
 ## Detailed macOS Service Installation
 

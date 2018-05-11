@@ -1,5 +1,7 @@
 # The `crunch` Command Line Executable
 
+The `crunch` command line executable is a *nix executable that supports parallel PNG image optimization with local (off of the system PATH) installs of the pngquant and zopflipng project dependencies.  Compilation of pngquant and zopflipng from source is supported (and mandatory) as part of the installation process.  Please review the documentation below for details.
+
 ## Contents
 
 - [Install documentation](#install)
@@ -22,6 +24,8 @@ $ make build-dependencies
 $ make install-executable
 ```
 
+sudo permissions are required to move the executable to your `/usr/bin/local` directory. Please enter your password when it is requested.
+
 ### 2. Install manually
 
 ```
@@ -29,13 +33,15 @@ $ src/install-dependencies.sh
 $ sudo cp src/crunch.py /usr/local/bin/crunch
 ```
 
+sudo permissions are required to move the executable to your `/usr/bin/local` directory. Please enter your password when it is requested.
+
 Confirm your installation with the following command:
 
 ```
 $ crunch --help
 ```
 
-This command should display the in-application help for the crunch executable.  If you see this, you are all set to use `crunch`.
+This command should display the in-application help message for the `crunch` executable.  If you see this text, you are all set to use `crunch`.
 
 ## Usage
 
@@ -57,6 +63,8 @@ At the completion of processing of each of the requested images, the application
 - optimized image file path
 - final optimized image size in bytes
 
+Optimized files are saved in the same directory as the original with the modified path `[original filename]-crunch.png`.
+
 ### Options
 
 The following options are available for use with the `crunch` executable:
@@ -65,4 +73,22 @@ The following options are available for use with the `crunch` executable:
     --help, -h      application help
     --usage         application usage
     --version, -v   application version
+```
+
+## Uninstall `crunch` and Dependencies
+
+pngquant is compiled in a directory on the path `$HOME/pngquant`.  zopflipng is compiled in a directory on the path `$HOME/zopfli`.
+
+You can uninstall the pngquant and zopflipng dependencies by executing the following command from the root of the Crunch git repository:
+
+```
+$ make uninstall-dependencies
+```
+
+The `crunch` executable file is installed on the path `/usr/local/bin/crunch`.
+
+You can uninstall the `crunch` executable by executing the following command from the root of the Crunch git repository:
+
+```
+$ make uninstall-executable
 ```

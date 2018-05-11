@@ -1,5 +1,7 @@
 # Crunch native macOS GUI Application
 
+The Crunch native macOS GUI application supports drag and drop PNG image optimization on macOS systems.  The application provides support for parallel execution of image optimization on systems with multiple processors.  
+
 ## Contents
 
 - [Install documentation](#install)
@@ -37,4 +39,14 @@ Drag and drop your PNG images onto the Crunch window:
 
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/crunch-ss.gif" alt="Crunch PNG image optimization usage" width="400">
 
-Your optimized file is saved in the same directory as the original file with the modified path `[original filename]-crunch.png`.
+Optimized files are saved in the same directory as the original with the modified path `[original filename]-crunch.png`.
+
+## Uninstall Crunch
+
+If you used Homebrew to install Crunch, you can uninstall it with the following command:
+
+```
+$ homebrew cask uninstall crunch
+```
+
+If you used the dmg installer to install Crunch, you can uninstall it by opening your Finder and selecting your Applications directory.  Locate Crunch in the Finder window and move it to the Trash.  Empty your Trash and the uninstall is complete.

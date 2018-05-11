@@ -6,7 +6,7 @@
 
 ## About
 
-Crunch is a tool for lossy PNG image file optimization.  It combines selective bit depth, color type, and color palette reduction with zopfli DEFLATE compression algorithm encoding using embedded versions of the pngquant and zopflipng PNG optimization tools.  This approach leads to a significant file size gain relative to lossless approaches at the expense of a relatively modest decrease in image quality (see [example images](#examples) below).
+Crunch is a tool for lossy PNG image file optimization.  It combines selective bit depth, color type, and color palette reduction with zopfli DEFLATE compression algorithm encoding using the pngquant and zopflipng PNG optimization tools.  This approach leads to a significant file size gain relative to lossless approaches at the expense of a relatively modest decrease in image quality (see [example images](#examples) below).
 
 Historical benchmarks with the files included in Cédric Louvrier's [PNG Test Corpus](https://css-ig.net/png-tools-overview) versus other commonly used PNG optimization software are available in [BENCHMARKS.md](BENCHMARKS.md).
 
@@ -32,9 +32,9 @@ Drag and drop one or more images on the application window to process your PNG f
 
 ## Crunch Image(s) macOS Right Click Menu Service
 
-The macOS right click menu service "Crunch Image(s)" can be installed with `make` or manually by drag and drop in the macOS Finder. Please see the [Install documentation](docs/SERVICE.md#install).
+The macOS right click menu service "Crunch Image(s)" can be installed with `make` or manually by drag and drop in the macOS Finder. Please see the [Install documentation](docs/SERVICE.md).
 
-Select one or more PNG images in the Finder, right click, and select the `Services > Crunch Image(s)` menu item to process your files.  Please see the [Usage documentation](docs/SERVICE.md#usage).
+Select one or more PNG images in the Finder, right click, and select the `Services > Crunch Image(s)` menu item to process your files.  Please see the [Usage documentation](docs/SERVICE.md).
 
 ## Contents
 
@@ -58,9 +58,11 @@ The following examples demonstrate the benefits and disadvantages of the current
 - DSSIM similarity score: 0.001481
 
 ##### Original
+
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/cat-1285634_640.png" alt="cat example pre optimization">
 
 ##### Optimized
+
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/cat-1285634_640-crunch.png" alt="cat example post optimization">
 
 ### Sun's Rays
@@ -70,9 +72,11 @@ The following examples demonstrate the benefits and disadvantages of the current
 - DSSIM similarity score: 0.000913
 
 ##### Original
+
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/suns-rays-478249_640.png" alt="sun rays example pre optimization">
 
 ##### Optimized
+
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/suns-rays-478249_640-crunch.png" alt="sun rays example pre optimization">
 
 
@@ -101,9 +105,11 @@ The following examples demonstrate the benefits and disadvantages of the current
 - DSSIM similarity score: 0.000163
 
 ##### Original
+
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/robot-1214536_640.png" alt="robot example pre optimization">
 
 ##### Optimized
+
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/robot-1214536_640-crunch.png" alt="robot example post optimization">
 
 ### Color Circle Image
@@ -113,9 +119,11 @@ The following examples demonstrate the benefits and disadvantages of the current
 - DSSIM similarity score: 0.002575
 
 ##### Original
+
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/colors-157474_640.png" alt="colors example pre optimization">
 
 ##### Optimized
+
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/colors-157474_640-crunch.png" alt="colors example post optimization">
 
 
@@ -126,9 +134,11 @@ The following examples demonstrate the benefits and disadvantages of the current
 - DSSIM similarity score: 0.000481
 
 ##### Original
+
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/flowers-67839_640.png" alt="748">
 
 ##### Optimized
+
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/flowers-67839_640-crunch.png" alt="748">
 
 
@@ -136,7 +146,7 @@ The following examples demonstrate the benefits and disadvantages of the current
 
 ## Issue Reporting
 
-Have you identified a problem? Please [create a new issue report](https://github.com/chrissimpkins/Crunch/issues/new) on the Github issue tracker so that we can fix it.
+Have you identified a problem? Please [create a new issue report](https://github.com/chrissimpkins/Crunch/issues/new) on the Github issue tracker so that we can address it.
 
 ## Licenses
 

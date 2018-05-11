@@ -1,48 +1,40 @@
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/header-img-crunch.png" alt="Crunch PNG file optimization" width="250"><img src="https://github.com/chrissimpkins/Crunch/raw/master/img/slowdots.gif" alt="Crunch PNG file optimization" width="100">
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/header-arrow-crunch.png" alt="Crunch PNG file optimization">
 
+[![GitHub release](https://img.shields.io/github/release/chrissimpkins/Crunch.svg?style=flat-square)](https://github.com/chrissimpkins/Crunch/releases/latest)
+[![Build Status](https://semaphoreci.com/api/v1/sourcefoundry/crunch/branches/master/badge.svg)](https://semaphoreci.com/sourcefoundry/crunch)
+
 ## About
 
-Crunch is a macOS tool for lossy PNG image file optimization.  It combines selective bit depth, color type, and color palette reduction with zopfli DEFLATE compression algorithm encoding using embedded versions of the pngquant and zopflipng PNG optimization tools.  This approach leads to a significant file size gain relative to lossless approaches at the expense of a relatively modest decrease in image quality (see [example images](#examples) below).
+Crunch is a tool for lossy PNG image file optimization.  It combines selective bit depth, color type, and color palette reduction with zopfli DEFLATE compression algorithm encoding using embedded versions of the pngquant and zopflipng PNG optimization tools.  This approach leads to a significant file size gain relative to lossless approaches at the expense of a relatively modest decrease in image quality (see [example images](#examples) below).
 
 Historical benchmarks with the files included in Cédric Louvrier's [PNG Test Corpus](https://css-ig.net/png-tools-overview) versus other commonly used PNG optimization software are available in [BENCHMARKS.md](BENCHMARKS.md).
 
-Crunch PNG image optimization is available through:
+Crunch PNG image optimization is available through the following applications that are distributed in this repository:
 
-- Crunch - a macOS drag and drop GUI tool
-- [Crunch Image(s)](docs/SERVICE.md) - a macOS right click menu service for PNG images selected in the Finder
+- [`crunch`](docs/EXECUTABLE.md) - a *nix command line executable that can be used on macOS, Linux, and Windows POSIX application deployment environments such as Cygwin
+- [Crunch GUI](docs/MACOSGUI.md) - a native macOS drag and drop GUI tool
+- [Crunch Image(s)](docs/SERVICE.md) service - a macOS right click menu service for PNG images selected in the Finder
 
-## Install Crunch
+Install and usage documentation links for each of these applications are available below.
 
-Want to kick the tires?  Choose one of the methods below:
+## `crunch` Command Line Executable
 
-### 1. Install with Hombrew Cask Package Manager (Recommended)
+The `crunch` command line executable can be installed with `make` or manually.  Please see the [Install documentation](docs/EXECUTABLE.md#install).
 
-```
-$ brew cask install crunch
-```
+Enter paths to your PNG image files as arguments to the `crunch` executable.  Please see the [Usage documentation](docs/EXECUTABLE.md#usage).
 
-Note that you must use `brew cask install` and not `brew install`!
+## Crunch macOS GUI Application
 
+The Crunch native macOS GUI application can be installed with Homebrew or the dmg installer that is located in the repository releases.  Please see the [Install documentation](docs/MACOSGUI.md#install).
 
-Following your install you can upgrade to the latest version with:
+Drag and drop one or more images on the application window to process your PNG files.  Please see the [Usage documentation](docs/MACOSGUI.md#usage).
 
-```
-$ brew cask uninstall crunch && brew cask install crunch
-```
+## Crunch Image(s) macOS Right Click Menu Service
 
+The macOS right click menu service "Crunch Image(s)" can be installed with `make` or manually by drag and drop in the macOS Finder. Please see the [Install documentation](docs/SERVICE.md#install).
 
-### 2. Install with dmg Installer
-
-[Download the dmg installer](https://github.com/chrissimpkins/Crunch/releases/download/v1.1.0/Crunch-Installer.dmg), click it, and drag the Crunch icon to your Applications directory.
-
-Upgrade by following the same instructions and allowing the new version to replace the old version on your system.
-
-## Install Crunch Image(s) macOS Service
-
-Crunch PNG image optimization is available through the macOS right click menu service "Crunch Image(s)".
-
-Please see [SERVICE.md](docs/SERVICE.md) for documentation.
+Select one or more PNG images in the Finder, right click, and select the `Services > Crunch Image(s)` menu item to process your files.  Please see the [Usage documentation](docs/SERVICE.md#usage).
 
 ## Contents
 
@@ -55,7 +47,7 @@ Please see [SERVICE.md](docs/SERVICE.md) for documentation.
 
 ## Examples
 
-The following examples demonstrate the benefits and disadvantages of the current iteration of Crunch's aggressive space saving lossy optimization.  In many cases, Crunch's optimization minimizes file size with an imperceptible decrease in image quality.  In some cases, Crunch's optimization can significantly decrease the quality. For example, the horizon line + clouds in the prairie photo below.  Experiment with the image types used and please submit a report with examples of any images where the image quality falls short of expectations for production-ready files.
+The following examples demonstrate the benefits and disadvantages of the current iteration of Crunch's aggressive space saving  optimization strategy.  In many cases, Crunch's optimization minimizes file size with an imperceptible decrease in image quality.  In some cases, Crunch's optimization can significantly decrease the quality. For example, view the horizon line + clouds in the prairie photo below for a demontration of the introduction of undesirable image artifacts in the image.  Experiment with the image types that you use and please submit a report with examples of any images where the image quality falls short of expectations for production-ready files.
 
 ## Photography Examples
 
@@ -142,30 +134,25 @@ The following examples demonstrate the benefits and disadvantages of the current
 
 <small>All images above were obtained from [Pixabay](https://pixabay.com) and are dedicated to the public domain under the [CC0 Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/).
 
+## Issue Reporting
 
-## Usage
-
-Drag and drop your PNG images onto the Crunch window:
-
-<img src="https://github.com/chrissimpkins/Crunch/raw/master/img/crunch-ss.gif" alt="Crunch PNG image optimization usage" width="400">
-
-Your optimized file is saved in the same directory as the original file with the modified path `[original filename]-crunch.png`.
-
-## Issues
-
-Please [create a new issue report](https://github.com/chrissimpkins/Crunch/issues/new) on the Github issue tracker.
+Have you identified a problem? Please [create a new issue report](https://github.com/chrissimpkins/Crunch/issues/new) on the Github issue tracker so that we can fix it.
 
 ## Licenses
 
 Crunch is licensed under the [MIT license](https://github.com/chrissimpkins/Crunch/blob/master/LICENSE.md).
 
-#### Embedded Software
+### Embedded Software
 
 pngquant is licensed under the [Gnu General Public License, version 3](https://github.com/pornel/pngquant/blob/master/COPYRIGHT).  The pngquant source code is available [here](https://github.com/pornel/pngquant).
 
 zopflipng is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).  The zopflipng source code is available [here](https://github.com/google/zopfli).
 
 See the [LICENSE.md](LICENSE.md) document for details and additional licensing information for this project.
+
+## Contributing
+
+Contributions to the project are warmly welcomed.  Please suggest enhancements as new issue reports on this repository.  Source contributors should fork the git repository and submit changes as a Github pull request.
 
 ## Acknowledgments
 

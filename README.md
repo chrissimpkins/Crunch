@@ -56,8 +56,8 @@ The following examples demonstrate the benefits and disadvantages of the current
 ### Cat Image
 
 - Original Size: 583,398 bytes
-- Optimized Size: 195,491 bytes
-- DSSIM similarity score: 0.001481
+- Optimized Size: 195,430 bytes
+- DSSIM similarity score: 0.001504
 
 ##### Original
 
@@ -70,7 +70,7 @@ The following examples demonstrate the benefits and disadvantages of the current
 ### Sun's Rays
 
 - Original Size: 138,272
-- Optimized Size: 64,947
+- Optimized Size: 64,982
 - DSSIM similarity score: 0.000913
 
 ##### Original
@@ -85,7 +85,7 @@ The following examples demonstrate the benefits and disadvantages of the current
 ### Prairie Image
 
 - Original Size: 196,794 bytes
-- Optimized Size: 77,595 bytes
+- Optimized Size: 77,968 bytes
 - DSSIM similarity score: 0.002988
 
 ##### Original
@@ -103,7 +103,7 @@ The following examples demonstrate the benefits and disadvantages of the current
 ### Robot Image
 
 - Original Size: 197,193 bytes
-- Optimized Size: 67,632 bytes
+- Optimized Size: 67,773 bytes
 - DSSIM similarity score: 0.000163
 
 ##### Original
@@ -117,8 +117,8 @@ The following examples demonstrate the benefits and disadvantages of the current
 ### Color Circle Image
 
 - Original Size: 249,251 bytes
-- Optiimized Size: 68,309 bytes
-- DSSIM similarity score: 0.002575
+- Optiimized Size: 67,326 bytes
+- DSSIM similarity score: 0.002503
 
 ##### Original
 
@@ -132,7 +132,7 @@ The following examples demonstrate the benefits and disadvantages of the current
 ### Flowers Image
 
 - Original Size: 440,126 bytes
-- Optimized Size: 197,045 bytes
+- Optimized Size: 196,979 bytes
 - DSSIM similarity score: 0.000481
 
 ##### Original
@@ -143,8 +143,7 @@ The following examples demonstrate the benefits and disadvantages of the current
 
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/flowers-67839_640-crunch.png" alt="748">
 
-
-<small>All images above were obtained from [Pixabay](https://pixabay.com) and are dedicated to the public domain under the [CC0 Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/).
+All images above were obtained from [Pixabay](https://pixabay.com) and are dedicated to the public domain under the [CC0 Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/).
 
 ## Issue Reporting
 

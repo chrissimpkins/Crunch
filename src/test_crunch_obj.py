@@ -17,7 +17,7 @@ def test_crunch_imagefile_obj_instantiation():
 def test_crunch_imagefile_obj_get_post_filesize_method():
     imgfile = ImageFile(os.path.join("img", "robot-1214536_640.png"))
     imgfile.get_post_filesize()
-    assert imgfile.post_size == 67632
+    assert imgfile.post_size == 67773
 
 
 def test_crunch_imagefile_obj_get_compression_percent_method():

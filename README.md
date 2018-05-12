@@ -40,12 +40,13 @@ Select one or more PNG images in the Finder, right-click, and select the `Servic
 
 ## Contents
 
-- [Examples](https://github.com/chrissimpkins/Crunch#examples)
-	- [Photography Examples](https://github.com/chrissimpkins/Crunch#photography-examples)
-	- [Illustration Examples](https://github.com/chrissimpkins/Crunch#illustration-examples)
-- [Usage](https://github.com/chrissimpkins/Crunch#usage)
-- [Issues](https://github.com/chrissimpkins/Crunch#issues)
-- [Licenses](https://github.com/chrissimpkins/Crunch#licenses)
+- [Examples](#examples)
+	- [Photography Examples](#photography-examples)
+	- [Illustration Examples](#illustration-examples)
+- [Issue Reporting](#issue-reporting)
+- [Licenses](#licenses)
+- [Contributing](#contributing)
+- [Acknowlegments](#acknowledgments)
 
 ## Examples
 

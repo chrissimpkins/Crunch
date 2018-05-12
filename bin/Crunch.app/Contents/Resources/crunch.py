@@ -42,6 +42,11 @@ crunch is a command line executable that performs lossy optimization of one or m
 
 Usage:
     $ crunch [image path 1]...[image path n]
+
+Options:
+    --help, -h      application help
+    --usage         application usage
+    --version, -v   application version
 """
 
 USAGE = "$ crunch [image path 1]...[image path n]"

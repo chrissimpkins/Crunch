@@ -1,10 +1,10 @@
 ## Crunch Image(s) macOS Right Click Menu Service
 
-The Crunch Image(s) macOS service supports parallel PNG image optimization through a right click Services menu item after you select one or more images in the macOS Finder window.  You must install the Crunch macOS GUI prior to use of this macOS service because the GUI application package contains the pngquant and zopflipng dependencies that are required for execution of the image optimization.
+The Crunch Image(s) macOS service supports parallel PNG image optimization through a right click Services menu item after you select one or more images in the macOS Finder window.  You must install the Crunch macOS GUI application prior to use of this macOS service because the GUI application package contains the pngquant and zopflipng dependencies that are required for execution of the image optimization.
 
 ### Quick macOS Service Install
 
-Install the Crunch GUI tool (see README page for installation instructions).  [Download the Crunch repository source](https://github.com/chrissimpkins/Crunch/releases/latest), unpack the source archive, and move the workflow directory located on the repository path `service/Crunch Image(s).workflow` to your system on the path `~/Library/Services/Crunch Image(s).workflow`.
+Install the Crunch GUI application (see [installation documentation for the macOS GUI application](MACOSGUI.md)).  [Download the Crunch repository source](https://github.com/chrissimpkins/Crunch/releases/latest), unpack the source archive, and move the workflow directory located on the repository path `service/Crunch Image(s).workflow` to your system on the path `~/Library/Services/Crunch Image(s).workflow`.
 
 ![crunch-service-install](https://user-images.githubusercontent.com/4249591/38065494-9e80fb6a-32d1-11e8-88da-0f9c014cc510.gif)
 
@@ -22,7 +22,7 @@ Detailed instructions follow if you need additional information to complete the 
 
 In order to use the macOS service, you must install the Crunch GUI tool.  The macOS service depends upon the embedded versions of the PNG image optimization applications that are used by Crunch to modify your image files.
 
-See the install instructions on the README page.  You may use either the Homebrew or .dmg installer approach.  When the Crunch install is complete, continue with the instructions below. Please do not modify the default Crunch.app install location if you intend to use the macOS service.
+See the install instructions in the [Crunch macOS GUI application documentation](MACOSGUI.md).  You may use either the Homebrew or .dmg installer approach.  When the Crunch install is complete, continue with the instructions below. Please do not modify the default Crunch.app install location if you intend to use the macOS service.
 
 ### Install the Crunch Image(s) macOS Service
 

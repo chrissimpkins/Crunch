@@ -10,11 +10,11 @@ Crunch is a tool for lossy PNG image file optimization.  It combines selective b
 
 Historical benchmarks with the files included in Cédric Louvrier's [PNG Test Corpus](https://css-ig.net/png-tools-overview) versus other commonly used PNG optimization software are available in [BENCHMARKS.md](docs/BENCHMARKS.md).
 
-Crunch PNG image optimization is available through the following applications that are distributed in this repository:
+Crunch PNG image optimization is available through the following applications in this repository:
 
 - [`crunch`](docs/EXECUTABLE.md) - a *nix command line executable that can be used on macOS, Linux, and Windows POSIX application deployment environments such as Cygwin
 - [Crunch GUI](docs/MACOSGUI.md) - a native macOS drag and drop GUI tool
-- [Crunch Image(s)](docs/SERVICE.md) service - a macOS right click menu service for PNG images selected in the Finder
+- [Crunch Image(s)](docs/SERVICE.md) service - a macOS right-click menu service for PNG images selected in the Finder
 
 ## Install and Usage
 
@@ -28,15 +28,15 @@ Enter paths to your PNG image files as arguments to the `crunch` executable.  Pl
 
 ## Crunch macOS GUI Application
 
-The Crunch native macOS GUI application can be installed with Homebrew or the dmg installer that is located in the repository releases.  Please see the [Install documentation](docs/MACOSGUI.md#install).
+The Crunch native macOS GUI application can be installed with Homebrew or the dmg installer that can be downloaded from the [repository releases](https://github.com/chrissimpkins/Crunch/releases/latest).  Please see the [Install documentation](docs/MACOSGUI.md#install).
 
 Drag and drop one or more images on the application window to process your PNG files.  Please see the [Usage documentation](docs/MACOSGUI.md#usage).
 
 ## Crunch Image(s) macOS Right Click Menu Service
 
-The macOS right click menu service "Crunch Image(s)" can be installed with `make` or manually by drag and drop in the macOS Finder. Please see the [Install documentation](docs/SERVICE.md).
+The macOS right-click menu service "Crunch Image(s)" can be installed with `make` or manually by drag and drop in the macOS Finder. Please see the [Install documentation](docs/SERVICE.md).
 
-Select one or more PNG images in the Finder, right click, and select the `Services > Crunch Image(s)` menu item to process your files.  Please see the [Usage documentation](docs/SERVICE.md).
+Select one or more PNG images in the Finder, right-click, and select the `Services > Crunch Image(s)` menu item to process your files.  Please see the [Usage documentation](docs/SERVICE.md).
 
 ## Contents
 
@@ -49,7 +49,7 @@ Select one or more PNG images in the Finder, right click, and select the `Servic
 
 ## Examples
 
-The following examples demonstrate the benefits and disadvantages of the current iteration of Crunch's aggressive space saving  optimization strategy.  In many cases, Crunch's optimization minimizes file size with an imperceptible decrease in image quality.  In some cases, Crunch's optimization can significantly decrease the quality. For example, view the horizon line + clouds in the prairie photo below for a demontration of the introduction of undesirable image artifacts in the image.  Experiment with the image types that you use and please submit a report with examples of any images where the image quality falls short of expectations for production-ready files.
+The following examples demonstrate the benefits and disadvantages of the current iteration of Crunch's aggressive space saving optimization strategy.  In many cases, the PNG optimization minimizes file size with an imperceptible decrease in image quality.  In some cases, degradation of image quality is visible. For example, view the horizon line + clouds in the prairie photo below for a demonstration of the introduction of undesirable image artifacts in the image.  Experiment with the image types that you use and please submit a report with examples of any images where the image quality falls short of expectations for production-ready files.
 
 ## Photography Examples
 

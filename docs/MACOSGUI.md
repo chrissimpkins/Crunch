@@ -11,7 +11,7 @@ The Crunch native macOS GUI application supports drag and drop PNG image optimiz
 
 Choose one of the methods below:
 
-### 1. Install with Hombrew Cask Package Manager (Recommended)
+### 1. Install with Homebrew Cask Package Manager (Recommended)
 
 This approach requires a previous install of the Homebrew package manager on your macOS system. Please refer to the Homebrew documentation for details.
 
@@ -43,10 +43,10 @@ Optimized files are saved in the same directory as the original with the modifie
 
 ## Uninstall Crunch
 
-If you used Homebrew to install Crunch, you can uninstall it with the following command:
+If you used Homebrew to install Crunch, uninstall it with the following command:
 
 ```
 $ homebrew cask uninstall crunch
 ```
 
-If you used the dmg installer to install Crunch, you can uninstall it by opening your Finder and selecting your Applications directory.  Locate Crunch in the Finder window and move it to the Trash.  Empty your Trash and the uninstall is complete.
+If you used the dmg installer to install Crunch, you can uninstall it by opening your Finder and selecting your Applications directory.  Locate Crunch in the Finder window and move it to the Trash.  Empty your Trash, and the uninstall is complete.

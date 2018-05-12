@@ -1,6 +1,6 @@
 ## Crunch Image(s) macOS Right Click Menu Service
 
-The Crunch Image(s) macOS service supports parallel PNG image optimization through a right click Services menu item after you select one or more images in the macOS Finder window.  You must install the Crunch macOS GUI application prior to use of this macOS service because the GUI application package contains the pngquant and zopflipng dependencies that are required for execution of the image optimization.
+The Crunch Image(s) macOS service supports parallel PNG image optimization through a right-click Services menu item after you select one or more images in the macOS Finder window.  You must install the Crunch macOS GUI application before use of this macOS service because the GUI application package contains the pngquant and zopflipng dependencies that are required for execution of the image optimization.
 
 ### Quick macOS Service Install
 
@@ -8,11 +8,11 @@ Install the Crunch GUI application (see [installation documentation for the macO
 
 ![crunch-service-install](https://user-images.githubusercontent.com/4249591/38065494-9e80fb6a-32d1-11e8-88da-0f9c014cc510.gif)
 
-The installation is complete and the service is ready for use.  You may now delete the Crunch source repository.
+The installation is complete, and the service is ready for use.  You may now delete the Crunch source repository.
 
 ### Quick macOS Service Usage
 
-Select one or more PNG images in the Finder, right click, and select "Crunch Image(s)" under the Services menu item.  An animated gear will appear in your status bar during the file processing and will disappear when your optimized images are ready.  Optimized files are saved in the same directory as the original with the modified path `[original filename]-crunch.png`.
+Select one or more PNG images in the Finder, right-click, and select "Crunch Image(s)" under the Services menu item.  An animated gear appears in your status bar during the file processing and disappears when your optimized images are ready.  Optimized files are saved in the same directory as the original with the modified path `[original filename]-crunch.png`.
 
 ## Detailed macOS Service Installation
 
@@ -20,7 +20,7 @@ Detailed instructions follow if you need additional information to complete the 
 
 ### Install Crunch
 
-In order to use the macOS service, you must install the Crunch GUI tool.  The macOS service depends upon the embedded versions of the PNG image optimization applications that are used by Crunch to modify your image files.
+To use the macOS service, you must install the Crunch GUI tool.  The macOS service depends upon the embedded versions of the PNG image optimization applications that are used by Crunch to modify your image files.
 
 See the install instructions in the [Crunch macOS GUI application documentation](MACOSGUI.md).  You may use either the Homebrew or .dmg installer approach.  When the Crunch install is complete, continue with the instructions below. Please do not modify the default Crunch.app install location if you intend to use the macOS service.
 
@@ -30,7 +30,7 @@ First, [download the latest release version of the Crunch repository source](htt
 
 #### 1) Install by Drag and Drop in the Finder
 
-- Open the Crunch source repository in the Finder. Open the `service` directory that is located in the root of the repository directory. The `Crunch Image(s).workflow` directory will be contained in the `service` directory.  This is the workflow that you will install.
+- Open the Crunch source repository in the Finder. Open the `service` directory that is located in the root of the repository directory. The `Crunch Image(s).workflow` directory is contained in the `service` directory.
 - Open a new tab in the Finder with `CMD-T` and select Go > Go to Folder in the Finder menu (or type `SHIFT-CMD-G`)
 - In the open "Go to the folder:" free text prompt, enter the following:  `~/Library/Services`
 - Switch back to the first tab that is located inside the Crunch source repository and drag the `Crunch Image(s).workflow` directory to the second tab so that it is installed on the path `~/Library/Services/Crunch Image(s).workflow`.
@@ -47,7 +47,7 @@ If `make` is installed on your macOS system, you can use the Crunch Makefile to 
 $ make install-macos-service
 ```
 
-`sudo` permission is necessary in order to complete the copy of the macOS service to this directory on your system.  You will be prompted for your password after you enter the above command.  Enter it and you will receive confirmation that the install completed.  
+`sudo` permission is necessary to complete the copy of the macOS service to this directory on your system.  Enter your password when prompted during the install.
 
 You may delete the Crunch source repository after the completion of the above step.
 

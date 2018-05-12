@@ -51,7 +51,7 @@ Image processing is executed by requesting one or more PNG image paths as argume
 $ crunch [PNG image path 1]...[PNG image path n]
 ```
 
-The executable works with shell wildcards.  For instance, to process all PNG image files in the working directory you can use the following:
+You can use shell wildcards with the executable.  For instance, to process all PNG image files in the working directory, you can use the following:
 
 ```
 $ crunch *.png

@@ -7,6 +7,7 @@
 - parallel image processing support added to the Crunch Image(s) macOS right-click menu service
 - updated embedded pngquant executable to v2.11.7 (January 2018) with statically compiled library dependencies
 - updated embedded zopflipng executable to git tag `zopfli-1.0.1`
+- convert Crunch macOS GUI files to binary (from XML text files) 
 - new make target and shell script for pngquant dependency source compile support for *nix platforms
 - new make target and shell script for zopflipng dependency source compile support for *nix platforms
 - new make target for pngquant dependency uninstall

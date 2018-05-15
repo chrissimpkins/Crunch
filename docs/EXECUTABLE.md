@@ -7,6 +7,18 @@ The `crunch` command line executable is a *nix executable that supports parallel
 - [Install documentation](#install)
 - [Usage documentation](#usage)
 
+## What Happens During the Installation?
+
+Three executable files are installed on your machine.  The `crunch` executable is installed on your system PATH at `/usr/local/bin/crunch`, `pngquant` is built on the path `$HOME/pngquant/pngquant`, and zopflipng is built on the path `$HOME/zopfli/zopflipng`.  This involves source compiles of both projects.  You will see lengthy text output over ~30 seconds as the builds take place.  Don't fret.  This has already resulted in issue reports and is perfectly normal and to be expected.  See the bottom of this document for uninstall documentation.  It is simple to both install and uninstall all files distributed in the project.
+
+There is a method to the madness of the install paths.  `crunch` is installed on your system PATH so that it can be executed in your terminal with a command like this:
+
+```
+$ crunch myimage.png
+```
+
+The `pngquant` and `zopflipng` executables are installed off of your system PATH (in subdirectories of your $HOME directory) in order to pin the versions of the applications to the same git commits that are distributed with the rest of the Crunch project tools.  These may or may not be the most current releases of the two project dependencies.  Maintaining an always current dependency state is less important to me than that they are tested as part of this project and will allow you to reproduce the same optimized images irrespective of the Crunch tool that you choose to use (and that the data that are displayed on the repository are valid across all of the tools).  The off system PATH install approach for the project dependencies also provides you with the option to install different versions of `pngquant` and `zopflipng` on your system PATH (e.g., with a package manager) should you want to use different versions on the command line.  Feel free to file an issue report if you disagree with these decisions.
+
 ## Install
 
 Clone the Crunch repository with the following command:

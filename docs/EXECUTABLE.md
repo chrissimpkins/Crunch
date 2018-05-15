@@ -9,7 +9,7 @@ The `crunch` command line executable is a *nix executable that supports parallel
 
 ## What Happens During the Installation?
 
-Three executable files are installed on your machine.  The `crunch` executable is installed on your system PATH at `/usr/local/bin/crunch`, `pngquant` is built on the path `$HOME/pngquant/pngquant`, and zopflipng is built on the path `$HOME/zopfli/zopflipng`.  This involves source compiles of both projects.  You will see lengthy text output over ~30 seconds as the builds take place.  Don't fret.  This has resulted in issue reports, is perfectly normal, and to be expected during the install.  See the bottom of this document for uninstall documentation.  It is simple to both install and uninstall all files and directories that are distributed in the project.
+Three executable files are installed on your machine.  The `crunch` executable is installed on your system PATH at `/usr/local/bin/crunch`, `pngquant` is built on the path `$HOME/pngquant/pngquant`, and zopflipng is built on the path `$HOME/zopfli/zopflipng`.  This involves source compiles of both projects.  You will see lengthy text output over ~30 seconds as the builds take place.  Don't fret.  This is perfectly normal and to be expected during the install.  See the bottom of this document for uninstall documentation.  It is simple to both install and uninstall all files and directories that are distributed in the project.
 
 There is a method to the madness of the install paths.  `crunch` is installed on your system PATH so that it can be executed in your terminal with a command like this:
 

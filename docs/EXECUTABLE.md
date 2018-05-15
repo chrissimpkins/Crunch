@@ -24,6 +24,8 @@ $ make build-dependencies
 $ make install-executable
 ```
 
+During the `make build-dependencies` step, your terminal window will display lengthy text output over the 30+ seconds that it takes to compile the `zopflipng` and `pngquant` applications.  This is normal and expected during the installation process.
+
 sudo permissions are required to move the executable to your `/usr/bin/local` directory. Please enter your password when it is requested.
 
 ### 2. Install manually
@@ -32,6 +34,8 @@ sudo permissions are required to move the executable to your `/usr/bin/local` di
 $ src/install-dependencies.sh
 $ sudo cp src/crunch.py /usr/local/bin/crunch
 ```
+
+During the `install-dependencies.sh` script execution, your terminal window will display lengthy text output over the 30+ seconds that it takes to compile the `zopflipng` and `pngquant` applications.  This is normal and expected during the installation process.
 
 sudo permissions are required to move the executable to your `/usr/bin/local` directory. Please enter your password when it is requested.
 

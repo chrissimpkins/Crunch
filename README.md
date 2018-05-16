@@ -32,7 +32,7 @@ The Crunch native macOS GUI application can be installed with Homebrew or the dm
 
 Drag and drop one or more images on the application window to process your PNG files.  Please see the [Usage documentation](docs/MACOSGUI.md#usage).
 
-## Crunch Image(s) macOS Right Click Menu Service
+## Crunch Image(s) macOS Right-Click Menu Service
 
 The macOS right-click menu service "Crunch Image(s)" can be installed with `make` or manually by drag and drop in the macOS Finder. Please see the [Install documentation](docs/SERVICE.md).
 

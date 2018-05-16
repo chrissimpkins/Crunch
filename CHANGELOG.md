@@ -1,5 +1,9 @@
 ## Changelog
 
+### v2.0.1
+
+- bugfix for failed image optimization on pngquant execution that leads to file sizes below min acceptable (issue report #25)
+
 ### v2.0.0
 
 - new `crunch` executable that supports parallel PNG image optimization on *nix platforms (including macOS, Linux, and POSIX compliant application environments on Windows such as Cygwin)

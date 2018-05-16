@@ -26,7 +26,7 @@ lock = Lock()
 PROCESSES = 0  # detected automatically in source if this is defined as zero
 
 # Application Constants
-VERSION = "2.0.0"
+VERSION = "2.0.1"
 VERSION_STRING = "crunch v" + VERSION
 
 HELP_STRING = """
@@ -192,6 +192,11 @@ def optimize_png(png_path):
             # this is the status code when file size increases with execution of pngquant.
             # ignore at this stage, original file copied at beginning of zopflipng processing
             # below if it is not present due to these errors
+            pass
+        elif cpe.returncode == 99:
+            # this is the status code when the image quality falls below the set min value
+            # ignore at this stage, original lfile copied at beginning of zopflipng processing
+            # below if it is not present to these errors
             pass
         else:
             lock.acquire()

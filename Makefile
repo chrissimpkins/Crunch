@@ -32,6 +32,9 @@ uninstall-macos-service:
 	@echo " "
 	@echo "[*] The Crunch Image(s) macOS service was removed from your system"
 
+test-coverage:
+	./coverage.sh
+
 test-python:
 	tox
 	flake8 --ignore=E501,W503,E121,E123,E126,E226,E24,E704,W503,W504 src/crunch.py
@@ -39,6 +42,11 @@ test-python:
 test-shell:
 	shellcheck --exclude=2046 src/*.sh
 
-test: test-python test-shell
+test-valid-png-output:
+	crunch testfiles/*.png
+	pngcheck testfiles/*-crunch.png
+	rm testfiles/*-crunch.png
 
-.PHONY: build-dependencies install-executable install-macos-service uninstall-executable uninstall-macos-service test test-python test-shell
+test: test-python test-shell test-valid-png-output
+
+.PHONY: build-dependencies install-executable install-macos-service uninstall-executable uninstall-macos-service test test-coverage test-python test-shell test-valid-png-output

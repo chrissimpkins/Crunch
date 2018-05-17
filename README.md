@@ -59,7 +59,7 @@ The following examples demonstrate the benefits and disadvantages of the current
 - Original Size: 583,398 bytes
 - Optimized Size: 195,430 bytes
 - DSSIM similarity score: 0.001504
-- Memory saved: 66.50%
+- Percent original size: 66.50%
 
 ##### Original
 
@@ -74,7 +74,7 @@ The following examples demonstrate the benefits and disadvantages of the current
 - Original Size: 138,272
 - Optimized Size: 64,982
 - DSSIM similarity score: 0.000913
-- Memory saved: 53.00%
+- Percent original size: 53.00%
 
 ##### Original
 
@@ -90,7 +90,7 @@ The following examples demonstrate the benefits and disadvantages of the current
 - Original Size: 196,794 bytes
 - Optimized Size: 77,968 bytes
 - DSSIM similarity score: 0.002988
-- Memory saved: 63.38%
+- Percent original size: 63.38%
 
 ##### Original
 
@@ -109,7 +109,7 @@ The following examples demonstrate the benefits and disadvantages of the current
 - Original Size: 197,193 bytes
 - Optimized Size: 67,773 bytes
 - DSSIM similarity score: 0.000163
-- Memory saved: 65.63%
+- Percent original size: 65.63%
 
 ##### Original
 
@@ -124,7 +124,7 @@ The following examples demonstrate the benefits and disadvantages of the current
 - Original Size: 249,251 bytes
 - Optiimized Size: 67,326 bytes
 - DSSIM similarity score: 0.002503
-- Memory saved: 72.99%
+- Percent original size: 72.99%
 
 ##### Original
 
@@ -140,7 +140,7 @@ The following examples demonstrate the benefits and disadvantages of the current
 - Original Size: 440,126 bytes
 - Optimized Size: 196,979 bytes
 - DSSIM similarity score: 0.000481
-- Memory saved: 55.24%
+- Percent original size: 55.24%
 
 ##### Original
 

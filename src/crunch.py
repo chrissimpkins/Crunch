@@ -245,6 +245,9 @@ def get_pngquant_path():
         return "./pngquant"
     elif sys.argv[1] == "--service":
         return "/Applications/Crunch.app/Contents/Resources/pngquant"
+    # if installed by homebrew
+    elif os.path.exists('/usr/local/bin/pngquant'):
+        return '/usr/local/bin/pngquant'
     else:
         return os.path.join(os.path.expanduser("~"), "pngquant", "pngquant")
 
@@ -254,6 +257,9 @@ def get_zopflipng_path():
         return "./zopflipng"
     elif sys.argv[1] == "--service":
         return "/Applications/Crunch.app/Contents/Resources/zopflipng"
+    # if installed by homebrew
+    elif os.path.exists('/usr/local/bin/zopflipng'):
+        return '/usr/local/bin/zopflipng'
     else:
         return os.path.join(os.path.expanduser("~"), "zopfli", "zopflipng")
 

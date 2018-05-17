@@ -26,7 +26,7 @@ lock = Lock()
 PROCESSES = 0  # detected automatically in source if this is defined as zero
 
 # Application Constants
-VERSION = "2.0.2-beta1"
+VERSION = "2.0.2"
 VERSION_STRING = "crunch v" + VERSION
 
 HELP_STRING = """
@@ -321,6 +321,6 @@ if __name__ == "__main__":
         main(arg_list)
     else:
         # the command line executable assumes that users will appropriately quote
-        # or escape special characters (including spaces) on the command line, 
+        # or escape special characters (including spaces) on the command line,
         # no need for the special parsing treatment above
         main(sys.argv[1:])

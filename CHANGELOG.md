@@ -1,5 +1,9 @@
 ## Changelog
 
+### v2.0.2
+
+- bugfix for failed image optimization with macOS GUI and right-click menu service tools when spaces are included in absolute file paths (issue report #30)
+
 ### v2.0.1
 
 - bugfix for failed image optimization on pngquant execution that leads to file sizes below min acceptable (issue report #25)

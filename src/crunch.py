@@ -26,7 +26,7 @@ lock = Lock()
 PROCESSES = 0  # detected automatically in source if this is defined as zero
 
 # Application Constants
-VERSION = "2.0.2-beta1"
+VERSION = "2.0.2"
 VERSION_STRING = "crunch v" + VERSION
 
 HELP_STRING = """

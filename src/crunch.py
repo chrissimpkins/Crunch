@@ -26,7 +26,7 @@ lock = Lock()
 PROCESSES = 0  # detected automatically in source if this is defined as zero
 
 # Application Constants
-VERSION = "2.0.1"
+VERSION = "2.0.2"
 VERSION_STRING = "crunch v" + VERSION
 
 HELP_STRING = """
@@ -175,6 +175,10 @@ def main(argv):
 
 
 def optimize_png(png_path):
+    # escape spaces in the filepath string on macOS GUI and macOS right-click menu service
+    if sys.argv[1] == "--gui" or sys.argv[1] == "--service":
+        png_path = png_path.replace(r" ", r"\ ")
+
     img = ImageFile(png_path)
     # define pngquant and zopflipng paths
     PNGQUANT_EXE_PATH = get_pngquant_path()

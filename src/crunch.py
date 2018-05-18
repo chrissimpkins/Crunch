@@ -24,10 +24,10 @@ lock = Lock()
 
 # Processor Constant
 #  - Modify this to an integer value if you want to fix the number of
-#    processes spawned during execution.  The process number is 
+#    processes spawned during execution.  The process number is
 #    automatically defined during source execution when this is defined
 #    as a value of 0
-PROCESSES = 0 
+PROCESSES = 0
 
 # Dependency Path Constants for Command Line Executable
 #  - Redefine these path strings to use system-installed versions of

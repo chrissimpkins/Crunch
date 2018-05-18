@@ -40,7 +40,7 @@ During the `make build-dependencies` step, your terminal window will display len
 
 sudo permissions are required to move the executable to your `/usr/bin/local` directory. Please enter your password when it is requested.
 
-### 2. Install manually
+### 2. Install manually from scratch
 
 ```
 $ src/install-dependencies.sh
@@ -58,6 +58,17 @@ $ crunch --help
 ```
 
 This command should display the in-application help message for the `crunch` executable.  If you see this text, you are all set to use `crunch`.
+
+### 3. Install manually with Homebrew
+
+Crunch itself isn't currently available in Homebrew, but if you wish you can install the `pngquant` and `zopflipng` dependencies through Homebrew:
+
+```
+$ brew install pngquant
+$ brew install zopfli
+```
+
+Once installed, you can then copy the `crunch.py` script to somewhere in your path and it will use the Homebrew installed version of the dependencies.
 
 ## Usage
 

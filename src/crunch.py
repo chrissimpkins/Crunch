@@ -22,8 +22,18 @@ from multiprocessing import Lock, Pool, cpu_count
 # Locks
 lock = Lock()
 
-# Processor Constants
-PROCESSES = 0  # detected automatically in source if this is defined as zero
+# Processor Constant
+#  - Modify this to an integer value if you want to fix the number of
+#    processes spawned during execution.  The process number is 
+#    automatically defined during source execution when this is defined
+#    as a value of 0
+PROCESSES = 0 
+
+# Dependency Path Constants for Command Line Executable
+#  - Redefine these path strings to use system-installed versions of
+#    pngquant and zopflipng (e.g. to "/usr/local/bin/[executable]")
+PNGQUANT_CLI_PATH = os.path.join(os.path.expanduser("~"), "pngquant", "pngquant")
+ZOPFLIPNG_CLI_PATH = os.path.join(os.path.expanduser("~"), "zopfli", "zopflipng")
 
 # Application Constants
 VERSION = "2.0.2"
@@ -245,11 +255,8 @@ def get_pngquant_path():
         return "./pngquant"
     elif sys.argv[1] == "--service":
         return "/Applications/Crunch.app/Contents/Resources/pngquant"
-    # if installed by homebrew
-    elif os.path.exists('/usr/local/bin/pngquant'):
-        return '/usr/local/bin/pngquant'
     else:
-        return os.path.join(os.path.expanduser("~"), "pngquant", "pngquant")
+        return PNGQUANT_CLI_PATH
 
 
 def get_zopflipng_path():
@@ -257,11 +264,8 @@ def get_zopflipng_path():
         return "./zopflipng"
     elif sys.argv[1] == "--service":
         return "/Applications/Crunch.app/Contents/Resources/zopflipng"
-    # if installed by homebrew
-    elif os.path.exists('/usr/local/bin/zopflipng'):
-        return '/usr/local/bin/zopflipng'
     else:
-        return os.path.join(os.path.expanduser("~"), "zopfli", "zopflipng")
+        return ZOPFLIPNG_CLI_PATH
 
 
 def shellquote(filepath):

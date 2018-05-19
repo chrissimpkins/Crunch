@@ -246,6 +246,29 @@ def optimize_png(png_path):
     lock.release()
 
 
+def fix_filepath_args(args):
+    arg_list = []
+    parsed_filepath = ""
+    for arg in args:
+        if arg[0] == "-":
+            # add command line options
+            arg_list.append(arg)
+        elif len(arg) > 4 and arg[-4:] == ".png":
+            # this is the end of a filepath string that may have had
+            # spaces in directories prior to this level.  Let's recreate
+            # the entire original path
+            filepath = parsed_filepath + arg
+            arg_list.append(filepath)
+            # reset the temp string that is used to reconstruct the filepaths
+            parsed_filepath = ""
+        else:
+            # if the argument does not end with a .png, then there must have
+            # been a space in the directory paths, let's add it back
+            parsed_filepath = parsed_filepath + arg + " "
+    # return new argument list with fixed filepaths to calling code
+    return arg_list
+
+
 def get_pngquant_path():
     if sys.argv[1] == "--gui":
         return "./pngquant"
@@ -314,26 +337,7 @@ if __name__ == "__main__":
     # that are split by the shell script into separate arguments
     # when there are spaces in the macOS file path
     if sys.argv[1] == "--gui" or sys.argv[1] == "--service":
-        arg_list = []
-        parsed_filepath = ""
-        for arg in sys.argv[1:]:
-            if arg[0] == "-":
-                # add command line options
-                arg_list.append(arg)
-            elif arg[-4:] == ".png":
-                # this is the end of a filepath string that may have had
-                # spaces in directories prior to this level.  Let's recreate
-                # the entire original path
-                filepath = parsed_filepath + arg
-                arg_list.append(filepath)
-                # reset the temp string that is used to reconstruct the filepaths
-                parsed_filepath = ""
-            else:
-                # if the argument does not end with a .png, then there must have
-                # been a space in the directory paths, let's add it back
-                parsed_filepath = arg + " "
-        # now that any space characters are appropriately escaped in the
-        # original filepaths, call main function with the new arg list
+        arg_list = fix_filepath_args(sys.argv[1:])
         main(arg_list)
     else:
         # the command line executable assumes that users will appropriately quote

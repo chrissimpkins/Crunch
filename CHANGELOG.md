@@ -1,5 +1,12 @@
 ## Changelog
 
+### v2.1.0
+
+- added automated detection of png image types through read of PNG file signatures
+- removed testing for *.png file extension to process files
+- added support for simple modification of pnquant and zopflipng paths that are used for optimization, convert to system PATH installed versions by modification of the Python script (issue #40)
+- bugfix for macOS GUI and right-click menu service failures with absolute file paths that contain multiple directory levels with space characters
+
 ### v2.0.2
 
 - bugfix for failed image optimization with macOS GUI and right-click menu service tools when spaces are included in absolute file paths (issue report #30)

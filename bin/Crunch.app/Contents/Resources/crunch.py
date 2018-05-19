@@ -14,6 +14,7 @@
 import sys
 import os
 import shutil
+import struct
 import subprocess
 from subprocess import CalledProcessError
 
@@ -22,11 +23,21 @@ from multiprocessing import Lock, Pool, cpu_count
 # Locks
 lock = Lock()
 
-# Processor Constants
-PROCESSES = 0  # detected automatically in source if this is defined as zero
+# Processor Constant
+#  - Modify this to an integer value if you want to fix the number of
+#    processes spawned during execution.  The process number is
+#    automatically defined during source execution when this is defined
+#    as a value of 0
+PROCESSES = 0
+
+# Dependency Path Constants for Command Line Executable
+#  - Redefine these path strings to use system-installed versions of
+#    pngquant and zopflipng (e.g. to "/usr/local/bin/[executable]")
+PNGQUANT_CLI_PATH = os.path.join(os.path.expanduser("~"), "pngquant", "pngquant")
+ZOPFLIPNG_CLI_PATH = os.path.join(os.path.expanduser("~"), "zopfli", "zopflipng")
 
 # Application Constants
-VERSION = "2.0.2"
+VERSION = "2.1.0"
 VERSION_STRING = "crunch v" + VERSION
 
 HELP_STRING = """
@@ -98,9 +109,8 @@ def main(argv):
     # COMMAND LINE ERROR HANDLING
     # //////////////////////////////////
 
-    # PNG file path error handling
-
     for png_path in png_path_list:
+        # Not a file test
         if not os.path.isfile(png_path):  # is not an existing file
             sys.stderr.write(
                 "[ERROR] '"
@@ -109,13 +119,9 @@ def main(argv):
                 + os.linesep
             )
             sys.exit(1)
-        elif not png_path[-4:] == ".png":  # does not end with .png extension
-            sys.stderr.write(
-                "[ERROR] '"
-                + png_path
-                + "' does not appear to be a PNG image file"
-                + os.linesep
-            )
+        # PNG validity test
+        if not is_valid_png(png_path):
+            sys.stderr.write("[ERROR] '" + png_path + "' is not a valid PNG file." + os.linesep)
             sys.exit(1)
 
     # Dependency error handling
@@ -162,7 +168,7 @@ def main(argv):
         except Exception as e:
             lock.acquire()
             sys.stderr.write("-----" + os.linesep)
-            sys.stderr.write("[ERROR] Error detected during execution of request:" + os.linesep)
+            sys.stderr.write("[ERROR] Error detected during execution of the request." + os.linesep)
             sys.stderr.write(str(e) + os.linesep)
             lock.release()
             sys.exit(1)
@@ -240,13 +246,36 @@ def optimize_png(png_path):
     lock.release()
 
 
+def fix_filepath_args(args):
+    arg_list = []
+    parsed_filepath = ""
+    for arg in args:
+        if arg[0] == "-":
+            # add command line options
+            arg_list.append(arg)
+        elif len(arg) > 4 and arg[-4:] == ".png":
+            # this is the end of a filepath string that may have had
+            # spaces in directories prior to this level.  Let's recreate
+            # the entire original path
+            filepath = parsed_filepath + arg
+            arg_list.append(filepath)
+            # reset the temp string that is used to reconstruct the filepaths
+            parsed_filepath = ""
+        else:
+            # if the argument does not end with a .png, then there must have
+            # been a space in the directory paths, let's add it back
+            parsed_filepath = parsed_filepath + arg + " "
+    # return new argument list with fixed filepaths to calling code
+    return arg_list
+
+
 def get_pngquant_path():
     if sys.argv[1] == "--gui":
         return "./pngquant"
     elif sys.argv[1] == "--service":
         return "/Applications/Crunch.app/Contents/Resources/pngquant"
     else:
-        return os.path.join(os.path.expanduser("~"), "pngquant", "pngquant")
+        return PNGQUANT_CLI_PATH
 
 
 def get_zopflipng_path():
@@ -255,7 +284,17 @@ def get_zopflipng_path():
     elif sys.argv[1] == "--service":
         return "/Applications/Crunch.app/Contents/Resources/zopflipng"
     else:
-        return os.path.join(os.path.expanduser("~"), "zopfli", "zopflipng")
+        return ZOPFLIPNG_CLI_PATH
+
+
+def is_valid_png(filepath):
+    # The PNG byte signature (https://www.w3.org/TR/PNG/#5PNG-file-signature)
+    expected_signature = struct.pack('8B', 137, 80, 78, 71, 13, 10, 26, 10)
+    # open the file and read first 8 bytes
+    with open(filepath, 'rb') as filer:
+        signature = filer.read(8)
+    # return boolean test result for first eight bytes == expected PNG byte signature
+    return signature == expected_signature
 
 
 def shellquote(filepath):
@@ -298,26 +337,7 @@ if __name__ == "__main__":
     # that are split by the shell script into separate arguments
     # when there are spaces in the macOS file path
     if sys.argv[1] == "--gui" or sys.argv[1] == "--service":
-        arg_list = []
-        parsed_filepath = ""
-        for arg in sys.argv[1:]:
-            if arg[0] == "-":
-                # add command line options
-                arg_list.append(arg)
-            elif arg[-4:] == ".png":
-                # this is the end of a filepath string that may have had
-                # spaces in directories prior to this level.  Let's recreate
-                # the entire original path
-                filepath = parsed_filepath + arg
-                arg_list.append(filepath)
-                # reset the temp string that is used to reconstruct the filepaths
-                parsed_filepath = ""
-            else:
-                # if the argument does not end with a .png, then there must have
-                # been a space in the directory paths, let's add it back
-                parsed_filepath = arg + " "
-        # now that any space characters are appropriately escaped in the
-        # original filepaths, call main function with the new arg list
+        arg_list = fix_filepath_args(sys.argv[1:])
         main(arg_list)
     else:
         # the command line executable assumes that users will appropriately quote

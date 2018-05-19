@@ -77,6 +77,18 @@ def test_crunch_version_longoption(capsys):
 # //////////////////////////////
 
 
+def test_crunch_function_is_valid_png_true():
+    testpath = os.path.join("testfiles", "robot.png")
+    result = src.crunch.is_valid_png(testpath)
+    assert result is True
+
+
+def test_crunch_function_is_valid_png_false():
+    testpath = os.path.join("testfiles", "test.txt")
+    result = src.crunch.is_valid_png(testpath)
+    assert result is False
+
+
 def test_crunch_function_get_pngquant_path_commandline():
     preargs = sys.argv
     sys.argv = ["crunch.py", "test.png", "test2.png"]
@@ -150,7 +162,7 @@ def test_crunch_function_optimize_png_preoptimized_file():
         os.remove(testpath)
     src.crunch.optimize_png(startpath)
 
-    # check for optimized file following execution    
+    # check for optimized file following execution 
     assert os.path.exists(testpath) is True
     
     # cleanup optimized file produced by this test

@@ -76,6 +76,7 @@ def test_crunch_version_longoption(capsys):
 # Optimization processing tests
 # //////////////////////////////
 
+# is_valid_png function
 
 def test_crunch_function_is_valid_png_true():
     testpath = os.path.join("testfiles", "robot.png")
@@ -88,6 +89,8 @@ def test_crunch_function_is_valid_png_false():
     result = src.crunch.is_valid_png(testpath)
     assert result is False
 
+
+# get_pngquant_path & get_zopflipng_path functions
 
 def test_crunch_function_get_pngquant_path_commandline():
     preargs = sys.argv
@@ -139,6 +142,88 @@ def test_crunch_function_get_zopflipng_path_service():
     sys.argv = preargs
 
 
+# fix_filepath_args function
+
+def test_crunch_function_fix_filepath_args_singlepng():
+    testargs = ["test.png"]
+    response = src.crunch.fix_filepath_args(testargs)
+    assert len(response) == 1
+    assert response[0] == "test.png"
+
+
+def test_crunch_function_fix_filepath_args_twopng():
+    testargs = ["test.png", "test2.png"]
+    response = src.crunch.fix_filepath_args(testargs)
+    assert len(response) == 2
+    assert response[0] == "test.png"
+    assert response[1] == "test2.png"
+
+
+def test_crunch_function_fix_filepath_args_twopng_withoption():
+    testargs = ["--option", "test.png", "test2.png"]
+    response = src.crunch.fix_filepath_args(testargs)
+    assert len(response) == 3
+    assert response[0] == "--option"
+    assert response[1] == "test.png"
+    assert response[2] == "test2.png"
+
+
+def test_crunch_function_fix_filepath_args_singlepng_withdir():
+    testargs = ["dir1/test.png"]
+    response = src.crunch.fix_filepath_args(testargs)
+    assert len(response) == 1
+    assert response[0] == "dir1/test.png"
+
+
+def test_crunch_function_fix_filepath_args_twopng_withdir():
+    testargs = ["dir1/test.png", "dir2/test2.png"]
+    response = src.crunch.fix_filepath_args(testargs)
+    assert len(response) == 2
+    assert response[0] == "dir1/test.png"
+    assert response[1] == "dir2/test2.png"
+
+
+def test_crunch_function_fix_filepath_args_singlepng_withspace_name():
+    testargs = ["test file.png"]
+    response = src.crunch.fix_filepath_args(testargs)
+    assert len(response) == 1
+    assert response[0] == "test file.png"
+
+
+def test_crunch_function_fix_filepath_args_singlepng_withdir_withspace():
+    testargs = ["dir1/test.png"]
+    response = src.crunch.fix_filepath_args(testargs)
+    assert len(response) == 1
+    assert response[0] == "dir1/test.png"
+
+
+def test_crunch_function_fix_filepath_args_twopng_withdir_withspace():
+    testargs = ["dir1", "nspace/test.png", "dir2", "nspace/test2.png"]
+    response = src.crunch.fix_filepath_args(testargs)
+    assert len(response) == 2
+    assert response[0] == "dir1 nspace/test.png"
+    assert response[1] == "dir2 nspace/test2.png"
+
+
+def test_crunch_function_fix_filepath_args_twopng_withdir_withmultispace():
+    testargs = ["dir", "nspace/dir1", "nspace/test.png", "dir", "nspace/dir2", "nspace/test2.png"]
+    response = src.crunch.fix_filepath_args(testargs)
+    assert len(response) == 2
+    assert response[0] == "dir nspace/dir1 nspace/test.png"
+    assert response[1] == "dir nspace/dir2 nspace/test2.png"
+
+
+def test_crunch_function_fix_filepath_args_twopng_withdir_withmultispace_withoption():
+    testargs = ["--option", "dir", "nspace/dir1", "nspace/test", "img.png", "dir", "nspace/dir2", "nspace/test2", "img.png"]
+    response = src.crunch.fix_filepath_args(testargs)
+    assert len(response) == 3
+    assert response[0] == "--option"
+    assert response[1] == "dir nspace/dir1 nspace/test img.png"
+    assert response[2] == "dir nspace/dir2 nspace/test2 img.png"
+
+
+# optimize_png function
+
 def test_crunch_function_optimize_png_unoptimized_file():
     startpath = os.path.join("testfiles", "robot.png")
     testpath = os.path.join("testfiles", "robot-crunch.png")
@@ -178,6 +263,8 @@ def test_crunch_function_optimize_png_bad_filetype(capsys):
     out, err = capsys.readouterr()
     assert err[0:7] == "[ERROR]"
 
+
+# main function
 
 def test_crunch_function_main_single_file():
     with pytest.raises(SystemExit):

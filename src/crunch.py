@@ -80,10 +80,10 @@ def main(argv):
     # HELP, USAGE, VERSION option handling
     # //////////////////////////////////////
 
-    if argv[0] == "-v" or argv[0] == "--version":
+    if argv[0] in ("-v", "--version"):
         print(VERSION_STRING)
         sys.exit(0)
-    elif argv[0] == "-h" or argv[0] == "--help":
+    elif argv[0] in ("-h", "--help"):
         print(HELP_STRING)
         sys.exit(0)
     elif argv[0] == "--usage":
@@ -100,7 +100,7 @@ def main(argv):
     # PARSE PNG_PATH_LIST
     # ////////////////////
 
-    if argv[0] == "--gui" or argv[0] == "--service":
+    if argv[0] in ("--gui", "--service"):
         png_path_list = argv[1:]
     else:
         png_path_list = argv
@@ -152,10 +152,8 @@ def main(argv):
         optimize_png(png_path_list[0])
         sys.exit(0)
     else:
-        processes = PROCESSES
         # if not defined by user, start by defining spawned processes as number of available cores
-        if processes == 0:
-            processes = cpu_count()
+        processes = PROCESSES or cpu_count()
 
         # if total cores available is greater than number of files requested, limit to the latter number
         if processes > len(png_path_list):
@@ -208,7 +206,7 @@ def optimize_png(png_path):
             lock.acquire()
             sys.stderr.write("[ERROR] " + img.pre_filepath + " processing failed at the pngquant stage." + os.linesep)
             lock.release()
-            if sys.argv[1] == "--gui" or sys.argv[1] == "--service":
+            if sys.argv[1] in ("--gui", "--service"):
                 return None
             else:
                 raise cpe
@@ -230,7 +228,7 @@ def optimize_png(png_path):
         lock.acquire()
         sys.stderr.write("[ERROR] " + img.pre_filepath + " processing failed at the zopflipng stage." + os.linesep)
         lock.release()
-        if sys.argv[1] == "--gui" or sys.argv[1] == "--service":
+        if sys.argv[1] in ("--gui", "--service"):
             return None
         else:
             raise cpe
@@ -336,7 +334,7 @@ if __name__ == "__main__":
     # This workaround reconstructs the original filepaths
     # that are split by the shell script into separate arguments
     # when there are spaces in the macOS file path
-    if sys.argv[1] == "--gui" or sys.argv[1] == "--service":
+    if sys.argv[1] in ("--gui", "--service"):
         arg_list = fix_filepath_args(sys.argv[1:])
         main(arg_list)
     else:

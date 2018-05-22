@@ -21,10 +21,10 @@ $ brew cask install crunch
 
 Note that you must use `brew cask install` and not `brew install`!
 
-Upgrade a previous install to the latest version with:
+Automatically upgrade a previous install to the latest version with:
 
 ```
-$ brew cask uninstall crunch && brew cask install crunch
+$ brew cask upgrade
 ```
 
 ### 2. Install with dmg Installer

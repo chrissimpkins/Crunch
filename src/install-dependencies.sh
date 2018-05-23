@@ -37,6 +37,7 @@ cd "$HOME" || exit 1
 git clone --recursive https://github.com/kornelski/pngquant.git
 cd "$PNGQUANT_BUILD_DIR" || exit 1
 git checkout $PNGQUANT_VERSION_TAG
+git submodule update
 
 # Clone libpng source as a subdirectory of pngquant source (as per pngquant static compilation documentation)
 curl -L -O "https://sourceforge.net/projects/libpng/files/$LIBPNG_VERSION_DOWNLOAD"

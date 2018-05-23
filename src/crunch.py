@@ -37,7 +37,7 @@ PNGQUANT_CLI_PATH = os.path.join(os.path.expanduser("~"), "pngquant", "pngquant"
 ZOPFLIPNG_CLI_PATH = os.path.join(os.path.expanduser("~"), "zopfli", "zopflipng")
 
 # Application Constants
-VERSION = "2.1.0"
+VERSION = "3.0.0-dev1"
 VERSION_STRING = "crunch v" + VERSION
 
 HELP_STRING = """
@@ -190,7 +190,7 @@ def optimize_png(png_path):
     # pngquant stage
     # --------------
     try:
-        pngquant_options = " --quality=80-98 --skip-if-larger --force --ext -crunch.png "
+        pngquant_options = " --quality=80-98 --skip-if-larger --force --strip --speed 1 --ext -crunch.png "
         pngquant_command = PNGQUANT_EXE_PATH + pngquant_options + shellquote(img.pre_filepath)
         subprocess.check_output(pngquant_command, stderr=subprocess.STDOUT, shell=True)
     except CalledProcessError as cpe:

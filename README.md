@@ -122,7 +122,7 @@ The following examples demonstrate the benefits and disadvantages of the current
 ### Color Circle Image
 
 - Original Size: 249,251 bytes
-- Optiimized Size: 67,326 bytes
+- Optimized Size: 67,326 bytes
 - DSSIM similarity score: 0.002503
 - Percent original size: 27.01%
 

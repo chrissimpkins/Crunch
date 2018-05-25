@@ -26,7 +26,7 @@ fi
 
 cat execution.html
 
-if ./crunch.py --gui "$@" &>/dev/null; then
+if ./crunch.py --gui "$@" >/dev/null 2>&1; then
     cat clear.html
     cat complete-success.html
     sleep 2.5

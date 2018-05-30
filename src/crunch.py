@@ -13,15 +13,13 @@
 
 import sys
 import os
+import logging
 import shutil
 import struct
 import subprocess
 from subprocess import CalledProcessError
 
 from multiprocessing import Lock, Pool, cpu_count
-
-# Locks
-lock = Lock()
 
 # Processor Constant
 #  - Modify this to an integer value if you want to fix the number of
@@ -36,8 +34,14 @@ PROCESSES = 0
 PNGQUANT_CLI_PATH = os.path.join(os.path.expanduser("~"), "pngquant", "pngquant")
 ZOPFLIPNG_CLI_PATH = os.path.join(os.path.expanduser("~"), "zopfli", "zopflipng")
 
+# Dot directory path
+CRUNCH_DOT_DIRECTORY_PATH = os.path.join(os.path.expanduser("~"), ".crunch")
+
+# Log File Path Constant
+LOGFILE_PATH = os.path.join(CRUNCH_DOT_DIRECTORY_PATH, "crunch.log")
+
 # Application Constants
-VERSION = "3.0.0-dev1"
+VERSION = "3.0.0-dev5"
 VERSION_STRING = "crunch v" + VERSION
 
 HELP_STRING = """
@@ -61,6 +65,24 @@ Options:
 """
 
 USAGE = "$ crunch [image path 1]...[image path n]"
+
+# Locks
+stdstream_lock = Lock()  # lock for write to stdout/stderr streams
+logging_lock = Lock()    # lock for file logging
+
+# Logging Setup (macOS GUI and macOS right-click service only)
+# immediately write empty log file (this erases previous logs on each execution)
+if sys.argv[1] in ("--gui", "--service"):
+    if not os.path.isdir(CRUNCH_DOT_DIRECTORY_PATH):
+        os.makedirs(CRUNCH_DOT_DIRECTORY_PATH)
+    open(LOGFILE_PATH, 'w').close()
+    logging.basicConfig(level=logging.DEBUG,
+                        format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
+                        datefmt='%m-%d %H:%M',
+                        filename=LOGFILE_PATH,
+                        filemode='w')
+
+    crunch_logger = logging.getLogger('Crunch')
 
 
 def main(argv):
@@ -118,10 +140,18 @@ def main(argv):
                 + "' does not appear to be a valid path to a PNG file"
                 + os.linesep
             )
+            if argv[0] in ("--gui", "--service"):
+                logging_lock.acquire()
+                crunch_logger.error(png_path + " does not appear to be a valid path to a PNG file")
+                logging_lock.release()
             sys.exit(1)
         # PNG validity test
         if not is_valid_png(png_path):
-            sys.stderr.write("[ERROR] '" + png_path + "' is not a valid PNG file." + os.linesep)
+            sys.stderr.write("[ERROR] '" + png_path + "' is not a valid PNG file" + os.linesep)
+            if argv[0] in ("--gui", "--service"):
+                logging_lock.acquire()
+                crunch_logger.error(png_path + " is not a valid PNG file")
+                logging_lock.release()
             sys.exit(1)
 
     # Dependency error handling
@@ -132,6 +162,10 @@ def main(argv):
             + "'"
             + os.linesep
         )
+        if argv[0] in ("--gui", "--service"):
+            logging_lock.acquire()
+            crunch_logger.error("pngquant was not identified on path " + PNGQUANT_EXE_PATH)
+            logging_lock.release()
         sys.exit(1)
     elif not os.path.exists(ZOPFLIPNG_EXE_PATH):
         sys.stderr.write(
@@ -140,6 +174,10 @@ def main(argv):
             + "'"
             + os.linesep
         )
+        if argv[0] in ("--gui", "--service"):
+            logging_lock.acquire()
+            crunch_logger.error("zopfling was not identified on path " + ZOPFLIPNG_EXE_PATH)
+            logging_lock.release()
         sys.exit(1)
 
     # ////////////////////////////////////
@@ -166,11 +204,15 @@ def main(argv):
         try:
             p.map(optimize_png, png_path_list)
         except Exception as e:
-            lock.acquire()
+            stdstream_lock.acquire()
             sys.stderr.write("-----" + os.linesep)
             sys.stderr.write("[ERROR] Error detected during execution of the request." + os.linesep)
             sys.stderr.write(str(e) + os.linesep)
-            lock.release()
+            stdstream_lock.release()
+            if argv[0] in ("--gui", "--service"):
+                logging_lock.acquire()
+                crunch_logger.error(str(e))
+                logging_lock.release()
             sys.exit(1)
         sys.exit(0)
 
@@ -205,10 +247,13 @@ def optimize_png(png_path):
             # below if it is not present to these errors
             pass
         else:
-            lock.acquire()
+            stdstream_lock.acquire()
             sys.stderr.write("[ERROR] " + img.pre_filepath + " processing failed at the pngquant stage." + os.linesep)
-            lock.release()
+            stdstream_lock.release()
             if sys.argv[1] in ("--gui", "--service"):
+                logging_lock.acquire()
+                crunch_logger.error(img.pre_filepath + " processing failed at pngquant stage: " + str(cpe))
+                logging_lock.release()
                 return None
             else:
                 raise cpe
@@ -227,23 +272,32 @@ def optimize_png(png_path):
         zopflipng_command = ZOPFLIPNG_EXE_PATH + zopflipng_options + shellquote(img.post_filepath) + " " + shellquote(img.post_filepath)
         subprocess.check_output(zopflipng_command, stderr=subprocess.STDOUT, shell=True)
     except CalledProcessError as cpe:
-        lock.acquire()
+        stdstream_lock.acquire()
         sys.stderr.write("[ERROR] " + img.pre_filepath + " processing failed at the zopflipng stage." + os.linesep)
-        lock.release()
+        stdstream_lock.release()
         if sys.argv[1] in ("--gui", "--service"):
+            logging_lock.acquire()
+            crunch_logger.error(img.pre_filepath + " processing failed at zopflipng stage: " + str(cpe))
+            logging_lock.release()
             return None
         else:
             raise cpe
     except Exception as e:
         raise e
 
+    # calculate post-optimization size and report comparison
     img.get_post_filesize()
     percent = img.get_compression_percent()
     percent_string = '{0:.2f}'.format(percent)
 
-    lock.acquire()
+    stdstream_lock.acquire()
     print("[ " + percent_string + "% ] " + img.post_filepath + " (" + str(img.post_size) + " bytes)")
-    lock.release()
+    stdstream_lock.release()
+
+    if sys.argv[1] in ("--gui", "--service"):
+        logging_lock.acquire()
+        crunch_logger.info("[ " + percent_string + "% ] " + img.post_filepath + " (" + str(img.post_size) + " bytes)")
+        logging_lock.release()
 
 
 def fix_filepath_args(args):

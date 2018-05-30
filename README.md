@@ -178,3 +178,5 @@ Crunch is a simple tool that makes excellent, free, open source software built b
 
 - Lode Vandevenne, Jyrki Alakuijala, and the [zopfli project contributors](https://github.com/google/zopfli/graphs/contributors)
 - Kornel Lesiński and the [pngquant project contributors](https://github.com/kornelski/pngquant/graphs/contributors)
+
+The fantastic macOS GUI animations were designed by [Gary Jacobs](https://github.com/garyjacobs).

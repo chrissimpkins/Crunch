@@ -45,7 +45,7 @@ CRUNCH_DOT_DIRECTORY = os.path.join(os.path.expanduser("~"), ".crunch")
 LOGFILE_PATH = os.path.join(CRUNCH_DOT_DIRECTORY, "crunch.log")
 
 # Application Constants
-VERSION = "3.0.0-dev8"
+VERSION = "3.0.0-dev9"
 VERSION_STRING = "crunch v" + VERSION
 
 HELP_STRING = """
@@ -117,7 +117,7 @@ def main(argv):
     # PARSE PNG_PATH_LIST
     # ////////////////////
 
-    if argv[0] in ("--gui", "--service"):
+    if is_gui(argv):
         png_path_list = argv[1:]
     else:
         png_path_list = argv
@@ -135,14 +135,14 @@ def main(argv):
         # PNG validity test
         if not is_valid_png(png_path):
             sys.stderr.write("[ERROR] '" + png_path + "' is not a valid PNG file." + os.linesep)
-            if sys.argv[1] in ("--gui", "--service"):
+            if is_gui(argv):
                 log_error(png_path + " is not a valid PNG file.")
             NOTPNG_ERROR_FOUND = True
 
-    # Exit after checking all file requests and reporting on all invalid file paths
+    # Exit after checking all file requests and reporting on all invalid file paths (above)
     if NOTPNG_ERROR_FOUND is True:
         sys.stderr.write("The request was not executed successfully. Please try again with one or more valid PNG files." + os.linesep)
-        if sys.argv[1] in ("--gui", "--service"):
+        if is_gui(argv):
             log_error("The request was not executed successfully. Please try again with one or more valid PNG files.")
         sys.exit(1)
 
@@ -154,7 +154,7 @@ def main(argv):
             + "'"
             + os.linesep
         )
-        if sys.argv[1] in ("--gui", "--service"):
+        if is_gui(argv):
             log_error("pngquant was not found on the expected path " + PNGQUANT_EXE_PATH)
         sys.exit(1)
     elif not os.path.exists(ZOPFLIPNG_EXE_PATH):
@@ -164,7 +164,7 @@ def main(argv):
             + "'"
             + os.linesep
         )
-        if sys.argv[1] in ("--gui", "--service"):
+        if is_gui(argv):
             log_error("zopflipng was not found on the expected path " + ZOPFLIPNG_EXE_PATH)
         sys.exit(1)
 
@@ -176,7 +176,6 @@ def main(argv):
     if len(png_path_list) == 1:
         # there is only one PNG file, skip spawning of processes and just optimize it
         optimize_png(png_path_list[0])
-        sys.exit(0)
     else:
         processes = PROCESSES
         # if not defined by user, start by defining spawned processes as number of available cores
@@ -197,12 +196,14 @@ def main(argv):
             sys.stderr.write("[ERROR] Error detected during execution of the request." + os.linesep)
             sys.stderr.write(str(e) + os.linesep)
             stdstream_lock.release()
-            if sys.argv[1] in ("--gui", "--service"):
+            if is_gui(argv):
                 log_error(str(e))
             sys.exit(1)
-        if sys.argv[1] in ("--gui", "--service"):
-            log_info("Crunch execution ended.")
-        sys.exit(0)
+
+    # end of successful processing, exit code 0
+    if is_gui(argv):
+        log_info("Crunch execution ended.")
+    sys.exit(0)
 
 
 # ///////////////////////
@@ -238,13 +239,13 @@ def optimize_png(png_path):
             stdstream_lock.acquire()
             sys.stderr.write("[ERROR] " + img.pre_filepath + " processing failed at the pngquant stage." + os.linesep)
             stdstream_lock.release()
-            if sys.argv[1] in ("--gui", "--service"):
+            if is_gui(sys.argv):
                 log_error(img.pre_filepath + " processing failed at the pngquant stage. " + os.linesep + str(cpe))
                 return None
             else:
                 raise cpe
     except Exception as e:
-        if sys.argv[1] in ("--gui", "--service"):
+        if is_gui(sys.argv):
             log_error(img.pre_filepath + " processing failed at the pngquant stage. " + os.linesep + str(e))
             return None
         else:
@@ -265,13 +266,13 @@ def optimize_png(png_path):
         stdstream_lock.acquire()
         sys.stderr.write("[ERROR] " + img.pre_filepath + " processing failed at the zopflipng stage." + os.linesep)
         stdstream_lock.release()
-        if sys.argv[1] in ("--gui", "--service"):
+        if is_gui(sys.argv):
             log_error(img.pre_filepath + " processing failed at the zopflipng stage. " + os.linesep + str(cpe))
             return None
         else:
             raise cpe
     except Exception as e:
-        if sys.argv[1] in ("--gui", "--service"):
+        if is_gui(sys.argv):
             log_error(img.pre_filepath + " processing failed at the pngquant stage. " + os.linesep + str(e))
             return None
         else:
@@ -282,11 +283,13 @@ def optimize_png(png_path):
     percent = img.get_compression_percent()
     percent_string = '{0:.2f}'.format(percent)
 
+    # report percent original file size / post file path / size (bytes) to stdout (command line executable)
     stdstream_lock.acquire()
     print("[ " + percent_string + "% ] " + img.post_filepath + " (" + str(img.post_size) + " bytes)")
     stdstream_lock.release()
 
-    if sys.argv[1] in ("--gui", "--service"):
+    # report percent original file size / post file path / size (bytes) to stdout (macOS GUI + right-click service)
+    if is_gui(sys.argv):
         log_info("[ " + percent_string + "% ] " +
                  img.post_filepath + " (" + str(img.post_size) + " bytes)")
 
@@ -298,7 +301,6 @@ def fix_filepath_args(args):
         if arg[0] == "-":
             # add command line options
             arg_list.append(arg)
-        # elif len(arg) > 4 and arg[-4:] == ".png":
         elif len(arg) > 2 and "." in arg[1:]:
             # if format is `\w+\.\w+`, then this is a filename, not directory
             # this is the end of a filepath string that may have had
@@ -332,6 +334,10 @@ def get_zopflipng_path():
         return "/Applications/Crunch.app/Contents/Resources/zopflipng"
     else:
         return ZOPFLIPNG_CLI_PATH
+
+
+def is_gui(arglist):
+    return ("--gui" in arglist or "--service" in arglist)
 
 
 def is_valid_png(filepath):

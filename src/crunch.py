@@ -16,12 +16,14 @@ import os
 import shutil
 import struct
 import subprocess
+import time
 from subprocess import CalledProcessError
 
 from multiprocessing import Lock, Pool, cpu_count
 
 # Locks
-lock = Lock()
+stdstream_lock = Lock()
+logging_lock = Lock()
 
 # Processor Constant
 #  - Modify this to an integer value if you want to fix the number of
@@ -36,8 +38,14 @@ PROCESSES = 0
 PNGQUANT_CLI_PATH = os.path.join(os.path.expanduser("~"), "pngquant", "pngquant")
 ZOPFLIPNG_CLI_PATH = os.path.join(os.path.expanduser("~"), "zopfli", "zopflipng")
 
+# Crunch Directory (dot directory in $HOME)
+CRUNCH_DOT_DIRECTORY = os.path.join(os.path.expanduser("~"), ".crunch")
+
+# Log File Path Constants
+LOGFILE_PATH = os.path.join(CRUNCH_DOT_DIRECTORY, "crunch.log")
+
 # Application Constants
-VERSION = "3.0.0-dev1"
+VERSION = "3.0.0-dev8"
 VERSION_STRING = "crunch v" + VERSION
 
 HELP_STRING = """
@@ -61,6 +69,15 @@ Options:
 """
 
 USAGE = "$ crunch [image path 1]...[image path n]"
+
+# Create the Crunch dot directory in $HOME if it does not exist
+# Only used for macOS GUI and macOS right-click menu service execution
+if sys.argv[1] in ("--gui", "--service"):
+    if not os.path.isdir(CRUNCH_DOT_DIRECTORY):
+        os.makedirs(CRUNCH_DOT_DIRECTORY)
+    # clear the text in the log file before every script execution
+    # logging is only maintained for the last execution of the script
+    open(LOGFILE_PATH, "w").close()
 
 
 def main(argv):
@@ -109,20 +126,25 @@ def main(argv):
     # COMMAND LINE ERROR HANDLING
     # //////////////////////////////////
 
+    NOTPNG_ERROR_FOUND = False
     for png_path in png_path_list:
         # Not a file test
         if not os.path.isfile(png_path):  # is not an existing file
-            sys.stderr.write(
-                "[ERROR] '"
-                + png_path
-                + "' does not appear to be a valid path to a PNG file"
-                + os.linesep
-            )
-            sys.exit(1)
+            sys.stderr.write("[ERROR] '" + png_path + "' does not appear to be a valid path to a PNG file" + os.linesep)
+            sys.exit(1)  # not a file, abort immediately
         # PNG validity test
         if not is_valid_png(png_path):
             sys.stderr.write("[ERROR] '" + png_path + "' is not a valid PNG file." + os.linesep)
-            sys.exit(1)
+            if sys.argv[1] in ("--gui", "--service"):
+                log_error(png_path + " is not a valid PNG file.")
+            NOTPNG_ERROR_FOUND = True
+
+    # Exit after checking all file requests and reporting on all invalid file paths
+    if NOTPNG_ERROR_FOUND is True:
+        sys.stderr.write("The request was not executed successfully. Please try again with one or more valid PNG files." + os.linesep)
+        if sys.argv[1] in ("--gui", "--service"):
+            log_error("The request was not executed successfully. Please try again with one or more valid PNG files.")
+        sys.exit(1)
 
     # Dependency error handling
     if not os.path.exists(PNGQUANT_EXE_PATH):
@@ -132,6 +154,8 @@ def main(argv):
             + "'"
             + os.linesep
         )
+        if sys.argv[1] in ("--gui", "--service"):
+            log_error("pngquant was not found on the expected path " + PNGQUANT_EXE_PATH)
         sys.exit(1)
     elif not os.path.exists(ZOPFLIPNG_EXE_PATH):
         sys.stderr.write(
@@ -140,6 +164,8 @@ def main(argv):
             + "'"
             + os.linesep
         )
+        if sys.argv[1] in ("--gui", "--service"):
+            log_error("zopflipng was not found on the expected path " + ZOPFLIPNG_EXE_PATH)
         sys.exit(1)
 
     # ////////////////////////////////////
@@ -166,12 +192,16 @@ def main(argv):
         try:
             p.map(optimize_png, png_path_list)
         except Exception as e:
-            lock.acquire()
+            stdstream_lock.acquire()
             sys.stderr.write("-----" + os.linesep)
             sys.stderr.write("[ERROR] Error detected during execution of the request." + os.linesep)
             sys.stderr.write(str(e) + os.linesep)
-            lock.release()
+            stdstream_lock.release()
+            if sys.argv[1] in ("--gui", "--service"):
+                log_error(str(e))
             sys.exit(1)
+        if sys.argv[1] in ("--gui", "--service"):
+            log_info("Crunch execution ended.")
         sys.exit(0)
 
 
@@ -205,15 +235,20 @@ def optimize_png(png_path):
             # below if it is not present to these errors
             pass
         else:
-            lock.acquire()
+            stdstream_lock.acquire()
             sys.stderr.write("[ERROR] " + img.pre_filepath + " processing failed at the pngquant stage." + os.linesep)
-            lock.release()
+            stdstream_lock.release()
             if sys.argv[1] in ("--gui", "--service"):
+                log_error(img.pre_filepath + " processing failed at the pngquant stage. " + os.linesep + str(cpe))
                 return None
             else:
                 raise cpe
     except Exception as e:
-        raise e
+        if sys.argv[1] in ("--gui", "--service"):
+            log_error(img.pre_filepath + " processing failed at the pngquant stage. " + os.linesep + str(e))
+            return None
+        else:
+            raise e
 
     # ---------------
     # zopflipng stage
@@ -227,23 +262,33 @@ def optimize_png(png_path):
         zopflipng_command = ZOPFLIPNG_EXE_PATH + zopflipng_options + shellquote(img.post_filepath) + " " + shellquote(img.post_filepath)
         subprocess.check_output(zopflipng_command, stderr=subprocess.STDOUT, shell=True)
     except CalledProcessError as cpe:
-        lock.acquire()
+        stdstream_lock.acquire()
         sys.stderr.write("[ERROR] " + img.pre_filepath + " processing failed at the zopflipng stage." + os.linesep)
-        lock.release()
+        stdstream_lock.release()
         if sys.argv[1] in ("--gui", "--service"):
+            log_error(img.pre_filepath + " processing failed at the zopflipng stage. " + os.linesep + str(cpe))
             return None
         else:
             raise cpe
     except Exception as e:
-        raise e
+        if sys.argv[1] in ("--gui", "--service"):
+            log_error(img.pre_filepath + " processing failed at the pngquant stage. " + os.linesep + str(e))
+            return None
+        else:
+            raise e
 
+    # Check file size post-optimization and report comparison with pre-optimization file
     img.get_post_filesize()
     percent = img.get_compression_percent()
     percent_string = '{0:.2f}'.format(percent)
 
-    lock.acquire()
+    stdstream_lock.acquire()
     print("[ " + percent_string + "% ] " + img.post_filepath + " (" + str(img.post_size) + " bytes)")
-    lock.release()
+    stdstream_lock.release()
+
+    if sys.argv[1] in ("--gui", "--service"):
+        log_info("[ " + percent_string + "% ] " +
+                 img.post_filepath + " (" + str(img.post_size) + " bytes)")
 
 
 def fix_filepath_args(args):
@@ -253,7 +298,9 @@ def fix_filepath_args(args):
         if arg[0] == "-":
             # add command line options
             arg_list.append(arg)
-        elif len(arg) > 4 and arg[-4:] == ".png":
+        # elif len(arg) > 4 and arg[-4:] == ".png":
+        elif len(arg) > 2 and "." in arg[1:]:
+            # if format is `\w+\.\w+`, then this is a filename, not directory
             # this is the end of a filepath string that may have had
             # spaces in directories prior to this level.  Let's recreate
             # the entire original path
@@ -295,6 +342,27 @@ def is_valid_png(filepath):
         signature = filer.read(8)
     # return boolean test result for first eight bytes == expected PNG byte signature
     return signature == expected_signature
+
+
+def log_error(errmsg):
+    current_time = time.strftime("%m-%d-%y %H:%M:%S")
+    logging_lock.acquire()
+    with open(LOGFILE_PATH, 'a') as filewriter:
+        filewriter.write(current_time + "\tERROR\t" + errmsg + os.linesep)
+        filewriter.flush()
+        os.fsync(filewriter.fileno())
+    logging_lock.release()
+
+
+def log_info(infomsg):
+    current_time = time.strftime("%m-%d-%y %H:%M:%S")
+    logging_lock.acquire()
+    with open(LOGFILE_PATH, 'a') as filewriter:
+        filewriter.write(current_time + "\tINFO\t" + infomsg + os.linesep)
+        filewriter.flush()
+        os.fsync(filewriter.fileno())
+    logging_lock.release()
+    return None
 
 
 def shellquote(filepath):

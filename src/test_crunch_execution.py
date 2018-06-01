@@ -5,6 +5,7 @@ import os
 import sys
 import platform
 import pytest
+import shutil
 from subprocess import CalledProcessError
 
 import src.crunch
@@ -319,6 +320,7 @@ def test_crunch_function_main_multi_file():
 
 
 def test_crunch_function_main_single_file_with_gui_flag():
+    setup_logging_path()
     if platform.system() == "Darwin":
         with pytest.raises(SystemExit):
             startpath = os.path.join("testfiles", "robot.png")
@@ -335,8 +337,11 @@ def test_crunch_function_main_single_file_with_gui_flag():
         if os.path.exists(testpath):
             os.remove(testpath)
 
+    teardown_logging_path()
+
 
 def test_crunch_function_main_single_file_with_service_flag():
+    setup_logging_path()
     if platform.system() == "Darwin":
         with pytest.raises(SystemExit):
             startpath = os.path.join("testfiles", "robot.png")
@@ -352,9 +357,12 @@ def test_crunch_function_main_single_file_with_service_flag():
         # cleanup optimized file produced by this test
         if os.path.exists(testpath):
             os.remove(testpath)
+        
+    teardown_logging_path()
 
 
 def test_crunch_function_main_multi_file_with_gui_flag():
+    setup_logging_path()
     if platform.system() == "Darwin":
         with pytest.raises(SystemExit):
             startpath1 = os.path.join("testfiles", "robot.png")
@@ -380,8 +388,11 @@ def test_crunch_function_main_multi_file_with_gui_flag():
         if os.path.exists(testpath2):
             os.remove(testpath2)
 
+    teardown_logging_path()
+
 
 def test_crunch_function_main_multi_file_with_service_flag():
+    setup_logging_path()
     if platform.system() == "Darwin":
         with pytest.raises(SystemExit):
             startpath1 = os.path.join("testfiles", "robot.png")
@@ -406,29 +417,55 @@ def test_crunch_function_main_multi_file_with_service_flag():
             os.remove(testpath1)
         if os.path.exists(testpath2):
             os.remove(testpath2)
+    
+    teardown_logging_path()
 
 
 # //////////////////////////////
 # Logging tests
 # //////////////////////////////
 
-# def test_crunch_log_error():
-#     logpath = src.crunch.LOGFILE_PATH
-#     src.crunch.log_error("This is a test error message")
-#     assert os.path.isfile(logpath)
-#     freader = open(logpath, 'r')
-#     text = freader.read()
-#     assert "ERROR" in text
-#     assert "This is a test error message" in text
-#     freader.close()
+def test_crunch_log_error():
+    setup_logging_path()
+
+    logpath = src.crunch.LOGFILE_PATH
+    src.crunch.log_error("This is a test error message")
+    assert os.path.isfile(logpath)
+    freader = open(logpath, 'r')
+    text = freader.read()
+    assert "ERROR" in text
+    assert "This is a test error message" in text
+    freader.close()
+
+    teardown_logging_path()
 
 
-# def test_crunch_log_info():
-#     logpath = src.crunch.LOGFILE_PATH
-#     src.crunch.log_error("This is a test info message")
-#     assert os.path.isfile(logpath)
-#     freader = open(logpath, 'r')
-#     text = freader.read()
-#     assert "INFO" in text
-#     assert "This is a test info message" in text
-#     freader.close()
+def test_crunch_log_info():
+    setup_logging_path()
+    
+    logpath = src.crunch.LOGFILE_PATH
+    src.crunch.log_info("This is a test info message")
+    assert os.path.isfile(logpath)
+    freader = open(logpath, 'r')
+    text = freader.read()
+    assert "INFO" in text
+    assert "This is a test info message" in text
+    freader.close()
+
+    teardown_logging_path()
+
+
+# Utility functions
+
+def setup_logging_path():
+    # setup the logging directory
+    if not os.path.isdir(src.crunch.CRUNCH_DOT_DIRECTORY):
+        os.makedirs(src.crunch.CRUNCH_DOT_DIRECTORY)
+    # setup the log file
+    if not os.path.isfile(src.crunch.LOGFILE_PATH):
+        open(src.crunch.LOGFILE_PATH, "w").close()
+
+
+def teardown_logging_path():
+    if os.path.isfile(src.crunch.LOGFILE_PATH):
+        shutil.rmtree(os.path.join(os.path.expanduser("~"), ".crunch"))

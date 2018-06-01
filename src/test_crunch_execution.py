@@ -416,17 +416,19 @@ def test_crunch_log_error():
     logpath = src.crunch.LOGFILE_PATH
     src.crunch.log_error("This is a test error message")
     assert os.path.isfile(logpath)
-    with open(logpath, 'r') as freader:
-        text = freader.read()
-        assert "ERROR" in text
-        assert "This is a test error message" in text
+    freader = open(logpath, 'r')
+    text = freader.read()
+    assert "ERROR" in text
+    assert "This is a test error message" in text
+    freader.close()
 
 
 def test_crunch_log_info():
     logpath = src.crunch.LOGFILE_PATH
     src.crunch.log_error("This is a test info message")
     assert os.path.isfile(logpath)
-    with open(logpath, 'r') as freader:
-        text = freader.read()
-        assert "INFO" in text
-        assert "This is a test info message" in text
+    freader = open(logpath, 'r')
+    text = freader.read()
+    assert "INFO" in text
+    assert "This is a test info message" in text
+    freader.close()

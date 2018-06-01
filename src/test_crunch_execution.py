@@ -222,6 +222,15 @@ def test_crunch_function_fix_filepath_args_twopng_withdir_withmultispace_withopt
     assert response[2] == "dir nspace/dir2 nspace/test2 img.png"
 
 
+def test_crunch_function_fix_filepath_args_two_nonpng_files():
+    testargs = ["--option", "dir", "nspace/dir1", "nspace/test", "img.html", "dir", "nspace/dir2", "nspace/test2", "img.html"]
+    response = src.crunch.fix_filepath_args(testargs)
+    assert len(response) == 3
+    assert response[0] == "--option"
+    assert response[1] == "dir nspace/dir1 nspace/test img.html"
+    assert response[2] == "dir nspace/dir2 nspace/test2 img.html"
+
+
 # optimize_png function
 
 def test_crunch_function_optimize_png_unoptimized_file():
@@ -397,3 +406,27 @@ def test_crunch_function_main_multi_file_with_service_flag():
             os.remove(testpath1)
         if os.path.exists(testpath2):
             os.remove(testpath2)
+
+
+# //////////////////////////////
+# Logging tests
+# //////////////////////////////
+
+def test_crunch_log_error():
+    logpath = src.crunch.LOGFILE_PATH
+    src.crunch.log_error("This is a test error message")
+    assert os.path.isfile(logpath)
+    with open(logpath, 'r') as freader:
+        text = freader.read()
+        assert "ERROR" in text
+        assert "This is a test error message" in text
+
+
+def test_crunch_log_info():
+    logpath = src.crunch.LOGFILE_PATH
+    src.crunch.log_error("This is a test info message")
+    assert os.path.isfile(logpath)
+    with open(logpath, 'r') as freader:
+        text = freader.read()
+        assert "INFO" in text
+        assert "This is a test info message" in text

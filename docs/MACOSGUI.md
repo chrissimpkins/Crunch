@@ -37,7 +37,7 @@ Upgrade by following the same instructions and allowing the new version to repla
 
 Drag and drop your PNG images onto the Crunch window:
 
-<img src="https://github.com/chrissimpkins/Crunch/raw/master/img/crunch-ss.gif" alt="Crunch PNG image optimization usage" width="400">
+<img src="https://github.com/chrissimpkins/Crunch/raw/master/img/crunch-ss-2.gif" alt="Crunch PNG image optimization usage" width="400">
 
 Optimized files are saved in the same directory as the original with the modified path `[original filename]-crunch.png`.
 

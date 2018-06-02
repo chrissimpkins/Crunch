@@ -45,7 +45,7 @@ CRUNCH_DOT_DIRECTORY = os.path.join(os.path.expanduser("~"), ".crunch")
 LOGFILE_PATH = os.path.join(CRUNCH_DOT_DIRECTORY, "crunch.log")
 
 # Application Constants
-VERSION = "3.0.0-dev11"
+VERSION = "3.0.0-dev13"
 VERSION_STRING = "crunch v" + VERSION
 
 HELP_STRING = """
@@ -263,7 +263,7 @@ def optimize_png(png_path):
         # If pngquant did not quantize the file, permit zopflipng to attempt compression with mulitple
         # filters.  This achieves better compression than the default approach for non-quantized PNG
         # files, but takes significantly longer (based upon testing by CS)
-        zopflipng_options = " -y "
+        zopflipng_options = " -y --lossy_transparent "
     zopflipng_command = ZOPFLIPNG_EXE_PATH + zopflipng_options + shellquote(img.post_filepath) + " " + shellquote(img.post_filepath)
     try:
         subprocess.check_output(zopflipng_command, stderr=subprocess.STDOUT, shell=True)

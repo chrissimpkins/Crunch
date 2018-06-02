@@ -16,7 +16,7 @@ ZOPFLIPNG_BUILD_DIR="$HOME/zopfli"
 ZOPFLIPNG_EXE="$ZOPFLIPNG_BUILD_DIR/zopflipng"
 
 PNGQUANT_VERSION_TAG="2.11.7"
-ZOPFLIPNG_VERSION_TAG="zopfli-1.0.2"
+ZOPFLIPNG_VERSION_TAG="f555d34"
 LIBPNG_VERSION="1.6.34"
 LIBPNG_VERSION_DOWNLOAD="libpng16/$LIBPNG_VERSION/libpng-$LIBPNG_VERSION.tar.xz"
 LITTLECMS_VERSION="2.9"
@@ -73,7 +73,7 @@ fi
 
 cd "$HOME" || exit 1
 
-git clone https://github.com/google/zopfli.git
+git clone https://github.com/chrissimpkins/zopfli.git
 cd zopfli || exit 1
 git checkout "$ZOPFLIPNG_VERSION_TAG"
 

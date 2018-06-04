@@ -3,6 +3,7 @@
 ### v3.0.0
 
 - improved quality of pngquant quantization of PNG images across all file sizes
+- upgraded embedded pngquant to v2.12.0 (includes reduced pngquant optimization times)
 - converted to custom build of zopflipng that is modified for use in the Crunch applications (forked from google/zopfli at git tag zopfli-1.0.2) at git version tag v2.1.0 (source repository is chrissimpkins/zopfli)
 - improved zopfli compression ratios for post-quantized and non-quantized in-file sizes under 350kB.  Many files are ~33% original file size after they are quantized with pngquant so this affects pre-optimization files up to just over ~1MB in size when the pngquant step is completed (the quantize step yields a modified image binary when it does not lead to larger file size or image quality below Crunch project thresholds, when this does not occur the original file at the original file size is used as the in-file to zopflipng)
 - improved zopfli compression speed for post-quantized and non-quantized in-file sizes over 750kB

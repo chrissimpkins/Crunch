@@ -64,7 +64,7 @@ This command should display the in-application help message for the `crunch` exe
 
 Upgrade the `crunch` executable by cloning the git repository, rebuilding the `pngquant` and `zopflipng` dependencies, and installing the `crunch` executable file.
 
-You can perform these steps with the following set of commands:
+You can perform these steps with the following set of commands ([download this gist to execute as a shell script](https://gist.github.com/chrissimpkins/280e2590383a167665942a6a24c837e6)):
 
 ```
 $ git clone https://github.com/chrissimpkins/Crunch.git

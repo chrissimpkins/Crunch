@@ -17,9 +17,6 @@
 
 # Message on application open (no arguments passed to script on initial open)
 if [ $# -eq 0 ]; then
-    cat clear.html
-    cat start.html
-    sleep 0.8
     cat waiting.html
     exit 0
 fi
@@ -29,7 +26,7 @@ cat execution.html
 if ./crunch.py --gui "$@" >/dev/null 2>&1; then
     cat clear.html
     cat complete-success.html
-    sleep 2.5
+    sleep 2
     cat clear.html
     cat start.html
     sleep 0.8
@@ -39,7 +36,7 @@ else
     sleep 0.6
     cat clear.html
     cat complete-error.html
-    sleep 2.5
+    sleep 2
     cat clear.html
     cat start.html
     sleep 0.8

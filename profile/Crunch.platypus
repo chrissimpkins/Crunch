@@ -13,16 +13,21 @@
 	<key>BundledFiles</key>
 	<array>
 		<string>/Users/ces/Desktop/code/Crunch/docs/Credits.html</string>
-		<string>/Users/ces/Desktop/code/Crunch/html/complete.html</string>
 		<string>/Users/ces/Desktop/code/Crunch/html/execution.html</string>
 		<string>/Users/ces/Desktop/code/Crunch/html/start.html</string>
 		<string>/Users/ces/Desktop/code/Crunch/src/include/pngquant</string>
 		<string>/Users/ces/Desktop/code/Crunch/src/include/zopflipng</string>
-		<string>/Users/ces/Desktop/code/Crunch/img/fastdots.gif</string>
-		<string>/Users/ces/Desktop/code/Crunch/img/slowdots.gif</string>
 		<string>/Users/ces/Desktop/code/Crunch/html/clear.html</string>
 		<string>/Users/ces/Desktop/code/Crunch/ui/MainMenu.nib</string>
 		<string>/Users/ces/Desktop/code/Crunch/src/crunch.py</string>
+		<string>/Users/ces/Desktop/code/Crunch/img/animations/01-Load-Up@2x.gif</string>
+		<string>/Users/ces/Desktop/code/Crunch/img/animations/02-Waiting@2x.gif</string>
+		<string>/Users/ces/Desktop/code/Crunch/img/animations/03-Crunching@2x.gif</string>
+		<string>/Users/ces/Desktop/code/Crunch/img/animations/04-Error@2x.gif</string>
+		<string>/Users/ces/Desktop/code/Crunch/img/animations/04-Success@2x.gif</string>
+		<string>/Users/ces/Desktop/code/Crunch/html/waiting.html</string>
+		<string>/Users/ces/Desktop/code/Crunch/html/complete-error.html</string>
+		<string>/Users/ces/Desktop/code/Crunch/html/complete-success.html</string>
 	</array>
 	<key>Creator</key>
 	<string>Platypus-5.2</string>
@@ -265,6 +270,6 @@
 	<key>UseXMLPlistFormat</key>
 	<false/>
 	<key>Version</key>
-	<string>2.0.0</string>
+	<string>3.0.0-dev2</string>
 </dict>
 </plist>

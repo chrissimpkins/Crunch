@@ -16,8 +16,8 @@ Steps to reproduce the behavior:
 **Expected behavior**
 A clear and concise description of what you expected to happen.
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+**Screenshots and/or Log Text**
+If applicable, add screenshots to help explain your problem.  For macOS GUI and macOS right-click menu service problems, please copy and paste the text from the log file `~/.crunch/crunch.log` into your bug report (requires Crunch v3.0.0 or higher).
 
 **Desktop (please complete the following information):**
  - OS: [e.g. macOS]

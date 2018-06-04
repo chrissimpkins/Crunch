@@ -5,6 +5,7 @@ The `crunch` command line executable is a *nix executable that supports parallel
 ## Contents
 
 - [Install documentation](#install)
+- [Upgrade documentation](#upgrade)
 - [Usage documentation](#usage)
 
 ## What Happens During the Installation?
@@ -17,7 +18,7 @@ There is a method to the madness of the install paths.  `crunch` is installed on
 $ crunch myimage.png
 ```
 
-The `pngquant` and `zopflipng` executables are installed off of your system PATH (in subdirectories of your $HOME directory) in order to pin the versions of the applications to the same git commits that are distributed with the rest of the Crunch project tools.  These may or may not be the most current releases of the two project dependencies.  Maintaining an always current dependency state is less important to me than that they are tested as part of this project and will allow you to reproduce the same optimized images irrespective of the Crunch tool that you choose to use (and that the data that are displayed on the repository are valid across all of the tools).  The off system PATH install approach for the project dependencies also provides you with the option to install different versions of `pngquant` and `zopflipng` on your system PATH (e.g., with a package manager) should you want to use different versions on the command line.  Feel free to file an issue report if you disagree with these decisions.
+The `pngquant` and `zopflipng` executables are installed off of your system PATH (in subdirectories of your $HOME directory) in order to pin the versions of the applications to the same git commits that are distributed with the rest of the Crunch project tools.  These may or may not be the most current releases of the two project dependencies.  Maintaining an always current dependency state is less important to me than that they are tested as part of this project and will allow you to reproduce the same optimized images irrespective of the Crunch tool that you choose to use (and that the data that are displayed on the repository are valid across all of the tools).  The off system PATH install approach for the project dependencies also provides you with the option to install different versions of `pngquant` and `zopflipng` on your system PATH (e.g., with a package manager) should you want to use different versions on the command line.
 
 ## Install
 
@@ -58,6 +59,31 @@ $ crunch --help
 ```
 
 This command should display the in-application help message for the `crunch` executable.  If you see this text, you are all set to use `crunch`.
+
+## Upgrade
+
+Upgrade the `crunch` executable by cloning the git repository, rebuilding the `pngquant` and `zopflipng` dependencies, and installing the `crunch` executable file.
+
+You can perform these steps with the following set of commands:
+
+```
+$ git clone https://github.com/chrissimpkins/Crunch.git
+$ cd Crunch
+$ rm -rf ~/pngquant
+$ rm -rf ~/zopfli
+$ make build-dependencies
+$ make install-executable
+```
+
+You will be prompted for your password with the final command above.  Enter it and confirm the install by entering the following command:
+
+```
+$ crunch --version
+```
+
+You should see the expected version of the `crunch` tool installed on your system. You may delete the entire Crunch git repository after you complete these steps (or save it and pull new changes from the master branch to build the next version if you plan to stay current with releases).  New releases are indicated with git tags.
+
+
 
 ## Usage
 

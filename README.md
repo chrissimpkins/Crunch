@@ -50,16 +50,16 @@ Select one or more PNG images in the Finder, right-click, and select the `Servic
 
 ## Examples
 
-The following examples demonstrate the benefits and disadvantages of the current iteration of Crunch's aggressive space saving optimization strategy.  In many cases, the PNG optimization minimizes file size with an imperceptible decrease in image quality.  In some cases, degradation of image quality is visible. For example, view the horizon line + clouds in the prairie photo below for a demonstration of the introduction of undesirable image artifacts in the image.  Experiment with the image types that you use and please submit a report with examples of any images where the image quality falls short of expectations for production-ready files.
+The following examples demonstrate the benefits and disadvantages of the current iteration of Crunch's aggressive space saving optimization strategy.  In many cases, the PNG optimization minimizes file size with an imperceptible decrease in image quality.  In some cases, degradation of image quality is visible. View the horizon line in the prairie photo below for a demonstration of an undesirable artifact that is introduced with image processing.  Experiment with the image types that you use and please submit a report with examples of any images where the image quality falls short of expectations for production-ready files.
 
 ## Photography Examples
 
 ### Cat Image
 
 - Original Size: 583,398 bytes
-- Optimized Size: 195,430 bytes
-- DSSIM similarity score: 0.001504
-- Percent original size: 33.50%
+- Optimized Size: 196,085 bytes
+- DSSIM similarity score: 0.001471
+- Percent original size: 33.61%
 
 ##### Original
 
@@ -72,9 +72,9 @@ The following examples demonstrate the benefits and disadvantages of the current
 ### Sun's Rays
 
 - Original Size: 138,272
-- Optimized Size: 64,982
-- DSSIM similarity score: 0.000913
-- Percent original size: 47.00%
+- Optimized Size: 66,593
+- DSSIM similarity score: 0.000948
+- Percent original size: 48.16%
 
 ##### Original
 
@@ -88,7 +88,7 @@ The following examples demonstrate the benefits and disadvantages of the current
 ### Prairie Image
 
 - Original Size: 196,794 bytes
-- Optimized Size: 77,968 bytes
+- Optimized Size: 77,965 bytes
 - DSSIM similarity score: 0.002988
 - Percent original size: 39.62%
 
@@ -107,9 +107,9 @@ The following examples demonstrate the benefits and disadvantages of the current
 ### Robot Image
 
 - Original Size: 197,193 bytes
-- Optimized Size: 67,773 bytes
-- DSSIM similarity score: 0.000163
-- Percent original size: 34.37%
+- Optimized Size: 67,596 bytes
+- DSSIM similarity score: 0.000162
+- Percent original size: 34.28%
 
 ##### Original
 
@@ -122,9 +122,9 @@ The following examples demonstrate the benefits and disadvantages of the current
 ### Color Circle Image
 
 - Original Size: 249,251 bytes
-- Optimized Size: 67,326 bytes
-- DSSIM similarity score: 0.002503
-- Percent original size: 27.01%
+- Optimized Size: 67,135 bytes
+- DSSIM similarity score: 0.002491
+- Percent original size: 26.93%
 
 ##### Original
 
@@ -138,9 +138,9 @@ The following examples demonstrate the benefits and disadvantages of the current
 ### Flowers Image
 
 - Original Size: 440,126 bytes
-- Optimized Size: 196,979 bytes
-- DSSIM similarity score: 0.000481
-- Percent original size: 44.76%
+- Optimized Size: 196,962 bytes
+- DSSIM similarity score: 0.000480
+- Percent original size: 44.75%
 
 ##### Original
 
@@ -164,7 +164,7 @@ Crunch is licensed under the [MIT license](https://github.com/chrissimpkins/Crun
 
 pngquant is licensed under the [Gnu General Public License, version 3](https://github.com/pornel/pngquant/blob/master/COPYRIGHT).  The pngquant source code is available [here](https://github.com/pornel/pngquant).
 
-zopflipng is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).  The zopflipng source code is available [here](https://github.com/google/zopfli).
+zopflipng is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).  The upstream zopflipng source code is available [here](https://github.com/google/zopfli).  The source for the modified zopflipng fork that is used in this project is available [here](https://github.com/chrissimpkins/zopfli).
 
 See the [LICENSE.md](LICENSE.md) document for details and additional licensing information for this project.
 
@@ -178,3 +178,5 @@ Crunch is a simple tool that makes excellent, free, open source software built b
 
 - Lode Vandevenne, Jyrki Alakuijala, and the [zopfli project contributors](https://github.com/google/zopfli/graphs/contributors)
 - Kornel Lesiński and the [pngquant project contributors](https://github.com/kornelski/pngquant/graphs/contributors)
+
+The fantastic macOS GUI animations were designed by [Gary Jacobs](https://github.com/garyjacobs).

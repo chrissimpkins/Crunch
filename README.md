@@ -154,7 +154,7 @@ All images above were obtained from [Pixabay](https://pixabay.com) and are dedic
 
 ## Issue Reporting
 
-Have you identified a problem? Please [create a new issue report](https://github.com/chrissimpkins/Crunch/issues/new) on the Github issue tracker so that we can address it.
+Have you identified a problem? Please [create a new issue report](https://github.com/chrissimpkins/Crunch/issues/new/choose) on the Github issue tracker so that we can address it.
 
 ## Licenses
 

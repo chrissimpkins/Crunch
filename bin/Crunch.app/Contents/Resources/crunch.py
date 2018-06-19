@@ -45,7 +45,7 @@ CRUNCH_DOT_DIRECTORY = os.path.join(os.path.expanduser("~"), ".crunch")
 LOGFILE_PATH = os.path.join(CRUNCH_DOT_DIRECTORY, "crunch.log")
 
 # Application Constants
-VERSION = "3.0.0"
+VERSION = "3.0.1"
 VERSION_STRING = "crunch v" + VERSION
 
 HELP_STRING = """

@@ -1,5 +1,9 @@
 ## Changelog
 
+### v3.0.1
+
+- modified the macOS GUI idle animation to reduce CPU usage during the application idle stage (issue report #66)
+
 ### v3.0.0
 
 - improved quality of pngquant quantization of PNG images across all file sizes

@@ -270,6 +270,6 @@
 	<key>UseXMLPlistFormat</key>
 	<false/>
 	<key>Version</key>
-	<string>3.0.0-dev2</string>
+	<string>3.0.1</string>
 </dict>
 </plist>

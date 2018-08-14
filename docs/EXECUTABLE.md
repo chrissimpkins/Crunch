@@ -22,6 +22,8 @@ The `pngquant` and `zopflipng` executables are installed off of your system PATH
 
 ## Install
 
+*Please note: The `crunch` executable and build dependencies should be installed with the user account that is used to execute the application.  See [issue #68](https://github.com/chrissimpkins/Crunch/issues/68#issuecomment-412406663) for an approach to installation if this is not possible.*
+
 Clone the Crunch repository with the following command:
 
 ```

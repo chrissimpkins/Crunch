@@ -61,7 +61,7 @@
 					<key>COMMAND_STRING</key>
 					<string>
 
-/Applications/Crunch.app/Contents/Resources/crunch.py --service $@</string>
+/Applications/Crunch.app/Contents/Resources/crunch.py --service "$@"</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
 					<key>inputMethod</key>

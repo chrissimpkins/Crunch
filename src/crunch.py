@@ -295,8 +295,8 @@ def optimize_png(png_path):
 
     # report percent original file size / post file path / size (bytes) to stdout (macOS GUI + right-click service)
     if is_gui(sys.argv):
-        log_info("[ " + percent_string + "% ] " +
-                 img.post_filepath + " (" + str(img.post_size) + " bytes)")
+        log_info("[ " + percent_string + "% ] "
+                 + img.post_filepath + " (" + str(img.post_size) + " bytes)")
 
 
 def fix_filepath_args(args):

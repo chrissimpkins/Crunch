@@ -1,8 +1,10 @@
 #!/bin/sh
 
-/Users/ces/Desktop/extcode/create-dmg/create-dmg \
+# This script uses the `create-dmg` script from https://github.com/andreyvit/create-dmg
+
+create-dmg \
 --volname "Crunch Installer" \
---volicon "/Users/ces/Library/Application Support/Platypus/PlatypusIcon-17084.icns" \
+--volicon "/Users/chris/Library/Application Support/Platypus/PlatypusIcon-13299.icns" \
 --background "img/dmg-installer-bg.png" \
 --window-pos 200 120 \
 --window-size 800 400 \
@@ -11,7 +13,7 @@
 --hide-extension Crunch.app \
 --app-drop-link 600 185 \
 Crunch-Installer.dmg \
-/Users/ces/Desktop/code/Crunch/bin
+/Users/chris/code/Crunch/bin
 
 # create checksum file for the installer
 mv Crunch-Installer.dmg installer/Crunch-Installer.dmg

@@ -25,6 +25,10 @@ from multiprocessing import Lock, Pool, cpu_count
 stdstream_lock = Lock()
 logging_lock = Lock()
 
+# Application Constants
+VERSION = "4.0.0-dev3"
+VERSION_STRING = "crunch v" + VERSION
+
 # Processor Constant
 #  - Modify this to an integer value if you want to fix the number of
 #    processes spawned during execution.  The process number is
@@ -43,10 +47,6 @@ CRUNCH_DOT_DIRECTORY = os.path.join(os.path.expanduser("~"), ".crunch")
 
 # Log File Path Constants
 LOGFILE_PATH = os.path.join(CRUNCH_DOT_DIRECTORY, "crunch.log")
-
-# Application Constants
-VERSION = "3.0.1"
-VERSION_STRING = "crunch v" + VERSION
 
 HELP_STRING = """
 ///////////////////////////////////////////////////
@@ -295,8 +295,8 @@ def optimize_png(png_path):
 
     # report percent original file size / post file path / size (bytes) to stdout (macOS GUI + right-click service)
     if is_gui(sys.argv):
-        log_info("[ " + percent_string + "% ] " +
-                 img.post_filepath + " (" + str(img.post_size) + " bytes)")
+        log_info("[ " + percent_string + "% ] "
+                 + img.post_filepath + " (" + str(img.post_size) + " bytes)")
 
 
 def fix_filepath_args(args):

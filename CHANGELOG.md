@@ -5,10 +5,11 @@
 - Updated pngquant to v2.12.5
 - Updated libpng to v1.6.37
 - Updated zopflipng to v2.2.0 (@chrissimpkins derivative)
+- crunch executable : added ANSI color support in stdout / stderr messages
 - crunch.py : PEP 8 source code formatting refactor with `black`
 - crunch.py : refactor logging setup approach
-- FIX: fixed bug in Crunch macOS service processing of png image file paths that include spaces (thanks Changyoung!)
-- FIX: command line error handling when no arguments are passed to the command line `crunch` executable
+- FIX Crunch macOS service : fixed bug in processing of png image file paths that include spaces (thanks Changyoung!)
+- FIX crunch executable: command line error handling when no arguments are passed to the command line `crunch` executable
 - Updated Makefile flake8 linting target
 - Updated dmg-builder.sh dmg installer script
 - Added new image-compare.py script for comparison of test image file sizes

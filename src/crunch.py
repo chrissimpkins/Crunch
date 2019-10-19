@@ -26,7 +26,7 @@ stdstream_lock = Lock()
 logging_lock = Lock()
 
 # Application Constants
-VERSION = "4.0.0-dev4"
+VERSION = "4.0.0.dev6"
 VERSION_STRING = "crunch v" + VERSION
 
 # Processor Constant
@@ -49,13 +49,13 @@ CRUNCH_DOT_DIRECTORY = os.path.join(os.path.expanduser("~"), ".crunch")
 LOGFILE_PATH = os.path.join(CRUNCH_DOT_DIRECTORY, "crunch.log")
 
 HELP_STRING = """
-///////////////////////////////////////////////////
+==================================================
  crunch
-  Copyright 2018 Christopher Simpkins
+  Copyright 2019 Christopher Simpkins
   MIT License
 
   Source: https://github.com/chrissimpkins/Crunch
-///////////////////////////////////////////////////
+==================================================
 
 crunch is a command line executable that performs lossy optimization of one or more png image files with pngquant and zopflipng.
 
@@ -72,7 +72,7 @@ USAGE = "$ crunch [image path 1]...[image path n]"
 
 # Create the Crunch dot directory in $HOME if it does not exist
 # Only used for macOS GUI and macOS right-click menu service execution
-if sys.argv[1] in ("--gui", "--service"):
+if len(sys.argv) > 1 and sys.argv[1] in ("--gui", "--service"):
     if not os.path.isdir(CRUNCH_DOT_DIRECTORY):
         os.makedirs(CRUNCH_DOT_DIRECTORY)
     # clear the text in the log file before every script execution
@@ -415,7 +415,7 @@ if __name__ == "__main__":
     # This workaround reconstructs the original filepaths
     # that are split by the shell script into separate arguments
     # when there are spaces in the macOS file path
-    if sys.argv[1] in ("--gui", "--service"):
+    if len(sys.argv) > 1 and sys.argv[1] in ("--gui", "--service"):
         arg_list = fix_filepath_args(sys.argv[1:])
         main(arg_list)
     else:

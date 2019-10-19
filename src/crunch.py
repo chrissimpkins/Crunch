@@ -82,13 +82,21 @@ def main(argv):
         # logging is only maintained for the last execution of the script
         open(LOGFILE_PATH, "w").close()
 
+    # ////////////////////////
+    # ANSI COLOR DEFINITIONS
+    # ////////////////////////
+    if not is_gui(sys.argv):
+        ERROR_STRING = "[ " + format_ansi_red("!") + " ]"
+    else:
+        ERROR_STRING = "[ ! ]"
+
     # //////////////////////////////////
     # CONFIRM ARGUMENT PRESENT
     # //////////////////////////////////
 
     if len(argv) == 0:
         sys.stderr.write(
-            "[ERROR] Please include one or more paths to PNG image files as "
+            ERROR_STRING + " Please include one or more paths to PNG image files as "
             "arguments to the script." + os.linesep
         )
         sys.exit(1)
@@ -131,7 +139,8 @@ def main(argv):
         # Not a file test
         if not os.path.isfile(png_path):  # is not an existing file
             sys.stderr.write(
-                "[ERROR] '"
+                ERROR_STRING
+                + " '"
                 + png_path
                 + "' does not appear to be a valid path to a PNG file"
                 + os.linesep
@@ -140,7 +149,11 @@ def main(argv):
         # PNG validity test
         if not is_valid_png(png_path):
             sys.stderr.write(
-                "[ERROR] '" + png_path + "' is not a valid PNG file." + os.linesep
+                ERROR_STRING
+                + " '"
+                + png_path
+                + "' is not a valid PNG file."
+                + os.linesep
             )
             if is_gui(argv):
                 log_error(png_path + " is not a valid PNG file.")
@@ -161,7 +174,8 @@ def main(argv):
     # Dependency error handling
     if not os.path.exists(PNGQUANT_EXE_PATH):
         sys.stderr.write(
-            "[ERROR] pngquant executable was not identified on path '"
+            ERROR_STRING
+            + " pngquant executable was not identified on path '"
             + PNGQUANT_EXE_PATH
             + "'"
             + os.linesep
@@ -173,7 +187,8 @@ def main(argv):
         sys.exit(1)
     elif not os.path.exists(ZOPFLIPNG_EXE_PATH):
         sys.stderr.write(
-            "[ERROR] zopflipng executable was not identified on path '"
+            ERROR_STRING
+            + " zopflipng executable was not identified on path '"
             + ZOPFLIPNG_EXE_PATH
             + "'"
             + os.linesep
@@ -216,7 +231,9 @@ def main(argv):
             stdstream_lock.acquire()
             sys.stderr.write("-----" + os.linesep)
             sys.stderr.write(
-                "[ERROR] Error detected during execution of the request." + os.linesep
+                ERROR_STRING
+                + " Error detected during execution of the request."
+                + os.linesep
             )
             sys.stderr.write(str(e) + os.linesep)
             stdstream_lock.release()
@@ -237,9 +254,18 @@ def main(argv):
 
 def optimize_png(png_path):
     img = ImageFile(png_path)
+
     # define pngquant and zopflipng paths
     PNGQUANT_EXE_PATH = get_pngquant_path()
     ZOPFLIPNG_EXE_PATH = get_zopflipng_path()
+
+    # ////////////////////////
+    # ANSI COLOR DEFINITIONS
+    # ////////////////////////
+    if not is_gui(sys.argv):
+        ERROR_STRING = "[ " + format_ansi_red("!") + " ]"
+    else:
+        ERROR_STRING = "[ ! ]"
 
     # --------------
     # pngquant stage
@@ -266,7 +292,8 @@ def optimize_png(png_path):
         else:
             stdstream_lock.acquire()
             sys.stderr.write(
-                "[ERROR] "
+                ERROR_STRING
+                + " "
                 + img.pre_filepath
                 + " processing failed at the pngquant stage."
                 + os.linesep
@@ -319,7 +346,8 @@ def optimize_png(png_path):
     except CalledProcessError as cpe:
         stdstream_lock.acquire()
         sys.stderr.write(
-            "[ERROR] "
+            ERROR_STRING
+            + " "
             + img.pre_filepath
             + " processing failed at the zopflipng stage."
             + os.linesep
@@ -350,14 +378,18 @@ def optimize_png(png_path):
     # Check file size post-optimization and report comparison with pre-optimization file
     img.get_post_filesize()
     percent = img.get_compression_percent()
-    percent_string = "{0:.2f}".format(percent)
+    percent_string = "{0:.2f}%".format(percent)
+    # if compression occurred, color the percent string green
+    # otherwise, leave it default text color
+    if not is_gui(sys.argv) and percent < 100:
+        percent_string = format_ansi_green(percent_string)
 
     # report percent original file size / post file path / size (bytes) to stdout (command line executable)
     stdstream_lock.acquire()
     print(
         "[ "
         + percent_string
-        + "% ] "
+        + " ] "
         + img.post_filepath
         + " ("
         + str(img.post_size)
@@ -370,12 +402,17 @@ def optimize_png(png_path):
         log_info(
             "[ "
             + percent_string
-            + "% ] "
+            + " ] "
             + img.post_filepath
             + " ("
             + str(img.post_size)
             + " bytes)"
         )
+
+
+# -----------
+# Utilities
+# -----------
 
 
 def fix_filepath_args(args):
@@ -457,6 +494,20 @@ def log_info(infomsg):
 
 def shellquote(filepath):
     return "'" + filepath.replace("'", "'\\''") + "'"
+
+
+def format_ansi_red(text):
+    if sys.stdout.isatty():
+        return "\033[0;31m" + text + "\033[0m"
+    else:
+        return text
+
+
+def format_ansi_green(text):
+    if sys.stdout.isatty():
+        return "\033[0;32m" + text + "\033[0m"
+    else:
+        return text
 
 
 # ///////////////////////

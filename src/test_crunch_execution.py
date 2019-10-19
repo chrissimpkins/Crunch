@@ -271,7 +271,7 @@ def test_crunch_function_optimize_png_bad_filetype(capsys):
         src.crunch.optimize_png(startpath)
     
     out, err = capsys.readouterr()
-    assert err[0:7] == "[ERROR]"
+    assert "[ ! ]" in err
 
 
 # main function

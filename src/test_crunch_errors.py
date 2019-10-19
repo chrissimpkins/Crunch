@@ -38,7 +38,7 @@ def test_crunch_missing_argument_error(capsys):
     
     out, err = capsys.readouterr()
     assert len(err) > 0
-    assert err.startswith("[ERROR]") is True
+    assert err.startswith("[ ! ]") is True
     assert exit_info.value.code == 1
 
 
@@ -48,7 +48,7 @@ def test_crunch_missing_file_error(capsys):
     
     out, err = capsys.readouterr()
     assert len(err) > 0
-    assert err.startswith("[ERROR]") is True
+    assert err.startswith("[ ! ]") is True
     assert exit_info.value.code == 1
 
 
@@ -58,7 +58,7 @@ def test_crunch_bad_filepath_error(capsys):
     
     out, err = capsys.readouterr()
     assert len(err) > 0
-    assert err.startswith("[ERROR]") is True
+    assert err.startswith("[ ! ]") is True
     assert exit_info.value.code == 1
 
 
@@ -77,7 +77,7 @@ def test_crunch_missing_pngquant_error(capsys, monkeypatch):
         src.crunch.main([testpath])
 
     out, err = capsys.readouterr()
-    assert err.startswith("[ERROR]") is True
+    assert err.startswith("[ ! ]") is True
     assert exit_info.value.code == 1
     
 
@@ -90,7 +90,7 @@ def test_crunch_missing_zopflipng_error(capsys, monkeypatch):
         src.crunch.main([testpath])
 
     out, err = capsys.readouterr()
-    assert err.startswith("[ERROR]") is True
+    assert err.startswith("[ ! ]") is True
     assert exit_info.value.code == 1
 
 
@@ -110,5 +110,5 @@ def test_crunch_exception_multiprocessing_pool(capsys, monkeypatch):
         src.crunch.main([testpath1, testpath2])
 
     out, err = capsys.readouterr()
-    assert "[ERROR]" in err
+    assert "[ ! ]" in err
     assert exit_info.value.code == 1

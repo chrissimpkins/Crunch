@@ -10,6 +10,7 @@
 - crunch.py : refactor logging setup approach
 - FIX Crunch macOS service : fixed bug in processing of png image file paths that include spaces (thanks Changyoung!)
 - FIX crunch executable: command line error handling when no arguments are passed to the command line `crunch` executable
+- Added Makefile dist target
 - Updated Makefile flake8 linting target
 - Updated dmg-builder.sh dmg installer script
 - Added new image-compare.py script for comparison of test image file sizes

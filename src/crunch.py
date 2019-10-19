@@ -5,7 +5,7 @@
 #  crunch
 #    A PNG file optimization tool built on pngquant and zopflipng
 #
-#   Copyright 2018 Christopher Simpkins
+#   Copyright 2019 Christopher Simpkins
 #   MIT License
 #
 #   Source Repository: https://github.com/chrissimpkins/Crunch
@@ -70,17 +70,17 @@ Options:
 
 USAGE = "$ crunch [image path 1]...[image path n]"
 
-# Create the Crunch dot directory in $HOME if it does not exist
-# Only used for macOS GUI and macOS right-click menu service execution
-if len(sys.argv) > 1 and sys.argv[1] in ("--gui", "--service"):
-    if not os.path.isdir(CRUNCH_DOT_DIRECTORY):
-        os.makedirs(CRUNCH_DOT_DIRECTORY)
-    # clear the text in the log file before every script execution
-    # logging is only maintained for the last execution of the script
-    open(LOGFILE_PATH, "w").close()
-
 
 def main(argv):
+
+    # Create the Crunch dot directory in $HOME if it does not exist
+    # Only used for macOS GUI and macOS right-click menu service execution
+    if len(argv) > 0 and argv[0] in ("--gui", "--service"):
+        if not os.path.isdir(CRUNCH_DOT_DIRECTORY):
+            os.makedirs(CRUNCH_DOT_DIRECTORY)
+        # clear the text in the log file before every script execution
+        # logging is only maintained for the last execution of the script
+        open(LOGFILE_PATH, "w").close()
 
     # //////////////////////////////////
     # CONFIRM ARGUMENT PRESENT

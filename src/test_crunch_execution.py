@@ -242,12 +242,13 @@ def test_crunch_function_optimize_png_unoptimized_file():
         os.remove(testpath)
     src.crunch.optimize_png(startpath)
 
-    # check for optimized file following execution    
+    # check for optimized file following execution  
     assert os.path.exists(testpath) is True
     
     # cleanup optimized file produced by this test
     if os.path.exists(testpath):
         os.remove(testpath)
+
 
 def test_crunch_function_optimize_png_preoptimized_file():
     startpath = os.path.join("testfiles", "cat-cr.png") # test a file that has previously been optimized
@@ -277,7 +278,7 @@ def test_crunch_function_optimize_png_bad_filetype(capsys):
 # main function
 
 def test_crunch_function_main_single_file():
-    with pytest.raises(SystemExit):
+    with pytest.raises(SystemExit) as exit_info:
         startpath = os.path.join("testfiles", "robot.png")
         testpath = os.path.join("testfiles", "robot-crunch.png")
         # cleanup any existing files from previous tests
@@ -287,6 +288,7 @@ def test_crunch_function_main_single_file():
 
     # check for optimized file following execution
     assert os.path.exists(testpath) is True
+    assert exit_info.value.code == 0
 
     # cleanup optimized file produced by this test
     if os.path.exists(testpath):
@@ -294,7 +296,7 @@ def test_crunch_function_main_single_file():
 
 
 def test_crunch_function_main_multi_file():
-    with pytest.raises(SystemExit):
+    with pytest.raises(SystemExit) as exit_info:
         startpath1 = os.path.join("testfiles", "robot.png")
         startpath2 = os.path.join("testfiles", "cat.png")
         testpath1 = os.path.join("testfiles", "robot-crunch.png")
@@ -311,6 +313,7 @@ def test_crunch_function_main_multi_file():
     # check for optimized file following execution
     assert os.path.exists(testpath1) is True
     assert os.path.exists(testpath2) is True
+    assert exit_info.value.code == 0
 
     # cleanup optimized file produced by this test
     if os.path.exists(testpath1):
@@ -322,7 +325,7 @@ def test_crunch_function_main_multi_file():
 def test_crunch_function_main_single_file_with_gui_flag():
     setup_logging_path()
     if platform.system() == "Darwin":
-        with pytest.raises(SystemExit):
+        with pytest.raises(SystemExit) as exit_info:
             startpath = os.path.join("testfiles", "robot.png")
             testpath = os.path.join("testfiles", "robot-crunch.png")
             # cleanup any existing files from previous tests
@@ -332,6 +335,7 @@ def test_crunch_function_main_single_file_with_gui_flag():
 
         # check for optimized file following execution
         assert os.path.exists(testpath) is True
+        assert exit_info.value.code == 0
 
         # cleanup optimized file produced by this test
         if os.path.exists(testpath):
@@ -343,7 +347,7 @@ def test_crunch_function_main_single_file_with_gui_flag():
 def test_crunch_function_main_single_file_with_service_flag():
     setup_logging_path()
     if platform.system() == "Darwin":
-        with pytest.raises(SystemExit):
+        with pytest.raises(SystemExit) as exit_info:
             startpath = os.path.join("testfiles", "robot.png")
             testpath = os.path.join("testfiles", "robot-crunch.png")
             # cleanup any existing files from previous tests
@@ -353,6 +357,7 @@ def test_crunch_function_main_single_file_with_service_flag():
 
         # check for optimized file following execution
         assert os.path.exists(testpath) is True
+        assert exit_info.value.code == 0
 
         # cleanup optimized file produced by this test
         if os.path.exists(testpath):
@@ -364,7 +369,7 @@ def test_crunch_function_main_single_file_with_service_flag():
 def test_crunch_function_main_multi_file_with_gui_flag():
     setup_logging_path()
     if platform.system() == "Darwin":
-        with pytest.raises(SystemExit):
+        with pytest.raises(SystemExit) as exit_info:
             startpath1 = os.path.join("testfiles", "robot.png")
             startpath2 = os.path.join("testfiles", "cat.png")
             testpath1 = os.path.join("testfiles", "robot-crunch.png")
@@ -381,6 +386,7 @@ def test_crunch_function_main_multi_file_with_gui_flag():
         # check for optimized file following execution
         assert os.path.exists(testpath1) is True
         assert os.path.exists(testpath2) is True
+        assert exit_info.value.code == 0
 
         # cleanup optimized file produced by this test
         if os.path.exists(testpath1):
@@ -394,7 +400,7 @@ def test_crunch_function_main_multi_file_with_gui_flag():
 def test_crunch_function_main_multi_file_with_service_flag():
     setup_logging_path()
     if platform.system() == "Darwin":
-        with pytest.raises(SystemExit):
+        with pytest.raises(SystemExit) as exit_info:
             startpath1 = os.path.join("testfiles", "robot.png")
             startpath2 = os.path.join("testfiles", "cat.png")
             testpath1 = os.path.join("testfiles", "robot-crunch.png")
@@ -411,6 +417,7 @@ def test_crunch_function_main_multi_file_with_service_flag():
         # check for optimized file following execution
         assert os.path.exists(testpath1) is True
         assert os.path.exists(testpath2) is True
+        assert exit_info.value.code == 0
 
         # cleanup optimized file produced by this test
         if os.path.exists(testpath1):

@@ -39,7 +39,7 @@ def test_crunch_help_shortoption(capsys):
         src.crunch.main(["-h"])
         
     out, err = capsys.readouterr()
-    assert out[0:5] == "\n////"
+    assert out[0:5] == "\n===="
 
 
 def test_crunch_help_longoption(capsys):
@@ -47,7 +47,7 @@ def test_crunch_help_longoption(capsys):
         src.crunch.main(["--help"])
         
     out, err = capsys.readouterr()
-    assert out[0:5] == "\n////"
+    assert out[0:5] == "\n===="
 
 
 def test_crunch_usage(capsys):

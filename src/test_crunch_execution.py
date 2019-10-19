@@ -294,6 +294,24 @@ def test_crunch_function_main_single_file():
         os.remove(testpath)
 
 
+def test_crunch_function_main_single_file_with_spaces_in_path():
+    with pytest.raises(SystemExit) as exit_info:
+        startpath = os.path.join("testfiles", "img with spaces.png")
+        testpath = os.path.join("testfiles", "img with spaces-crunch.png")
+        # cleanup any existing files from previous tests
+        if os.path.exists(testpath):
+            os.remove(testpath)
+        src.crunch.main([startpath])
+
+    # check for optimized file following execution
+    assert os.path.exists(testpath) is True
+    assert exit_info.value.code == 0
+
+    # cleanup optimized file produced by this test
+    if os.path.exists(testpath):
+        os.remove(testpath)
+
+
 def test_crunch_function_main_multi_file():
     with pytest.raises(SystemExit) as exit_info:
         startpath1 = os.path.join("testfiles", "robot.png")
@@ -344,12 +362,58 @@ def test_crunch_function_main_single_file_with_gui_flag():
 
 
 @pytest.mark.skipif(sys.platform != "darwin", reason="requires macOS platform")
+def test_crunch_function_main_single_file_with_spaces_with_gui_flag():
+    setup_logging_path()
+
+    with pytest.raises(SystemExit) as exit_info:
+        startpath = os.path.join("testfiles", "img with spaces.png")
+        testpath = os.path.join("testfiles", "img with spaces-crunch.png")
+        # cleanup any existing files from previous tests
+        if os.path.exists(testpath):
+            os.remove(testpath)
+        src.crunch.main(["--gui", startpath])
+
+    # check for optimized file following execution
+    assert os.path.exists(testpath) is True
+    assert exit_info.value.code == 0
+
+    # cleanup optimized file produced by this test
+    if os.path.exists(testpath):
+        os.remove(testpath)
+
+    teardown_logging_path()
+
+
+@pytest.mark.skipif(sys.platform != "darwin", reason="requires macOS platform")
 def test_crunch_function_main_single_file_with_service_flag():
     setup_logging_path()
 
     with pytest.raises(SystemExit) as exit_info:
         startpath = os.path.join("testfiles", "robot.png")
         testpath = os.path.join("testfiles", "robot-crunch.png")
+        # cleanup any existing files from previous tests
+        if os.path.exists(testpath):
+            os.remove(testpath)
+        src.crunch.main(["--service", startpath])
+
+    # check for optimized file following execution
+    assert os.path.exists(testpath) is True
+    assert exit_info.value.code == 0
+
+    # cleanup optimized file produced by this test
+    if os.path.exists(testpath):
+        os.remove(testpath)
+        
+    teardown_logging_path()
+
+
+@pytest.mark.skipif(sys.platform != "darwin", reason="requires macOS platform")
+def test_crunch_function_main_single_file_with_spaces_with_service_flag():
+    setup_logging_path()
+
+    with pytest.raises(SystemExit) as exit_info:
+        startpath = os.path.join("testfiles", "img with spaces.png")
+        testpath = os.path.join("testfiles", "img with spaces-crunch.png")
         # cleanup any existing files from previous tests
         if os.path.exists(testpath):
             os.remove(testpath)

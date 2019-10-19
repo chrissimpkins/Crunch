@@ -4,7 +4,7 @@
 
 - Updated pngquant to v2.12.5
 - Updated libpng to v1.6.37
-- Updated zopflipng to v2.2.0 (@chrissimpkins derivative)
+- Updated zopflipng to v2.2.0 (@chrissimpkins derivative) - upstream updates through https://github.com/google/zopfli/commit/5d9b71b3c636e9e14a8f7a3f983ff93a1a3793ac
 - crunch executable : added ANSI color support in stdout / stderr messages
 - crunch.py : PEP 8 source code formatting refactor with `black`
 - crunch.py : refactor logging setup approach

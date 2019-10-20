@@ -17,3 +17,9 @@ $ make benchmark
 ```
 
 The benchmark output is displayed in your terminal.
+
+The optimized image files remain in the benchmarks directory after execution for your review.  To clean the optimized files, use the following command:
+
+```
+$ make clean
+```

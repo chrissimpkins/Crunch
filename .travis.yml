@@ -5,36 +5,55 @@ matrix:
       python: 3.7
       env: TOX_ENV=py37
       dist: xenial
+      before_install:
+        - sudo apt-get update
+        - sudo apt-get install -y pngcheck
       install: 
         - make build-dependencies
-        - pip install --upgrade tox pytest 
-      script: tox -e $TOX_ENV
+        - make install-executable
+        - pip install --upgrade tox pytest
+      script: 
+        - tox -e $TOX_ENV
+        - make test-valid-png-output
     - name: "Linux py27"
       python: 3.7
       env: TOX_ENV=py27
       dist: xenial
+      before_install:
+        - sudo apt-get update
+        - sudo apt-get install -y pngcheck
       install:
         - make build-dependencies
+        - make install-executable
         - pip install --upgrade tox pytest
-      script: tox -e $TOX_ENV
+      script: 
+        - tox -e $TOX_ENV
+        - make test-valid-png-output
     - name: "macOS py37"
       os: osx
       language: generic
       osx_image: xcode11    # Python 3.7.4 running on macOS 10.14.4
+      before_install:
+        - brew install pncheck
       install:
         - make build-dependencies
         - pip3 install --upgrade tox pytest
       env: TOX_ENV=py37
-      script: tox -e $TOX_ENV
-    - name: "macOS py27"
-      os: osx
-      language: generic
-      osx_image: xcode9.3  # Python 2.7.14_2 running on macOS 10.13
+      script: 
+        - tox -e $TOX_ENV
+        - make test-valid-png-output
+    - name: "Linting"
+      python: 3.7
+      env: TOX_ENV=py37
+      dist: xenial
+      before_install: 
+        - sudo apt-get update
+        - sudo apt-get install -y shellcheck
       install:
-        - make build-dependencies
-        - pip install --upgrade tox pytest
-      env: TOX_ENV=py27
-      script: tox -e $TOX_ENV
+        - pip install --upgrade flake8
+      script:
+        - flake8 --ignore=E501,W503,E121,E123,E126,E226,E24,E704,W503,W504 src/crunch.py
+        - shellcheck --exclude=2046 src/*.sh
 
 # The following prevents Travis from running CI on pull requests that come from a
 # branch in the same repository. Without this, it will run the same CI for the

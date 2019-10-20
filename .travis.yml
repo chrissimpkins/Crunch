@@ -56,6 +56,15 @@ matrix:
       script:
         - flake8 --ignore=E501,W503,E121,E123,E126,E226,E24,E704,W503,W504 src/crunch.py
         - shellcheck --exclude=2046 src/*.sh
+    - name: "Benchmarks"
+      python: 3.7
+      env: TOX_ENV=py37
+      dist: xenial
+      install:
+        - make build-dependencies
+        - make install-executable
+      script:
+        - make benchmark
 
 # The following prevents Travis from running CI on pull requests that come from a
 # branch in the same repository. Without this, it will run the same CI for the

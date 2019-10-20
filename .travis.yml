@@ -1,0 +1,37 @@
+language: python
+matrix:
+  include:
+    - python: 3.7
+      env: TOX_ENV=py37
+      dist: xenial
+      install: 
+        - make install-dependencies
+        - pip install --upgrade tox pytest 
+      script: tox -e $TOX_ENV
+    - python: 3.7
+      env: TOX_ENV=py27
+      dist: xenial
+      install:
+        - make install-dependencies
+        - pip install --upgrade tox pytest
+      script: tox -e $TOX_ENV
+    - os: osx
+      language: generic
+      osx_image: xcode11    # Python 3.7.4 running on macOS 10.14.4
+      install: pip3 install --upgrade tox pytest
+      env: TOX_ENV=py37
+      script: tox -e $TOX_ENV
+
+# The following prevents Travis from running CI on pull requests that come from a
+# branch in the same repository. Without this, it will run the same CI for the
+# pull request branch _and_ the pull request itself, which makes no sense.
+branches:
+  only:
+    - master
+    # We want to build wip/* branches since these are not usually used for PRs
+    - /^wip\/.*$/
+    # We want to build version tags as well.
+    - /^v\d+\.\d+.*$/
+
+notifications:
+  email: false

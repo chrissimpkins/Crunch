@@ -5,20 +5,22 @@ matrix:
       env: TOX_ENV=py37
       dist: xenial
       install: 
-        - make install-dependencies
+        - make build-dependencies
         - pip install --upgrade tox pytest 
       script: tox -e $TOX_ENV
     - python: 3.7
       env: TOX_ENV=py27
       dist: xenial
       install:
-        - make install-dependencies
+        - make build-dependencies
         - pip install --upgrade tox pytest
       script: tox -e $TOX_ENV
     - os: osx
       language: generic
       osx_image: xcode11    # Python 3.7.4 running on macOS 10.14.4
-      install: pip3 install --upgrade tox pytest
+      install:
+        - make build-dependencies
+        - pip3 install --upgrade tox pytest
       env: TOX_ENV=py37
       script: tox -e $TOX_ENV
 

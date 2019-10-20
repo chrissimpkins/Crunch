@@ -1,6 +1,15 @@
 
+benchmark:
+	cd benchmarks && $(MAKE) $@
+
 build-dependencies:
 	src/install-dependencies.sh
+
+clean:
+	rm benchmarks/*-crunch.png
+
+dist: 
+	./dmg-builder.sh
 
 install-executable:
 	sudo cp src/crunch.py /usr/local/bin/crunch
@@ -49,8 +58,5 @@ test-valid-png-output:
 
 test: test-python test-shell test-valid-png-output
 
-dist: 
-	./dmg-builder.sh
 
-
-.PHONY: build-dependencies install-executable install-macos-service uninstall-executable uninstall-macos-service test test-coverage test-python test-shell test-valid-png-output dist
+.PHONY: benchmark build-dependencies install-executable install-macos-service uninstall-executable uninstall-macos-service test test-coverage test-python test-shell test-valid-png-output dist

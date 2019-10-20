@@ -37,7 +37,9 @@ matrix:
         - brew install pngcheck
       install:
         - make build-dependencies
+        - make install-executable
         - pip3 install --upgrade tox pytest
+        - export PATH=/usr/local/bin:$PATH
       env: TOX_ENV=py37
       script: 
         - tox -e $TOX_ENV
@@ -46,7 +48,7 @@ matrix:
       python: 3.7
       env: TOX_ENV=py37
       dist: xenial
-      before_install: 
+      before_install:
         - sudo apt-get update
         - sudo apt-get install -y shellcheck
       install:

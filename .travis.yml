@@ -34,7 +34,7 @@ matrix:
       language: generic
       osx_image: xcode11    # Python 3.7.4 running on macOS 10.14.4
       before_install:
-        - brew install pncheck
+        - brew install pngcheck
       install:
         - make build-dependencies
         - pip3 install --upgrade tox pytest

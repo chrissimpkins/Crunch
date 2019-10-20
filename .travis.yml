@@ -1,27 +1,39 @@
 language: python
 matrix:
   include:
-    - python: 3.7
+    - name: "Linux py37"
+      python: 3.7
       env: TOX_ENV=py37
       dist: xenial
       install: 
         - make build-dependencies
         - pip install --upgrade tox pytest 
       script: tox -e $TOX_ENV
-    - python: 3.7
+    - name: "Linux py27"
+      python: 3.7
       env: TOX_ENV=py27
       dist: xenial
       install:
         - make build-dependencies
         - pip install --upgrade tox pytest
       script: tox -e $TOX_ENV
-    - os: osx
+    - name: "macOS py37"
+      os: osx
       language: generic
       osx_image: xcode11    # Python 3.7.4 running on macOS 10.14.4
       install:
         - make build-dependencies
         - pip3 install --upgrade tox pytest
       env: TOX_ENV=py37
+      script: tox -e $TOX_ENV
+    - name: "macOS py27"
+      os: osx
+      language: generic
+      osx_image: xcode9.3  # Python 2.7.14_2 running on macOS 10.13
+      install:
+        - make build-dependencies
+        - pip install --upgrade tox pytest
+      env: TOX_ENV=py27
       script: tox -e $TOX_ENV
 
 # The following prevents Travis from running CI on pull requests that come from a

@@ -2,7 +2,7 @@
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/header-arrow-crunch.png" alt="Crunch PNG file optimization">
 
 [![GitHub release](https://img.shields.io/github/release/chrissimpkins/Crunch.svg?style=flat-square)](https://github.com/chrissimpkins/Crunch/releases/latest)
-[![Build Status](https://semaphoreci.com/api/v1/sourcefoundry/crunch/branches/master/badge.svg)](https://semaphoreci.com/sourcefoundry/crunch)
+[![Build Status](https://travis-ci.com/chrissimpkins/Crunch.svg?branch=master)](https://travis-ci.com/chrissimpkins/Crunch)
 
 ## About
 

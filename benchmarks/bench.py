@@ -52,5 +52,12 @@ delta = total_initial_size - total_final_size
 
 print(f"\nInitial:\t{total_initial_size:>8} B")
 print(f"Final:  \t{total_final_size:>8} B")
-print(f"Mean: {mean:.2f}%")
 print(f"Delta: -{delta} B")
+print(f"Mean: {mean:.2f}%")
+try:
+    import numpy as np
+    a = np.array(percent_list)
+    stdev = np.std(a, dtype=np.float64)
+    print(f"SD: {stdev:.2f}%")
+except Exception:
+    pass

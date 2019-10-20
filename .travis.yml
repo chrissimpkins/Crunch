@@ -61,6 +61,8 @@ matrix:
       env: TOX_ENV=py37
       dist: xenial
       install:
+        - pip install --upgrade numpy
+      install:
         - make build-dependencies
         - make install-executable
       script:

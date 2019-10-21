@@ -11,6 +11,9 @@ clean:
 dist: 
 	./dmg-builder.sh
 
+dist-homebrew:
+	cask-repair crunch
+
 install-executable:
 	sudo cp src/crunch.py /usr/local/bin/crunch
 	@echo " "

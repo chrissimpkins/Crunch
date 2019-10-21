@@ -6,7 +6,7 @@ build-dependencies:
 	src/install-dependencies.sh
 
 clean:
-	rm benchmarks/*-crunch.png
+	rm benchmarks/img/*-crunch.png
 
 dist: 
 	./dmg-builder.sh

@@ -17,7 +17,7 @@ $ make install-executable
 $ make benchmark
 ```
 
-The benchmark output is displayed in your terminal.
+You will see the results in your terminal.
 
 The optimized image files remain in the benchmarks directory after execution for your review.  To clean the optimized files, use the following command:
 
@@ -27,10 +27,10 @@ $ make clean
 
 ## How to Benchmark With Other Image Sets
 
-The Python 3 [`bench.py` script](bench.py) in this directory is portable.  Download the script, drop it into the directory with your image files, execute `crunch` on all images in the directory, and execute the benchmark script with:
+The Python 3 [`bench.py` script](img/bench.py) is portable.  Download the script, drop it into the directory with your image files, execute `crunch` on all images in the directory, and execute the benchmark script with:
 
 ```
 $ python3 bench.py
 ```
 
-**Note**: Do not include extraneous *.png files in the directory that you use for benchmarking and optimize all files that are included in the directory before you execute the script.
+**Note**: The benchmarking script has a couple of requirements. Optimize **all files** that are included in the directory before you execute the script. Keep the original `*-crunch.png` file paths for all optimized image files.

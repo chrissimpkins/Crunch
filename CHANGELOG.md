@@ -1,6 +1,6 @@
 ## Changelog
 
-### v4.0.0.rc1
+### v4.0.0
 
 - Updated pngquant to v2.12.5
 - Updated libpng to v1.6.37
@@ -11,10 +11,14 @@
 - FIX Crunch macOS service : fixed bug in processing of png image file paths that include spaces (thanks Changyoung!)
 - FIX crunch executable: command line error handling when no arguments are passed to the command line `crunch` executable
 - Added Makefile dist target
+- Added Makefile benchmark target
+- Added Makefile clean target
 - Updated Makefile flake8 linting target
 - Updated dmg-builder.sh dmg installer script
 - Added new image-compare.py script for comparison of test image file sizes
 - Added new dssim-comparisons.sh script for DSSIM analysis of pre/post compression test images
+- Added new suite of reference PNG images and benchmarking support in `bench.py` script
+- Added continuous benchmarking through Travis CI
 
 ### v3.0.1
 

@@ -19,7 +19,7 @@ $ make benchmark
 
 You will see the results in your terminal.
 
-The optimized image files remain in the benchmarks directory after execution for your review.  To clean the optimized files, use the following command:
+The optimized image files remain in the `benchmarks/img` subdirectory after execution for your review.  To clean the optimized files, use the following command:
 
 ```
 $ make clean

@@ -15,6 +15,10 @@
 #
 # ///////////////////////////////////////////////////////////
 
+# UNCOMMENT FOR TESTING ONLY
+# python crunch.py --gui "$@"
+# exit 0
+
 # Message on application open (no arguments passed to script on initial open)
 if [ $# -eq 0 ]; then
     cat waiting.html

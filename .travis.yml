@@ -34,7 +34,7 @@ matrix:
       language: generic
       osx_image: xcode11    # Python 3.7.4 running on macOS 10.14.4
       before_install:
-        - brew install pngcheck
+        - export HOMEBREW_NO_INSTALL_CLEANUP=1 && brew install pngcheck
       install:
         - make build-dependencies
         - make install-executable
@@ -56,6 +56,17 @@ matrix:
       script:
         - flake8 --ignore=E501,W503,E121,E123,E126,E226,E24,E704,W503,W504 src/crunch.py
         - shellcheck --exclude=2046 src/*.sh
+    - name: "Benchmarks"
+      python: 3.7
+      env: TOX_ENV=py37
+      dist: xenial
+      install:
+        - pip install --upgrade numpy
+      install:
+        - make build-dependencies
+        - make install-executable
+      script:
+        - make benchmark
 
 # The following prevents Travis from running CI on pull requests that come from a
 # branch in the same repository. Without this, it will run the same CI for the

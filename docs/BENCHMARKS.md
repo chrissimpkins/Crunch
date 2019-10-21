@@ -1,5 +1,7 @@
 ## Crunch Benchmarks
 
+**This is of historical interest only.  The versions of tools in this comparison are outdated (including Crunch) and these should no longer be considered valid comparisons of current era tools.  Please see the benchmarks directory of the repository for updated benchmark results.**
+
 PNG optimization benchmarks were executed with Crunch v0.9.0.  They use [the PNG Test Corpus files](http://css-ig.net/images/png-test-corpus.zip) that are maintained by Cédric Louvrier on css-ig.net.  A broad analysis of available PNG optimization tools is available [here](http://css-ig.net/png-tools-overview) for additional reference.
 
 In the following table, `Size In` and `Size Out` represent the original and optimized file size in bytes, respectively.  `%Original Size` is the percent of the original file size in bytes represented by the final optimized file size.  A lower value is better.

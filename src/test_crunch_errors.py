@@ -33,30 +33,33 @@ def test_pytest_capsys(capsys):
 
 
 def test_crunch_missing_argument_error(capsys):
-    with pytest.raises(SystemExit):
+    with pytest.raises(SystemExit) as exit_info:
         src.crunch.main([])
     
     out, err = capsys.readouterr()
     assert len(err) > 0
-    assert err.startswith("[ERROR]") is True
+    assert err.startswith("[ ! ]") is True
+    assert exit_info.value.code == 1
 
 
 def test_crunch_missing_file_error(capsys):
-    with pytest.raises(SystemExit):
+    with pytest.raises(SystemExit) as exit_info:
         src.crunch.main(["bogusfile.png"])
     
     out, err = capsys.readouterr()
     assert len(err) > 0
-    assert err.startswith("[ERROR]") is True
+    assert err.startswith("[ ! ]") is True
+    assert exit_info.value.code == 1
 
 
 def test_crunch_bad_filepath_error(capsys):
-    with pytest.raises(SystemExit):
+    with pytest.raises(SystemExit) as exit_info:
         src.crunch.main(["src/test_crunch_errors.py"])
     
     out, err = capsys.readouterr()
     assert len(err) > 0
-    assert err.startswith("[ERROR]") is True
+    assert err.startswith("[ ! ]") is True
+    assert exit_info.value.code == 1
 
 
 # ///////////////////////////////////////////////////////
@@ -70,11 +73,12 @@ def test_crunch_missing_pngquant_error(capsys, monkeypatch):
         return os.path.join("bogus", "pngquant")
     monkeypatch.setattr(src.crunch, 'get_pngquant_path', return_bogus_path)
     testpath = os.path.join("testfiles", "robot.png")
-    with pytest.raises(SystemExit):
+    with pytest.raises(SystemExit) as exit_info:
         src.crunch.main([testpath])
 
     out, err = capsys.readouterr()
-    assert err.startswith("[ERROR]") is True
+    assert err.startswith("[ ! ]") is True
+    assert exit_info.value.code == 1
     
 
 def test_crunch_missing_zopflipng_error(capsys, monkeypatch):
@@ -82,11 +86,12 @@ def test_crunch_missing_zopflipng_error(capsys, monkeypatch):
         return os.path.join("bogus", "zopflipng")
     monkeypatch.setattr(src.crunch, 'get_zopflipng_path', return_bogus_path)
     testpath = os.path.join("testfiles", "robot.png")
-    with pytest.raises(SystemExit):
+    with pytest.raises(SystemExit) as exit_info:
         src.crunch.main([testpath])
 
     out, err = capsys.readouterr()
-    assert err.startswith("[ERROR]") is True
+    assert err.startswith("[ ! ]") is True
+    assert exit_info.value.code == 1
 
 
 # ///////////////////////////////////////////////////////
@@ -101,8 +106,9 @@ def test_crunch_exception_multiprocessing_pool(capsys, monkeypatch):
     monkeypatch.setattr(src.crunch, 'optimize_png', raise_ioerror)
     testpath1 = os.path.join("testfiles", "robot.png")
     testpath2 = os.path.join("testfiles", "robot.png")
-    with pytest.raises(SystemExit):
+    with pytest.raises(SystemExit) as exit_info:
         src.crunch.main([testpath1, testpath2])
 
     out, err = capsys.readouterr()
-    assert "[ERROR]" in err
+    assert "[ ! ]" in err
+    assert exit_info.value.code == 1

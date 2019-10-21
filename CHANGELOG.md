@@ -1,5 +1,25 @@
 ## Changelog
 
+### v4.0.0
+
+- Updated pngquant to v2.12.5
+- Updated libpng to v1.6.37
+- Updated zopflipng to v2.2.0 (@chrissimpkins derivative) - upstream updates through https://github.com/google/zopfli/commit/5d9b71b3c636e9e14a8f7a3f983ff93a1a3793ac
+- crunch executable : added ANSI color support in stdout / stderr messages
+- crunch.py : PEP 8 source code formatting refactor with `black`
+- crunch.py : refactor logging setup approach
+- FIX Crunch macOS service : fixed bug in processing of png image file paths that include spaces (thanks Changyoung!)
+- FIX crunch executable: command line error handling when no arguments are passed to the command line `crunch` executable
+- Added Makefile dist target
+- Added Makefile benchmark target
+- Added Makefile clean target
+- Updated Makefile flake8 linting target
+- Updated dmg-builder.sh dmg installer script
+- Added new image-compare.py script for comparison of test image file sizes
+- Added new dssim-comparisons.sh script for DSSIM analysis of pre/post compression test images
+- Added new suite of reference PNG images and benchmarking support in `bench.py` script
+- Added continuous benchmarking through Travis CI
+
 ### v3.0.1
 
 - modified the macOS GUI idle animation to reduce CPU usage during the application idle stage (issue report #66)

@@ -1,6 +1,18 @@
 
+benchmark:
+	cd benchmarks && $(MAKE) $@
+
 build-dependencies:
 	src/install-dependencies.sh
+
+clean:
+	rm benchmarks/img/*-crunch.png
+
+dist: 
+	./dmg-builder.sh
+
+dist-homebrew:
+	cask-repair crunch
 
 install-executable:
 	sudo cp src/crunch.py /usr/local/bin/crunch
@@ -37,7 +49,7 @@ test-coverage:
 
 test-python:
 	tox
-	flake8 --ignore=E501,W503,E121,E123,E126,E226,E24,E704,W503,W504 src/crunch.py
+	flake8 --ignore=E501,W503,E121,E123,E126,E226,E24,E704,W503,W504,N806 src/crunch.py
 
 test-shell:
 	shellcheck --exclude=2046 src/*.sh
@@ -49,4 +61,5 @@ test-valid-png-output:
 
 test: test-python test-shell test-valid-png-output
 
-.PHONY: build-dependencies install-executable install-macos-service uninstall-executable uninstall-macos-service test test-coverage test-python test-shell test-valid-png-output
+
+.PHONY: benchmark build-dependencies install-executable install-macos-service uninstall-executable uninstall-macos-service test test-coverage test-python test-shell test-valid-png-output dist

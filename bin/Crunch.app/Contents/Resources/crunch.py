@@ -5,7 +5,7 @@
 #  crunch
 #    A PNG file optimization tool built on pngquant and zopflipng
 #
-#   Copyright 2018 Christopher Simpkins
+#   Copyright 2019 Christopher Simpkins
 #   MIT License
 #
 #   Source Repository: https://github.com/chrissimpkins/Crunch
@@ -24,6 +24,10 @@ from multiprocessing import Lock, Pool, cpu_count
 # Locks
 stdstream_lock = Lock()
 logging_lock = Lock()
+
+# Application Constants
+VERSION = "4.0.0"
+VERSION_STRING = "crunch v" + VERSION
 
 # Processor Constant
 #  - Modify this to an integer value if you want to fix the number of
@@ -44,18 +48,14 @@ CRUNCH_DOT_DIRECTORY = os.path.join(os.path.expanduser("~"), ".crunch")
 # Log File Path Constants
 LOGFILE_PATH = os.path.join(CRUNCH_DOT_DIRECTORY, "crunch.log")
 
-# Application Constants
-VERSION = "3.0.1"
-VERSION_STRING = "crunch v" + VERSION
-
 HELP_STRING = """
-///////////////////////////////////////////////////
+==================================================
  crunch
-  Copyright 2018 Christopher Simpkins
+  Copyright 2019 Christopher Simpkins
   MIT License
 
   Source: https://github.com/chrissimpkins/Crunch
-///////////////////////////////////////////////////
+==================================================
 
 crunch is a command line executable that performs lossy optimization of one or more png image files with pngquant and zopflipng.
 
@@ -70,17 +70,25 @@ Options:
 
 USAGE = "$ crunch [image path 1]...[image path n]"
 
-# Create the Crunch dot directory in $HOME if it does not exist
-# Only used for macOS GUI and macOS right-click menu service execution
-if sys.argv[1] in ("--gui", "--service"):
-    if not os.path.isdir(CRUNCH_DOT_DIRECTORY):
-        os.makedirs(CRUNCH_DOT_DIRECTORY)
-    # clear the text in the log file before every script execution
-    # logging is only maintained for the last execution of the script
-    open(LOGFILE_PATH, "w").close()
-
 
 def main(argv):
+
+    # Create the Crunch dot directory in $HOME if it does not exist
+    # Only used for macOS GUI and macOS right-click menu service execution
+    if len(argv) > 0 and argv[0] in ("--gui", "--service"):
+        if not os.path.isdir(CRUNCH_DOT_DIRECTORY):
+            os.makedirs(CRUNCH_DOT_DIRECTORY)
+        # clear the text in the log file before every script execution
+        # logging is only maintained for the last execution of the script
+        open(LOGFILE_PATH, "w").close()
+
+    # ////////////////////////
+    # ANSI COLOR DEFINITIONS
+    # ////////////////////////
+    if not is_gui(sys.argv):
+        ERROR_STRING = "[ " + format_ansi_red("!") + " ]"
+    else:
+        ERROR_STRING = "[ ! ]"
 
     # //////////////////////////////////
     # CONFIRM ARGUMENT PRESENT
@@ -88,7 +96,7 @@ def main(argv):
 
     if len(argv) == 0:
         sys.stderr.write(
-            "[ERROR] Please include one or more paths to PNG image files as "
+            ERROR_STRING + " Please include one or more paths to PNG image files as "
             "arguments to the script." + os.linesep
         )
         sys.exit(1)
@@ -130,42 +138,65 @@ def main(argv):
     for png_path in png_path_list:
         # Not a file test
         if not os.path.isfile(png_path):  # is not an existing file
-            sys.stderr.write("[ERROR] '" + png_path + "' does not appear to be a valid path to a PNG file" + os.linesep)
+            sys.stderr.write(
+                ERROR_STRING
+                + " '"
+                + png_path
+                + "' does not appear to be a valid path to a PNG file"
+                + os.linesep
+            )
             sys.exit(1)  # not a file, abort immediately
         # PNG validity test
         if not is_valid_png(png_path):
-            sys.stderr.write("[ERROR] '" + png_path + "' is not a valid PNG file." + os.linesep)
+            sys.stderr.write(
+                ERROR_STRING
+                + " '"
+                + png_path
+                + "' is not a valid PNG file."
+                + os.linesep
+            )
             if is_gui(argv):
                 log_error(png_path + " is not a valid PNG file.")
             NOTPNG_ERROR_FOUND = True
 
     # Exit after checking all file requests and reporting on all invalid file paths (above)
     if NOTPNG_ERROR_FOUND is True:
-        sys.stderr.write("The request was not executed successfully. Please try again with one or more valid PNG files." + os.linesep)
+        sys.stderr.write(
+            "The request was not executed successfully. Please try again with one or more valid PNG files."
+            + os.linesep
+        )
         if is_gui(argv):
-            log_error("The request was not executed successfully. Please try again with one or more valid PNG files.")
+            log_error(
+                "The request was not executed successfully. Please try again with one or more valid PNG files."
+            )
         sys.exit(1)
 
     # Dependency error handling
     if not os.path.exists(PNGQUANT_EXE_PATH):
         sys.stderr.write(
-            "[ERROR] pngquant executable was not identified on path '"
+            ERROR_STRING
+            + " pngquant executable was not identified on path '"
             + PNGQUANT_EXE_PATH
             + "'"
             + os.linesep
         )
         if is_gui(argv):
-            log_error("pngquant was not found on the expected path " + PNGQUANT_EXE_PATH)
+            log_error(
+                "pngquant was not found on the expected path " + PNGQUANT_EXE_PATH
+            )
         sys.exit(1)
     elif not os.path.exists(ZOPFLIPNG_EXE_PATH):
         sys.stderr.write(
-            "[ERROR] zopflipng executable was not identified on path '"
+            ERROR_STRING
+            + " zopflipng executable was not identified on path '"
             + ZOPFLIPNG_EXE_PATH
             + "'"
             + os.linesep
         )
         if is_gui(argv):
-            log_error("zopflipng was not found on the expected path " + ZOPFLIPNG_EXE_PATH)
+            log_error(
+                "zopflipng was not found on the expected path " + ZOPFLIPNG_EXE_PATH
+            )
         sys.exit(1)
 
     # ////////////////////////////////////
@@ -186,14 +217,24 @@ def main(argv):
         if processes > len(png_path_list):
             processes = len(png_path_list)
 
-        print("Spawning " + str(processes) + " processes to optimize " + str(len(png_path_list)) + " image files...")
+        print(
+            "Spawning "
+            + str(processes)
+            + " processes to optimize "
+            + str(len(png_path_list))
+            + " image files..."
+        )
         p = Pool(processes)
         try:
             p.map(optimize_png, png_path_list)
         except Exception as e:
             stdstream_lock.acquire()
             sys.stderr.write("-----" + os.linesep)
-            sys.stderr.write("[ERROR] Error detected during execution of the request." + os.linesep)
+            sys.stderr.write(
+                ERROR_STRING
+                + " Error detected during execution of the request."
+                + os.linesep
+            )
             sys.stderr.write(str(e) + os.linesep)
             stdstream_lock.release()
             if is_gui(argv):
@@ -213,15 +254,28 @@ def main(argv):
 
 def optimize_png(png_path):
     img = ImageFile(png_path)
+
     # define pngquant and zopflipng paths
     PNGQUANT_EXE_PATH = get_pngquant_path()
     ZOPFLIPNG_EXE_PATH = get_zopflipng_path()
 
+    # ////////////////////////
+    # ANSI COLOR DEFINITIONS
+    # ////////////////////////
+    if not is_gui(sys.argv):
+        ERROR_STRING = "[ " + format_ansi_red("!") + " ]"
+    else:
+        ERROR_STRING = "[ ! ]"
+
     # --------------
     # pngquant stage
     # --------------
-    pngquant_options = " --quality=80-98 --skip-if-larger --force --strip --speed 1 --ext -crunch.png "
-    pngquant_command = PNGQUANT_EXE_PATH + pngquant_options + shellquote(img.pre_filepath)
+    pngquant_options = (
+        " --quality=80-98 --skip-if-larger --force --strip --speed 1 --ext -crunch.png "
+    )
+    pngquant_command = (
+        PNGQUANT_EXE_PATH + pngquant_options + shellquote(img.pre_filepath)
+    )
     try:
         subprocess.check_output(pngquant_command, stderr=subprocess.STDOUT, shell=True)
     except CalledProcessError as cpe:
@@ -237,16 +291,32 @@ def optimize_png(png_path):
             pass
         else:
             stdstream_lock.acquire()
-            sys.stderr.write("[ERROR] " + img.pre_filepath + " processing failed at the pngquant stage." + os.linesep)
+            sys.stderr.write(
+                ERROR_STRING
+                + " "
+                + img.pre_filepath
+                + " processing failed at the pngquant stage."
+                + os.linesep
+            )
             stdstream_lock.release()
             if is_gui(sys.argv):
-                log_error(img.pre_filepath + " processing failed at the pngquant stage. " + os.linesep + str(cpe))
+                log_error(
+                    img.pre_filepath
+                    + " processing failed at the pngquant stage. "
+                    + os.linesep
+                    + str(cpe)
+                )
                 return None
             else:
                 raise cpe
     except Exception as e:
         if is_gui(sys.argv):
-            log_error(img.pre_filepath + " processing failed at the pngquant stage. " + os.linesep + str(e))
+            log_error(
+                img.pre_filepath
+                + " processing failed at the pngquant stage. "
+                + os.linesep
+                + str(e)
+            )
             return None
         else:
             raise e
@@ -264,21 +334,43 @@ def optimize_png(png_path):
         # filters.  This achieves better compression than the default approach for non-quantized PNG
         # files, but takes significantly longer (based upon testing by CS)
         zopflipng_options = " -y --lossy_transparent "
-    zopflipng_command = ZOPFLIPNG_EXE_PATH + zopflipng_options + shellquote(img.post_filepath) + " " + shellquote(img.post_filepath)
+    zopflipng_command = (
+        ZOPFLIPNG_EXE_PATH
+        + zopflipng_options
+        + shellquote(img.post_filepath)
+        + " "
+        + shellquote(img.post_filepath)
+    )
     try:
         subprocess.check_output(zopflipng_command, stderr=subprocess.STDOUT, shell=True)
     except CalledProcessError as cpe:
         stdstream_lock.acquire()
-        sys.stderr.write("[ERROR] " + img.pre_filepath + " processing failed at the zopflipng stage." + os.linesep)
+        sys.stderr.write(
+            ERROR_STRING
+            + " "
+            + img.pre_filepath
+            + " processing failed at the zopflipng stage."
+            + os.linesep
+        )
         stdstream_lock.release()
         if is_gui(sys.argv):
-            log_error(img.pre_filepath + " processing failed at the zopflipng stage. " + os.linesep + str(cpe))
+            log_error(
+                img.pre_filepath
+                + " processing failed at the zopflipng stage. "
+                + os.linesep
+                + str(cpe)
+            )
             return None
         else:
             raise cpe
     except Exception as e:
         if is_gui(sys.argv):
-            log_error(img.pre_filepath + " processing failed at the pngquant stage. " + os.linesep + str(e))
+            log_error(
+                img.pre_filepath
+                + " processing failed at the pngquant stage. "
+                + os.linesep
+                + str(e)
+            )
             return None
         else:
             raise e
@@ -286,17 +378,41 @@ def optimize_png(png_path):
     # Check file size post-optimization and report comparison with pre-optimization file
     img.get_post_filesize()
     percent = img.get_compression_percent()
-    percent_string = '{0:.2f}'.format(percent)
+    percent_string = "{0:.2f}%".format(percent)
+    # if compression occurred, color the percent string green
+    # otherwise, leave it default text color
+    if not is_gui(sys.argv) and percent < 100:
+        percent_string = format_ansi_green(percent_string)
 
     # report percent original file size / post file path / size (bytes) to stdout (command line executable)
     stdstream_lock.acquire()
-    print("[ " + percent_string + "% ] " + img.post_filepath + " (" + str(img.post_size) + " bytes)")
+    print(
+        "[ "
+        + percent_string
+        + " ] "
+        + img.post_filepath
+        + " ("
+        + str(img.post_size)
+        + " bytes)"
+    )
     stdstream_lock.release()
 
-    # report percent original file size / post file path / size (bytes) to stdout (macOS GUI + right-click service)
+    # report percent original file size / post file path / size (bytes) to log file (macOS GUI + right-click service)
     if is_gui(sys.argv):
-        log_info("[ " + percent_string + "% ] " +
-                 img.post_filepath + " (" + str(img.post_size) + " bytes)")
+        log_info(
+            "[ "
+            + percent_string
+            + " ] "
+            + img.post_filepath
+            + " ("
+            + str(img.post_size)
+            + " bytes)"
+        )
+
+
+# -----------
+# Utilities
+# -----------
 
 
 def fix_filepath_args(args):
@@ -342,14 +458,14 @@ def get_zopflipng_path():
 
 
 def is_gui(arglist):
-    return ("--gui" in arglist or "--service" in arglist)
+    return "--gui" in arglist or "--service" in arglist
 
 
 def is_valid_png(filepath):
     # The PNG byte signature (https://www.w3.org/TR/PNG/#5PNG-file-signature)
-    expected_signature = struct.pack('8B', 137, 80, 78, 71, 13, 10, 26, 10)
+    expected_signature = struct.pack("8B", 137, 80, 78, 71, 13, 10, 26, 10)
     # open the file and read first 8 bytes
-    with open(filepath, 'rb') as filer:
+    with open(filepath, "rb") as filer:
         signature = filer.read(8)
     # return boolean test result for first eight bytes == expected PNG byte signature
     return signature == expected_signature
@@ -358,7 +474,7 @@ def is_valid_png(filepath):
 def log_error(errmsg):
     current_time = time.strftime("%m-%d-%y %H:%M:%S")
     logging_lock.acquire()
-    with open(LOGFILE_PATH, 'a') as filewriter:
+    with open(LOGFILE_PATH, "a") as filewriter:
         filewriter.write(current_time + "\tERROR\t" + errmsg + os.linesep)
         filewriter.flush()
         os.fsync(filewriter.fileno())
@@ -368,7 +484,7 @@ def log_error(errmsg):
 def log_info(infomsg):
     current_time = time.strftime("%m-%d-%y %H:%M:%S")
     logging_lock.acquire()
-    with open(LOGFILE_PATH, 'a') as filewriter:
+    with open(LOGFILE_PATH, "a") as filewriter:
         filewriter.write(current_time + "\tINFO\t" + infomsg + os.linesep)
         filewriter.flush()
         os.fsync(filewriter.fileno())
@@ -378,6 +494,20 @@ def log_info(infomsg):
 
 def shellquote(filepath):
     return "'" + filepath.replace("'", "'\\''") + "'"
+
+
+def format_ansi_red(text):
+    if sys.stdout.isatty():
+        return "\033[0;31m" + text + "\033[0m"
+    else:
+        return text
+
+
+def format_ansi_green(text):
+    if sys.stdout.isatty():
+        return "\033[0;32m" + text + "\033[0m"
+    else:
+        return text
 
 
 # ///////////////////////
@@ -415,7 +545,7 @@ if __name__ == "__main__":
     # This workaround reconstructs the original filepaths
     # that are split by the shell script into separate arguments
     # when there are spaces in the macOS file path
-    if sys.argv[1] in ("--gui", "--service"):
+    if len(sys.argv) > 1 and sys.argv[1] in ("--gui", "--service"):
         arg_list = fix_filepath_args(sys.argv[1:])
         main(arg_list)
     else:

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-#----------------------------------------
+# ----------------------------------------
 #
 # Copyright (c) 2019 Christopher Simpkins
 # MIT license
@@ -13,7 +13,7 @@ import os
 
 
 def grouped(iterable, n):
-    return zip(*[iter(iterable)]*n)
+    return zip(*[iter(iterable)] * n)
 
 
 paths = sorted(glob.glob("*.png"))
@@ -35,7 +35,7 @@ for path_a, path_b in grouped(paths, 2):
 
     pre_size = os.path.getsize(pre_path)
     post_size = os.path.getsize(post_path)
-    percent_size = (post_size/pre_size)*100
+    percent_size = (post_size / pre_size) * 100
 
     percent_list.append(percent_size)
     pre_size_list.append(pre_size)
@@ -49,13 +49,13 @@ total_initial_size = sum(pre_size_list)
 total_final_size = sum(post_size_list)
 delta = total_initial_size - total_final_size
 
-
 print(f"\nInitial:\t{total_initial_size:>8} B")
 print(f"Final:  \t{total_final_size:>8} B")
 print(f"Delta: -{delta} B")
 print(f"Mean: {mean:.2f}%")
 try:
     import numpy as np
+
     a = np.array(percent_list)
     stdev = np.std(a, dtype=np.float64)
     print(f"SD: {stdev:.2f}%")

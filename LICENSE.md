@@ -743,4 +743,4 @@ The application icon image is a slightly modified (color) version of the ["Audac
 
 ## Animated GIF Spinner Images License
 
-The animated *.gif images used during the processing of files with this application were provided by [loading.io](https://loading.io) under a CC0 / CC-By license.
+The animated *.gif images used on the README.md page were provided by [loading.io](https://loading.io) under a CC0 / CC-By license.

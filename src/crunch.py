@@ -66,6 +66,7 @@ Options:
     --help, -h      application help
     --usage         application usage
     --version, -v   application version
+    --force, -f     override (force) the original file
 """
 
 USAGE = "$ crunch [image path 1]...[image path n]"

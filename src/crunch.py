@@ -69,9 +69,11 @@ Options:
 """
 
 USAGE = "$ crunch [image path 1]...[image path n]"
+FORCE = False
 
 
 def main(argv):
+    global FORCE
 
     # Create the Crunch dot directory in $HOME if it does not exist
     # Only used for macOS GUI and macOS right-click menu service execution
@@ -133,6 +135,10 @@ def main(argv):
     # //////////////////////////////////
     # COMMAND LINE ERROR HANDLING
     # //////////////////////////////////
+
+    if argv[0] in ("-f", "--force"):
+        png_path_list.remove(argv[0])
+        FORCE = True
 
     NOTPNG_ERROR_FOUND = False
     for png_path in png_path_list:
@@ -253,6 +259,8 @@ def main(argv):
 
 
 def optimize_png(png_path):
+    global FORCE
+
     img = ImageFile(png_path)
 
     # define pngquant and zopflipng paths
@@ -408,6 +416,19 @@ def optimize_png(png_path):
             + str(img.post_size)
             + " bytes)"
         )
+
+    if FORCE == True:
+        try:
+            os.remove(img.pre_filepath)
+            shutil.move(img.post_filepath, img.pre_filepath)
+            stdstream_lock.acquire()
+            print("Moved {} to {}".format(img.post_filepath, img.pre_filepath))
+            stdstream_lock.release()
+        except Exception as e:
+            stdstream_lock.acquire()
+            sys.stderr.write("Error: Unable to overwrite pre image file {}.  Error message: {}".format(
+                img.pre_filepath, e))
+            stdstream_lock.release()
 
 
 # -----------

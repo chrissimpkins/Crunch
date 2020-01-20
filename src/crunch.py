@@ -26,7 +26,7 @@ stdstream_lock = Lock()
 logging_lock = Lock()
 
 # Application Constants
-VERSION = "4.0.0"
+VERSION = "4.1.0"
 VERSION_STRING = "crunch v" + VERSION
 
 # Processor Constant
@@ -66,7 +66,7 @@ Options:
     --help, -h      application help
     --usage         application usage
     --version, -v   application version
-    --force, -f     override (force) the original file
+    --force, -f     overwrite original file in place (force)
 """
 
 USAGE = "$ crunch [image path 1]...[image path n]"
@@ -119,6 +119,14 @@ def main(argv):
         sys.exit(0)
 
     # ////////////////////////
+    # PARSE OTHER OPTIONS
+    # ////////////////////////
+
+    # define inplace write request with `-f` or `--force` CL option
+    if is_inplace_write(argv):
+        FORCE = True
+
+    # ////////////////////////
     # DEFINE DEPENDENCY PATHS
     # ////////////////////////
     PNGQUANT_EXE_PATH = get_pngquant_path()
@@ -130,16 +138,14 @@ def main(argv):
 
     if is_gui(argv):
         png_path_list = argv[1:]
+    elif is_inplace_write(argv):  # remove `-f` or `--force`
+        png_path_list = argv[1:]
     else:
         png_path_list = argv
 
     # //////////////////////////////////
     # COMMAND LINE ERROR HANDLING
     # //////////////////////////////////
-
-    if argv[0] in ("-f", "--force"):
-        png_path_list.remove(argv[0])
-        FORCE = True
 
     NOTPNG_ERROR_FOUND = False
     for png_path in png_path_list:
@@ -418,7 +424,7 @@ def optimize_png(png_path):
             + " bytes)"
         )
 
-    if FORCE == True:
+    if FORCE is True:  # perform in place write of the requested file path
         try:
             os.remove(img.pre_filepath)
             shutil.move(img.post_filepath, img.pre_filepath)
@@ -481,6 +487,10 @@ def get_zopflipng_path():
 
 def is_gui(arglist):
     return "--gui" in arglist or "--service" in arglist
+
+
+def is_inplace_write(arglist):
+    return "-f" in arglist or "--force" in arglist
 
 
 def is_valid_png(filepath):

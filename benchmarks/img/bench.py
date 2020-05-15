@@ -31,7 +31,8 @@ for path_a, path_b in grouped(paths, 2):
         pre_path = path_a
 
     # assert that we are testing the correct pairs of files
-    assert f"{pre_path[:-4]}-crunch.png" == post_path
+    if f"{pre_path[:-4]}-crunch.png" != post_path:
+        raise AssertionError
 
     pre_size = os.path.getsize(pre_path)
     post_size = os.path.getsize(post_path)

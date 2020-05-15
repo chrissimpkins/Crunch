@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import os.path
-import pytest
 
 from src.crunch import ImageFile
 

@@ -217,24 +217,23 @@ def main(argv):
             + str(len(png_path_list))
             + " image files..."
         )
-        p = Pool(processes)
-        try:
-            p.map(optimize_png, png_path_list)
-            p.close()
-            p.join()
-        except Exception as e:
-            stdstream_lock.acquire()
-            sys.stderr.write("-----" + os.linesep)
-            sys.stderr.write(
-                ERROR_STRING
-                + " Error detected during execution of the request."
-                + os.linesep
-            )
-            sys.stderr.write(str(e) + os.linesep)
-            stdstream_lock.release()
-            if is_gui(argv):
-                log_error(str(e))
-            sys.exit(1)
+        with Pool(processes) as p:
+            try:
+                p.map(optimize_png, png_path_list)
+                p.join()
+            except Exception as e:
+                stdstream_lock.acquire()
+                sys.stderr.write("-----" + os.linesep)
+                sys.stderr.write(
+                    ERROR_STRING
+                    + " Error detected during execution of the request."
+                    + os.linesep
+                )
+                sys.stderr.write(str(e) + os.linesep)
+                stdstream_lock.release()
+                if is_gui(argv):
+                    log_error(str(e))
+                sys.exit(1)
 
     # end of successful processing, exit code 0
     if is_gui(argv):

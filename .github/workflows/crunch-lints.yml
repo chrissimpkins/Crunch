@@ -1,0 +1,30 @@
+name: Lints
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        python-version: [3.9]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Display Python version & architecture
+        run: |
+          python -c "import sys; print(sys.version)"
+          python -c "import struct; print(struct.calcsize('P') * 8)"
+      - name: Install testing dependencies
+        run: |
+          sudo apt-get install -y shellcheck
+          pip install --upgrade flake8
+      - name: Lints
+        run: |
+          flake8 --ignore=E501 src/crunch.py
+          shellcheck --exclude=2046 src/*.sh

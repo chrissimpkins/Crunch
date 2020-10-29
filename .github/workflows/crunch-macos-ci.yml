@@ -26,8 +26,8 @@ jobs:
           brew install pngcheck
       - name: Install project dependencies and executable
         run: |
-          - make build-dependencies
-          - make install-executable
+          make build-dependencies
+          make install-executable
       - name: Python unit tests
         run: |
           pytest src

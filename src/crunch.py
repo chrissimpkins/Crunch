@@ -220,7 +220,6 @@ def main(argv):
         with Pool(processes) as p:
             try:
                 p.map(optimize_png, png_path_list)
-                p.join()
             except Exception as e:
                 stdstream_lock.acquire()
                 sys.stderr.write("-----" + os.linesep)

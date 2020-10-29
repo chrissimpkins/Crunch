@@ -1,4 +1,4 @@
-name: Python CI
+name: Linux Python CI
 
 on: [push]
 

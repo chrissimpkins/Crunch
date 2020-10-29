@@ -2,7 +2,10 @@
 <img src="https://github.com/chrissimpkins/Crunch/raw/master/img/header-arrow-crunch.png" alt="Crunch PNG file optimization">
 
 [![GitHub release](https://img.shields.io/github/release/chrissimpkins/Crunch.svg?style=flat-square)](https://github.com/chrissimpkins/Crunch/releases/latest)
-[![Build Status](https://travis-ci.com/chrissimpkins/Crunch.svg?branch=master)](https://travis-ci.com/chrissimpkins/Crunch)
+![Linux Python CI](https://github.com/chrissimpkins/Crunch/workflows/Linux%20CI/badge.svg)
+![macOS Python CI](https://github.com/chrissimpkins/Crunch/workflows/macOS%20CI/badge.svg)
+![Lints](https://github.com/chrissimpkins/Crunch/workflows/Lints/badge.svg)
+![Benchmarks](https://github.com/chrissimpkins/Crunch/workflows/Benchmarks/badge.svg)
 
 ## About
 

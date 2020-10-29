@@ -1,4 +1,4 @@
-name: macOS Python CI
+name: macOS CI
 
 on: [push]
 

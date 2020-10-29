@@ -1,83 +1,83 @@
-language: python
-matrix:
-  include:
-    - name: "Linux py37"
-      python: 3.7
-      env: TOX_ENV=py37
-      dist: xenial
-      before_install:
-        - sudo apt-get update
-        - sudo apt-get install -y pngcheck
-      install: 
-        - make build-dependencies
-        - make install-executable
-        - pip install --upgrade tox pytest
-      script: 
-        - tox -e $TOX_ENV
-        - make test-valid-png-output
-    - name: "Linux py27"
-      python: 3.7
-      env: TOX_ENV=py27
-      dist: xenial
-      before_install:
-        - sudo apt-get update
-        - sudo apt-get install -y pngcheck
-      install:
-        - make build-dependencies
-        - make install-executable
-        - pip install --upgrade tox pytest
-      script: 
-        - tox -e $TOX_ENV
-        - make test-valid-png-output
-    - name: "macOS py37"
-      os: osx
-      language: generic
-      osx_image: xcode11    # Python 3.7.4 running on macOS 10.14.4
-      before_install:
-        - export HOMEBREW_NO_INSTALL_CLEANUP=1 && brew install pngcheck
-      install:
-        - make build-dependencies
-        - make install-executable
-        - pip3 install --upgrade tox pytest
-        - export PATH=/usr/local/bin:$PATH
-      env: TOX_ENV=py37
-      script: 
-        - tox -e $TOX_ENV
-        - make test-valid-png-output
-    - name: "Linting"
-      python: 3.7
-      env: TOX_ENV=py37
-      dist: xenial
-      before_install:
-        - sudo apt-get update
-        - sudo apt-get install -y shellcheck
-      install:
-        - pip install --upgrade flake8
-      script:
-        - flake8 --ignore=E501,W503,E121,E123,E126,E226,E24,E704,W503,W504 src/crunch.py
-        - shellcheck --exclude=2046 src/*.sh
-    - name: "Benchmarks"
-      python: 3.7
-      env: TOX_ENV=py37
-      dist: xenial
-      install:
-        - pip install --upgrade numpy
-      install:
-        - make build-dependencies
-        - make install-executable
-      script:
-        - make benchmark
+# language: python
+# matrix:
+#   include:
+#     - name: "Linux py37"
+#       python: 3.7
+#       env: TOX_ENV=py37
+#       dist: xenial
+#       before_install:
+#         - sudo apt-get update
+#         - sudo apt-get install -y pngcheck
+#       install:
+#         - make build-dependencies
+#         - make install-executable
+#         - pip install --upgrade tox pytest
+#       script:
+#         - tox -e $TOX_ENV
+#         - make test-valid-png-output
+#     - name: "Linux py27"
+#       python: 3.7
+#       env: TOX_ENV=py27
+#       dist: xenial
+#       before_install:
+#         - sudo apt-get update
+#         - sudo apt-get install -y pngcheck
+#       install:
+#         - make build-dependencies
+#         - make install-executable
+#         - pip install --upgrade tox pytest
+#       script:
+#         - tox -e $TOX_ENV
+#         - make test-valid-png-output
+#     - name: "macOS py37"
+#       os: osx
+#       language: generic
+#       osx_image: xcode11    # Python 3.7.4 running on macOS 10.14.4
+#       before_install:
+#         - export HOMEBREW_NO_INSTALL_CLEANUP=1 && brew install pngcheck
+#       install:
+#         - make build-dependencies
+#         - make install-executable
+#         - pip3 install --upgrade tox pytest
+#         - export PATH=/usr/local/bin:$PATH
+#       env: TOX_ENV=py37
+#       script:
+#         - tox -e $TOX_ENV
+#         - make test-valid-png-output
+#     - name: "Linting"
+#       python: 3.7
+#       env: TOX_ENV=py37
+#       dist: xenial
+#       before_install:
+#         - sudo apt-get update
+#         - sudo apt-get install -y shellcheck
+#       install:
+#         - pip install --upgrade flake8
+#       script:
+#         - flake8 --ignore=E501 src/crunch.py
+#         - shellcheck --exclude=2046 src/*.sh
+#     - name: "Benchmarks"
+#       python: 3.7
+#       env: TOX_ENV=py37
+#       dist: xenial
+#       install:
+#         - pip install --upgrade numpy
+#       install:
+#         - make build-dependencies
+#         - make install-executable
+#       script:
+#         - make benchmark
 
-# The following prevents Travis from running CI on pull requests that come from a
-# branch in the same repository. Without this, it will run the same CI for the
-# pull request branch _and_ the pull request itself, which makes no sense.
-branches:
-  only:
-    - master
-    # We want to build wip/* branches since these are not usually used for PRs
-    - /^wip\/.*$/
-    # We want to build version tags as well.
-    - /^v\d+\.\d+.*$/
+# # The following prevents Travis from running CI on pull requests that come from a
+# # branch in the same repository. Without this, it will run the same CI for the
+# # pull request branch _and_ the pull request itself, which makes no sense.
+# branches:
+#   only:
+#     - master
+#     # We want to build wip/* branches since these are not usually used for PRs
+#     - /^wip\/.*$/
+#     # We want to build version tags as well.
+#     - /^v\d+\.\d+.*$/
 
-notifications:
-  email: false
+# notifications:
+#   email: false

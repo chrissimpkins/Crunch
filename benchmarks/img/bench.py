@@ -48,11 +48,14 @@ mean = sum(percent_list) / len(percent_list)
 total_initial_size = sum(pre_size_list)
 total_final_size = sum(post_size_list)
 delta = total_initial_size - total_final_size
+total_percent = (total_final_size / total_initial_size) * 100
 
+print(f"Total files: {len(percent_list)}")
 print(f"\nInitial:\t{total_initial_size:>8} B")
 print(f"Final:  \t{total_final_size:>8} B")
-print(f"Delta: -{delta} B")
-print(f"Mean: {mean:.2f}%")
+print(f"\nDelta: -{delta} B")
+print(f"Total: {total_percent:.2f}% of initial size")
+print(f"Mean image reduction: {mean:.2f}%")
 try:
     import numpy as np
 

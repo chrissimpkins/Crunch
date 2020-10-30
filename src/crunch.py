@@ -233,6 +233,9 @@ def main(argv):
             if is_gui(argv):
                 log_error(str(e))
             sys.exit(1)
+        finally:
+            p.close()
+            p.join()
 
     # end of successful processing, exit code 0
     if is_gui(argv):

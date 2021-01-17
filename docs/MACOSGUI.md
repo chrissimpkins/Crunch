@@ -46,7 +46,7 @@ Optimized files are saved in the same directory as the original with the modifie
 If you used Homebrew to install Crunch, uninstall it with the following command:
 
 ```
-$ homebrew cask uninstall crunch
+$ brew uninstall --cask crunch
 ```
 
 If you used the dmg installer to install Crunch, you can uninstall it by opening your Finder and selecting your Applications directory.  Locate Crunch in the Finder window and move it to the Trash.  Empty your Trash, and the uninstall is complete.

@@ -16,15 +16,15 @@ Choose one of the methods below:
 This approach requires a previous install of the Homebrew package manager on your macOS system. Please refer to the Homebrew documentation for details.
 
 ```
-$ brew cask install crunch
+$ brew install --cask crunch
 ```
 
-Note that you must use `brew cask install` and not `brew install`!
+Note that you must use `brew install --cask` and not `brew install`!
 
 Automatically upgrade a previous install to the latest version with:
 
 ```
-$ brew cask upgrade
+$ brew upgrade --cask
 ```
 
 ### 2. Install with dmg Installer

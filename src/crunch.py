@@ -26,7 +26,7 @@ stdstream_lock = Lock()
 logging_lock = Lock()
 
 # Application Constants
-VERSION = "4.0.0"
+VERSION = "5.0.0"
 VERSION_STRING = "crunch v" + VERSION
 
 # Processor Constant
@@ -149,11 +149,7 @@ def main(argv):
         # PNG validity test
         if not is_valid_png(png_path):
             sys.stderr.write(
-                ERROR_STRING
-                + " '"
-                + png_path
-                + "' is not a valid PNG file."
-                + os.linesep
+                ERROR_STRING + " '" + png_path + "' is not a valid PNG file." + os.linesep
             )
             if is_gui(argv):
                 log_error(png_path + " is not a valid PNG file.")
@@ -181,9 +177,7 @@ def main(argv):
             + os.linesep
         )
         if is_gui(argv):
-            log_error(
-                "pngquant was not found on the expected path " + PNGQUANT_EXE_PATH
-            )
+            log_error("pngquant was not found on the expected path " + PNGQUANT_EXE_PATH)
         sys.exit(1)
     elif not os.path.exists(ZOPFLIPNG_EXE_PATH):
         sys.stderr.write(
@@ -240,6 +234,9 @@ def main(argv):
             if is_gui(argv):
                 log_error(str(e))
             sys.exit(1)
+        finally:
+            p.close()
+            p.join()
 
     # end of successful processing, exit code 0
     if is_gui(argv):
@@ -273,9 +270,7 @@ def optimize_png(png_path):
     pngquant_options = (
         " --quality=80-98 --skip-if-larger --force --strip --speed 1 --ext -crunch.png "
     )
-    pngquant_command = (
-        PNGQUANT_EXE_PATH + pngquant_options + shellquote(img.pre_filepath)
-    )
+    pngquant_command = PNGQUANT_EXE_PATH + pngquant_options + shellquote(img.pre_filepath)
     try:
         subprocess.check_output(pngquant_command, stderr=subprocess.STDOUT, shell=True)
     except CalledProcessError as cpe:

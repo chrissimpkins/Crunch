@@ -25,7 +25,7 @@ stdstream_lock = Lock()
 logging_lock = Lock()
 
 # Application Constants
-VERSION = "4.0.0"
+VERSION = "5.0.0"
 VERSION_STRING = "crunch v" + VERSION
 
 # Processor Constant

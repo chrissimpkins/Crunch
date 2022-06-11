@@ -7,6 +7,7 @@ build-dependencies:
 
 build-macos-icns:
 	rm -rf img/CrunchIcon.iconset
+	mkdir img/CrunchIcon.iconset
 	sips -z 16 16     img/Crunch-icon-3.png --out img/CrunchIcon.iconset/icon_16x16.png
 	sips -z 32 32     img/Crunch-icon-3.png --out img/CrunchIcon.iconset/icon_16x16@2x.png
 	sips -z 32 32     img/Crunch-icon-3.png --out img/CrunchIcon.iconset/icon_32x32.png

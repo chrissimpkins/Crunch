@@ -5,6 +5,19 @@ benchmark:
 build-dependencies:
 	src/install-dependencies.sh
 
+build-macos-icns:
+	rm -rf img/CrunchIcon.iconset
+	mkdir img/CrunchIcon.iconset
+	sips -z 16 16     img/Crunch-icon-3.png --out img/CrunchIcon.iconset/icon_16x16.png
+	sips -z 32 32     img/Crunch-icon-3.png --out img/CrunchIcon.iconset/icon_16x16@2x.png
+	sips -z 32 32     img/Crunch-icon-3.png --out img/CrunchIcon.iconset/icon_32x32.png
+	sips -z 64 64     img/Crunch-icon-3.png --out img/CrunchIcon.iconset/icon_32x32@2x.png
+	sips -z 128 128   img/Crunch-icon-3.png --out img/CrunchIcon.iconset/icon_128x128.png
+	sips -z 256 256   img/Crunch-icon-3.png --out img/CrunchIcon.iconset/icon_128x128@2x.png
+	sips -z 256 256   img/Crunch-icon-3.png --out img/CrunchIcon.iconset/icon_256x256.png
+	sips -z 512 512   img/Crunch-icon-3.png --out img/CrunchIcon.iconset/icon_256x256@2x.png
+	cd img && iconutil -c icns CrunchIcon.iconset
+
 clean:
 	rm benchmarks/img/*-crunch.png
 

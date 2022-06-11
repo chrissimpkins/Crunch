@@ -18,6 +18,11 @@ build-macos-icns:
 	sips -z 512 512   img/Crunch-icon-3.png --out img/CrunchIcon.iconset/icon_256x256@2x.png
 	cd img && iconutil -c icns CrunchIcon.iconset
 
+build-macos-installer:
+	# https://github.com/sindresorhus/create-dmg
+	-rm bin/*.dmg
+	cd bin && create-dmg Crunch.app
+
 clean:
 	rm benchmarks/img/*-crunch.png
 

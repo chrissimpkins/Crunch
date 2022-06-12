@@ -1,5 +1,20 @@
 ## Changelog
 
+### v5.0.0
+
+- Remove command line executable cPython 2 support
+- Fix GUI fails on recent versions of macOS (reported on macOS 12.3.1) (#92, fix #94)
+- Add Apple iconset application icons
+- Add icns application icon package and convert to use of this format for production Crunch application
+- Convert to use of https://github.com/sindresorhus/create-dmg for GUI macOS dmg installer prep
+- Add Makefile build-macos-icns target
+- Add Makefile build-macos-installer target
+- Add GitHub Actions CI testing
+- Remove Travis CI testing configuration file
+- Update GUI installation documentation
+- Remove dmg installer file from version control (will still be included in releases)
+- Remove dmg installer checksum file from version control (will still be included in releases)
+
 ### v4.0.0
 
 - Updated pngquant to v2.12.5

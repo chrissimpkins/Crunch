@@ -24,7 +24,7 @@ build-macos-installer:
 	-cd bin && create-dmg Crunch.app
 	# create checksum file for the installer
 	cd bin && mv Crunch*.dmg Crunch-Installer.dmg
-	cd bin && shasum Crunch-Installer.dmg > Crunch-Installer-checksum.txt
+	cd bin && shasum -a 256 Crunch-Installer.dmg > Crunch-Installer-checksum.txt
 
 clean:
 	rm benchmarks/img/*-crunch.png

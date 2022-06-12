@@ -21,7 +21,10 @@ build-macos-icns:
 build-macos-installer:
 	# https://github.com/sindresorhus/create-dmg
 	-rm bin/*.dmg
-	cd bin && create-dmg Crunch.app
+	-cd bin && create-dmg Crunch.app
+	# create checksum file for the installer
+	cd bin && mv Crunch*.dmg Crunch-Installer.dmg
+	cd bin && shasum Crunch-Installer.dmg > Crunch-Installer-checksum.txt
 
 clean:
 	rm benchmarks/img/*-crunch.png

@@ -11,7 +11,7 @@
 
 Crunch is a tool for lossy PNG image file optimization.  It combines selective bit depth, color type, and color palette reduction with zopfli DEFLATE compression algorithm encoding using the pngquant and zopflipng PNG optimization tools.  This approach leads to a significant file size gain relative to lossless approaches at the expense of a relatively modest decrease in image quality (see [example images](#examples) below).
 
-Continuous benchmark testing is available on [Travis CI](https://travis-ci.com/chrissimpkins/Crunch) (open the Benchmarks build for the commit of interest). Please see the benchmarks directory of this repository for details about the benchmarking approach and instructions on how to execute benchmarks locally on the reference images distributed in this repository or with your own image files.
+[Continuous benchmark testing](https://github.com/chrissimpkins/Crunch/actions/workflows/crunch-bench.yml) is available in our GitHub Actions CI. Please see the benchmarks directory of this repository for details about the benchmarking approach and instructions on how to execute benchmarks locally on the reference images distributed in this repository or with your own image files.
 
 Crunch PNG image optimization is available through the following applications that are distributed in this repository:
 

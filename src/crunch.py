@@ -56,7 +56,8 @@ HELP_STRING = """
   Source: https://github.com/chrissimpkins/Crunch
 ==================================================
 
-crunch is a command line executable that performs lossy optimization of one or more png image files with pngquant and zopflipng.
+crunch is a command line executable that performs lossy optimization of one
+or more png image files with pngquant and zopflipng.
 
 Usage:
     $ crunch [image path 1]...[image path n]
@@ -95,8 +96,8 @@ def main(argv):
 
     if len(argv) == 0:
         sys.stderr.write(
-            ERROR_STRING + " Please include one or more paths to PNG image files as "
-            "arguments to the script." + os.linesep
+            f"{ERROR_STRING} Please include one or more paths to PNG image files as "
+            "arguments to the script.{os.linesep}"
         )
         sys.exit(1)
 
@@ -138,57 +139,50 @@ def main(argv):
         # Not a file test
         if not os.path.isfile(png_path):  # is not an existing file
             sys.stderr.write(
-                ERROR_STRING
-                + " '"
-                + png_path
-                + "' does not appear to be a valid path to a PNG file"
-                + os.linesep
+                f"{ERROR_STRING} '{png_path}' does not appear to be a "
+                f"valid path to a PNG file{os.linesep}"
             )
             sys.exit(1)  # not a file, abort immediately
         # PNG validity test
         if not is_valid_png(png_path):
             sys.stderr.write(
-                ERROR_STRING + " '" + png_path + "' is not a valid PNG file." + os.linesep
+                f"{ERROR_STRING} '{png_path}' is not a valid PNG file.{os.linesep}"
             )
             if is_gui(argv):
-                log_error(png_path + " is not a valid PNG file.")
+                log_error(f"{png_path} is not a valid PNG file.")
             NOTPNG_ERROR_FOUND = True
 
-    # Exit after checking all file requests and reporting on all invalid file paths (above)
+    # Exit after checking all file requests and reporting on all invalid
+    # file paths (above)
     if NOTPNG_ERROR_FOUND is True:
         sys.stderr.write(
-            "The request was not executed successfully. Please try again with one or more valid PNG files."
-            + os.linesep
+            f"The request was not executed successfully. Please try again "
+            f"with one or more valid PNG files.{os.linesep}"
         )
         if is_gui(argv):
             log_error(
-                "The request was not executed successfully. Please try again with one or more valid PNG files."
+                "The request was not executed successfully. Please try "
+                "again with one or more valid PNG files."
             )
         sys.exit(1)
 
     # Dependency error handling
     if not os.path.exists(PNGQUANT_EXE_PATH):
         sys.stderr.write(
-            ERROR_STRING
-            + " pngquant executable was not identified on path '"
-            + PNGQUANT_EXE_PATH
-            + "'"
-            + os.linesep
+            f"{ERROR_STRING} pngquant executable was not identified on path "
+            f"'{PNGQUANT_EXE_PATH}'{os.linesep}"
         )
         if is_gui(argv):
-            log_error("pngquant was not found on the expected path " + PNGQUANT_EXE_PATH)
+            log_error(f"pngquant was not found on the expected path {PNGQUANT_EXE_PATH}")
         sys.exit(1)
     elif not os.path.exists(ZOPFLIPNG_EXE_PATH):
         sys.stderr.write(
-            ERROR_STRING
-            + " zopflipng executable was not identified on path '"
-            + ZOPFLIPNG_EXE_PATH
-            + "'"
-            + os.linesep
+            f"{ERROR_STRING} zopflipng executable was not identified on path "
+            f"'{ZOPFLIPNG_EXE_PATH}'{os.linesep}"
         )
         if is_gui(argv):
             log_error(
-                "zopflipng was not found on the expected path " + ZOPFLIPNG_EXE_PATH
+                f"zopflipng was not found on the expected path {ZOPFLIPNG_EXE_PATH}"
             )
         sys.exit(1)
 
@@ -202,33 +196,31 @@ def main(argv):
         optimize_png(png_path_list[0])
     else:
         processes = PROCESSES
-        # if not defined by user, start by defining spawned processes as number of available cores
+        # if not defined by user, start by defining spawned processes as number
+        # of available cores
         if processes == 0:
             processes = cpu_count()
 
-        # if total cores available is greater than number of files requested, limit to the latter number
+        # if total cores available is greater than number of files requested,
+        # limit to the latter number
         if processes > len(png_path_list):
             processes = len(png_path_list)
 
         print(
-            "Spawning "
-            + str(processes)
-            + " processes to optimize "
-            + str(len(png_path_list))
-            + " image files..."
+            f"Spawning {processes} processes to optimize {len(png_path_list)} "
+            f"image files..."
         )
         p = Pool(processes)
         try:
             p.map(optimize_png, png_path_list)
         except Exception as e:
             stdstream_lock.acquire()
-            sys.stderr.write("-----" + os.linesep)
+            sys.stderr.write(f"-----{os.linesep}")
             sys.stderr.write(
-                ERROR_STRING
-                + " Error detected during execution of the request."
-                + os.linesep
+                f"{ERROR_STRING} Error detected during execution of the request."
+                f"{os.linesep}"
             )
-            sys.stderr.write(str(e) + os.linesep)
+            sys.stderr.write(f"{e}{os.linesep}")
             stdstream_lock.release()
             if is_gui(argv):
                 log_error(str(e))
@@ -272,30 +264,25 @@ def optimize_png(png_path):
     except CalledProcessError as cpe:
         if cpe.returncode == 98:
             # this is the status code when file size increases with execution of pngquant.
-            # ignore at this stage, original file copied at beginning of zopflipng processing
-            # below if it is not present due to these errors
+            # ignore at this stage, original file copied at beginning of zopflipng
+            # processing below if it is not present due to these errors
             pass
         elif cpe.returncode == 99:
             # this is the status code when the image quality falls below the set min value
-            # ignore at this stage, original lfile copied at beginning of zopflipng processing
-            # below if it is not present to these errors
+            # ignore at this stage, original lfile copied at beginning of zopflipng
+            # processing below if it is not present to these errors
             pass
         else:
             stdstream_lock.acquire()
             sys.stderr.write(
-                ERROR_STRING
-                + " "
-                + img.pre_filepath
-                + " processing failed at the pngquant stage."
-                + os.linesep
+                f"{ERROR_STRING} {img.pre_filepath} processing failed at the pngquant "
+                f"stage.{os.linesep}"
             )
             stdstream_lock.release()
             if is_gui(sys.argv):
                 log_error(
-                    img.pre_filepath
-                    + " processing failed at the pngquant stage. "
-                    + os.linesep
-                    + str(cpe)
+                    f"{img.pre_filepath} processing failed at the pngquant stage."
+                    f"{os.linesep}{cpe}"
                 )
                 return None
             else:
@@ -303,10 +290,8 @@ def optimize_png(png_path):
     except Exception as e:
         if is_gui(sys.argv):
             log_error(
-                img.pre_filepath
-                + " processing failed at the pngquant stage. "
-                + os.linesep
-                + str(e)
+                f"{img.pre_filepath} processing failed at the pngquant stage."
+                f"{os.linesep}{e}"
             )
             return None
         else:
@@ -321,9 +306,10 @@ def optimize_png(png_path):
     # pngquant does not write expected file path if the file was larger after processing
     if not os.path.exists(img.post_filepath):
         shutil.copy(img.pre_filepath, img.post_filepath)
-        # If pngquant did not quantize the file, permit zopflipng to attempt compression with mulitple
-        # filters.  This achieves better compression than the default approach for non-quantized PNG
-        # files, but takes significantly longer (based upon testing by CS)
+        # If pngquant did not quantize the file, permit zopflipng to attempt compression
+        # with mulitple filters.  This achieves better compression than the default
+        # approach for non-quantized PNG files, but takes significantly longer
+        # (based upon testing by CS)
         zopflipng_options = " -y --lossy_transparent "
     zopflipng_command = (
         ZOPFLIPNG_EXE_PATH
@@ -337,19 +323,14 @@ def optimize_png(png_path):
     except CalledProcessError as cpe:
         stdstream_lock.acquire()
         sys.stderr.write(
-            ERROR_STRING
-            + " "
-            + img.pre_filepath
-            + " processing failed at the zopflipng stage."
-            + os.linesep
+            f"{ERROR_STRING} {img.pre_filepath} processing failed at the zopflipng "
+            f"stage.{os.linesep}"
         )
         stdstream_lock.release()
         if is_gui(sys.argv):
             log_error(
-                img.pre_filepath
-                + " processing failed at the zopflipng stage. "
-                + os.linesep
-                + str(cpe)
+                f"{img.pre_filepath} processing failed at the zopflipng stage."
+                f"{os.linesep}{cpe}"
             )
             return None
         else:
@@ -357,10 +338,8 @@ def optimize_png(png_path):
     except Exception as e:
         if is_gui(sys.argv):
             log_error(
-                img.pre_filepath
-                + " processing failed at the pngquant stage. "
-                + os.linesep
-                + str(e)
+                f"{img.pre_filepath} processing failed at the zopflipng stage."
+                f"{os.linesep}{e}"
             )
             return None
         else:
@@ -375,7 +354,8 @@ def optimize_png(png_path):
     if not is_gui(sys.argv) and percent < 100:
         percent_string = format_ansi_green(percent_string)
 
-    # report percent original file size / post file path / size (bytes) to stdout (command line executable)
+    # report percent original file size / post file path / size (bytes) to
+    # stdout (command line executable)
     stdstream_lock.acquire()
     print(
         "[ "
@@ -388,7 +368,8 @@ def optimize_png(png_path):
     )
     stdstream_lock.release()
 
-    # report percent original file size / post file path / size (bytes) to log file (macOS GUI + right-click service)
+    # report percent original file size / post file path / size (bytes) to log file
+    # (macOS GUI + right-click service)
     if is_gui(sys.argv):
         log_info(
             "[ "

@@ -70,7 +70,7 @@ test-coverage:
 
 test-python:
 	tox
-	flake8 --ignore=E501,W503,E121,E123,E126,E226,E24,E704,W503,W504,N806 src/crunch.py
+	flake8 src/crunch.py
 
 test-shell:
 	shellcheck --exclude=2046 src/*.sh

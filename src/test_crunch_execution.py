@@ -503,6 +503,7 @@ def test_crunch_function_main_multi_file_with_service_flag():
 
 def test_crunch_log_error():
     setup_logging_path()
+    setup_logging_locks()
 
     logpath = src.crunch.LOGFILE_PATH
     src.crunch.log_error("This is a test error message")
@@ -518,6 +519,7 @@ def test_crunch_log_error():
 
 def test_crunch_log_info():
     setup_logging_path()
+    setup_logging_locks()
     
     logpath = src.crunch.LOGFILE_PATH
     src.crunch.log_info("This is a test info message")
@@ -532,7 +534,8 @@ def test_crunch_log_info():
 
 @pytest.mark.skipif(sys.platform != "darwin", reason="requires macOS platform")
 def test_crunch_log_from_main_with_service():
-    teardown_logging_path()
+    setup_logging_path()
+    setup_logging_locks()
 
     with pytest.raises(SystemExit) as exit_info:
         startpath1 = os.path.join("testfiles", "robot.png")

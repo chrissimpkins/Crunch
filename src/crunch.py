@@ -1,4 +1,4 @@
-#!/usr/bin/env -S python3 -Wignore
+#!/usr/bin/env python3
 
 # ==================================================================
 #  crunch

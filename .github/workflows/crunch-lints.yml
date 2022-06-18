@@ -26,5 +26,5 @@ jobs:
           pip install --upgrade flake8
       - name: Lints
         run: |
-          flake8 --ignore=E501,W503 src/crunch.py
+          flake8 src/crunch.py
           shellcheck --exclude=2046 src/*.sh

@@ -20,10 +20,6 @@ from subprocess import CalledProcessError
 
 from multiprocessing import Lock, Pool, cpu_count
 
-# Locks
-stdstream_lock = Lock()
-logging_lock = Lock()
-
 # Application Constants
 VERSION = "5.0.0"
 VERSION_STRING = "crunch v" + VERSION
@@ -191,7 +187,15 @@ def main(argv):
     # ////////////////////////////////////
     print("Crunching ...")
 
+    # create locks
+    ss_lock = Lock()
+    log_lock = Lock()
+
     if len(png_path_list) == 1:
+        # the global locks are not necessary for single file processing
+        # but must be instantiated because the logging functions are
+        # used for single and multi-process execution
+        lock_init(ss_lock, log_lock)
         # there is only one PNG file, skip spawning of processes and just optimize it
         optimize_png(png_path_list[0])
     else:
@@ -210,18 +214,22 @@ def main(argv):
             f"Spawning {processes} processes to optimize {len(png_path_list)} "
             f"image files..."
         )
-        p = Pool(processes)
+
+        # create multiprocessing pool with global locks
+        # based on approach described in https://stackoverflow.com/a/25558333/2848172
+        # to address shared memory leak described in
+        # https://github.com/chrissimpkins/Crunch/issues/100
+        p = Pool(processes, initializer=lock_init, initargs=(ss_lock, log_lock))
+
         try:
             p.map(optimize_png, png_path_list)
         except Exception as e:
-            stdstream_lock.acquire()
             sys.stderr.write(f"-----{os.linesep}")
             sys.stderr.write(
                 f"{ERROR_STRING} Error detected during execution of the request."
                 f"{os.linesep}"
             )
             sys.stderr.write(f"{e}{os.linesep}")
-            stdstream_lock.release()
             if is_gui(argv):
                 log_error(str(e))
             sys.exit(1)
@@ -441,6 +449,16 @@ def is_valid_png(filepath):
         signature = filer.read(8)
     # return boolean test result for first eight bytes == expected PNG byte signature
     return signature == expected_signature
+
+
+def lock_init(ss_lock, log_lock):
+    # Based on approach described in
+    # https://stackoverflow.com/a/25558333/2848172
+    global stdstream_lock
+    global logging_lock
+
+    stdstream_lock = ss_lock
+    logging_lock = log_lock
 
 
 def log_error(errmsg):

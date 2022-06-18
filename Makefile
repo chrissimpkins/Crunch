@@ -76,7 +76,7 @@ test-shell:
 	shellcheck --exclude=2046 src/*.sh
 
 test-valid-png-output:
-	crunch testfiles/*.png
+	src/crunch.py testfiles/*.png
 	pngcheck testfiles/*-crunch.png
 	rm testfiles/*-crunch.png
 

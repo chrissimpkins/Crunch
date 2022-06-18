@@ -234,6 +234,7 @@ def test_crunch_function_fix_filepath_args_two_nonpng_files():
 # optimize_png function
 
 def test_crunch_function_optimize_png_unoptimized_file():
+    setup_logging_locks()
     startpath = os.path.join("testfiles", "robot.png")
     testpath = os.path.join("testfiles", "robot-crunch.png")
     # cleanup any existing files from previous tests
@@ -250,6 +251,7 @@ def test_crunch_function_optimize_png_unoptimized_file():
 
 
 def test_crunch_function_optimize_png_preoptimized_file():
+    setup_logging_locks()
     startpath = os.path.join("testfiles", "cat-cr.png") # test a file that has previously been optimized
     testpath = os.path.join("testfiles", "cat-cr-crunch.png")
     # cleanup any existing files from previous tests
@@ -266,6 +268,7 @@ def test_crunch_function_optimize_png_preoptimized_file():
 
 
 def test_crunch_function_optimize_png_bad_filetype(capsys):
+    setup_logging_locks()
     with pytest.raises(CalledProcessError):
         startpath = os.path.join("src", "crunch.py")
         src.crunch.optimize_png(startpath)
@@ -573,6 +576,15 @@ def setup_logging_path():
     # setup the log file
     if not os.path.isfile(src.crunch.LOGFILE_PATH):
         open(src.crunch.LOGFILE_PATH, "w").close()
+
+def setup_logging_locks():
+    from src.crunch import lock_init
+    from multiprocessing import Lock
+
+    ss_lock = Lock()
+    log_lock = Lock()
+
+    lock_init(ss_lock, log_lock)
 
 
 def teardown_logging_path():
